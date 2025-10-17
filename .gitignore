@@ -12,6 +12,8 @@
 *.lib
 
 # Executables
+bin/
+export/
 *.exe
 
 # DUB
