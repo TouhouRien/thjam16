@@ -1,0 +1,62 @@
+{
+	"authors": [
+		"TouhouRien"
+	],
+	"copyright": "Copyright © 2025, TouhouRien",
+	"description": "TouhouJam 16: Tailor-Made",
+	"license": "Zlib",
+	"name": "thjam16",
+    "targetName": "thjam16",
+    "workingDirectory": ".",
+    "dependencies": {
+        "atelier": {
+            "path": "atelier"
+        }
+    },
+    "configurations": [
+        {
+            "name": "thjam16",
+            "targetPath": "bin",
+            "targetType": "executable",
+            "targetName": "thjam16",
+            "dflags": [
+                "-gf"
+            ],
+            "subConfigurations": {
+                "atelier": "atelier_debug"
+            }
+        },
+        {
+            "name": "thjam16_editor_debug",
+            "targetPath": "bin",
+            "targetType": "library",
+            "targetName": "etabli",
+            "subConfigurations": {
+                "atelier": "etabli_debug"
+            }
+        },
+        {
+            "name": "thjam16_editor",
+            "targetPath": "bin",
+            "targetType": "library",
+            "targetName": "etabli",
+            "subConfigurations": {
+                "atelier": "etabli"
+            }
+        },
+        {
+            "name": "thjam16_export",
+            "targetPath": "export",
+            "lflags": [
+                "-subsystem:windows",
+                "-entry:mainCRTStartup"
+            ],
+            "subConfigurations": {
+                "atelier": "atelier"
+            }
+        }
+    ],
+    "subPackages": [
+        "./etabli"
+    ]
+}

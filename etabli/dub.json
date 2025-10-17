@@ -1,0 +1,41 @@
+{
+	"authors": [
+		"TouhouRien"
+	],
+	"copyright": "Copyright © 2025, TouhouRien",
+	"description": "Éditeur",
+	"license": "Zlib",
+	"name": "etabli",
+    "targetName": "etabli",
+    "workingDirectory": "../",
+    "dependencies": {
+        "thjam16": {
+            "path": "../"
+        }
+    },
+    "configurations": [
+        {
+            "name": "thjam16_etabli_debug",
+            "targetType": "executable",
+            "targetPath": "../bin",
+            "dflags": [
+                "-gf"
+            ],
+            "subConfigurations": {
+                "atelier:game": "thjam16_etabli_debug"
+            }
+        },
+        {
+            "name": "thjam16_etabli_export",
+            "targetType": "executable",
+            "targetPath": "../export",
+            "lflags": [
+                "-subsystem:windows",
+                "-entry:mainCRTStartup"
+            ],
+            "subConfigurations": {
+                "atelier:game": "thjam16_etabli"
+            }
+        }
+    ]
+}
