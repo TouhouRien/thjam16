@@ -1,6 +1,7 @@
 import atelier;
 
 import thj;
+import shinmy;
 
 extern (C) __gshared string[] rt_options = [
 	"gcopt=initReserve:128 minPoolSize:256 parallel:2"
@@ -59,7 +60,37 @@ void cliDefault(Cli.Result cli) {
 
 	atelier.loadArchives();
 	atelier.loadResources();
-
 	atelier.window.setIcon(Atelier_Window_Icon);
+
+	Atelier.input.addAction("left");
+	Atelier.input.addAction("right");
+	Atelier.input.addAction("up");
+	Atelier.input.addAction("down");
+
+	Atelier.input.addAction("needleSwing");
+	Atelier.input.addAction("needleThrow");
+
+	Atelier.input.addActionEvent("left",
+	    InputEvent.keyButton(InputEvent.KeyButton.Button.a, InputState(KeyState.pressed)));
+	Atelier.input.addActionEvent("right",
+	    InputEvent.keyButton(InputEvent.KeyButton.Button.d, InputState(KeyState.pressed)));
+	Atelier.input.addActionEvent("up",
+	    InputEvent.keyButton(InputEvent.KeyButton.Button.w, InputState(KeyState.pressed)));
+	Atelier.input.addActionEvent("down",
+	    InputEvent.keyButton(InputEvent.KeyButton.Button.s, InputState(KeyState.pressed)));
+
+	Atelier.input.addActionEvent("needleSwing",
+	    InputEvent.mouseButton(InputEvent.MouseButton.Button.left,
+							   InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
+	Atelier.input.addActionEvent("needleThrow",
+	    InputEvent.mouseButton(InputEvent.MouseButton.Button.right,
+							   InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
+
+	Atelier.world.addController("control", { return new PlayerController(); });
+	Atelier.env.setPlayerController("control");
+	Atelier.env.setPlayerActor("shinmy");
+
+	Atelier.world.load("level1");
+
 	atelier.run();
 }
