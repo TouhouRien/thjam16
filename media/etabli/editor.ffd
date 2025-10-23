@@ -170,6 +170,10 @@ sprite "editor:move-button" {
     texture "editor"
     clip 128 0 13 13
 }
+sprite "editor:selectmove-button" {
+    texture "editor"
+    clip 240 16 13 13
+}
 sprite "editor:corner-button" {
     texture "editor"
     clip 144 0 12 12
@@ -230,6 +234,14 @@ sprite "editor:resize-button" {
     texture "editor"
     clip 96 25 16 7
 }
+sprite "editor:collision-button" {
+    texture "editor"
+    clip 192 32 16 16
+}
+sprite "editor:navigation-button" {
+    texture "editor"
+    clip 208 32 16 16
+}
 sprite "editor:arrow-small-up" {
     texture "editor"
     clip 0 80 7 8
@@ -278,13 +290,9 @@ sprite "editor:scene-collision" {
     texture "editor"
     clip 64 96 16 16
 }
-sprite "editor:scene-navigation" {
-    texture "editor"
-    clip 80 96 16 16
-}
 sprite "editor:scene-lighting" {
     texture "editor"
-    clip 96 96 16 16
+    clip 80 96 16 16
 }
 sprite "editor:gear" {
     texture "editor"
