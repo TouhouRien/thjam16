@@ -103,6 +103,8 @@ void cliDefault(Cli.Result cli) {
 	Atelier.env.setPlayerActor("shinmy");
 
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
+	Atelier.world.addController("button", { return new ButtonController(); });
+	Atelier.world.addController("suwako", { return new SuwakoController(); });
 
 	// playTrack
 	// stopTrack
@@ -110,18 +112,6 @@ void cliDefault(Cli.Result cli) {
 	Atelier.audio.playTrack(overworldMusic, 0f);
 
 	Atelier.world.load("level1");
-
-	// only attaches on level1 first load
-	Atelier.world.addController("suwako", { return new SuwakoController(); });
-	foreach (entity; Atelier.world.findByTag("suwako")) {
-		entity.setController("suwako");
-	}
-
-	// only attaches on level1 first load
-	Atelier.world.addController("button", { return new ButtonController(); });
-	foreach (entity; Atelier.world.findByTag("button")) {
-		entity.setController("button");
-	}
 
 	atelier.run();
 }

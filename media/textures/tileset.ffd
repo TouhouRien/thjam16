@@ -1,0 +1,13 @@
+texture "tileset" {
+    file "tileset.png"
+    isSmooth false
+}
+tileset "tileset" {
+    texture "tileset"
+    clip 96 144 16 16
+    lines 7
+    columns 8
+    maxCount 54
+    margin 0 0
+    frameTime 0
+}

@@ -36,6 +36,7 @@ prop "button" {
         isBehind []
     }
     hurtbox
+    controller "button"
     zOrderOffset -1
     material 0
 }

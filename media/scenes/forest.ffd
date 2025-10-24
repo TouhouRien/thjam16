@@ -20,6 +20,7 @@ scene "level1" {
         tags ["button"]
         layer "scene"
         position 94 38 16
+        controller ""
         graphic "inactif"
         angle 180
         rid "button"
@@ -29,6 +30,7 @@ scene "level1" {
         tags ["suwako"]
         layer "scene"
         position 165 40 16
+        controller ""
         graphic "idle"
         angle 270.895
         rid "suwako"
@@ -38,6 +40,7 @@ scene "level1" {
         tags []
         layer "scene"
         position 32 42 16
+        controller ""
         scene ""
         target ""
         direction 0
@@ -48,6 +51,7 @@ scene "level1" {
         tags []
         layer "scene"
         position 304 41 16
+        controller ""
         scene "level2"
         target "south"
         direction 6
@@ -102,6 +106,7 @@ scene "level3" {
         tags []
         layer "scene"
         position 66 147 16
+        controller ""
         graphic "idle"
         angle 180
         rid "marisa"
@@ -111,6 +116,7 @@ scene "level3" {
         tags []
         layer "scene"
         position 93 148 16
+        controller ""
         graphic "idle"
         angle 180
         rid "marisa"
@@ -120,6 +126,7 @@ scene "level3" {
         tags []
         layer "scene"
         position 79 159 16
+        controller ""
         graphic "idle"
         angle 180
         rid "marisa"
@@ -129,6 +136,7 @@ scene "level3" {
         tags []
         layer "scene"
         position 128 250 16
+        controller ""
         graphic "inactif"
         angle 180
         rid "button"
@@ -138,6 +146,7 @@ scene "level3" {
         tags []
         layer "scene"
         position 36 250 16
+        controller ""
         graphic "inactif"
         angle 180
         rid "button"
@@ -147,6 +156,7 @@ scene "level3" {
         tags []
         layer "scene"
         position 80 300 16
+        controller ""
         scene "level2"
         target "north"
         direction 4
@@ -158,5 +168,37 @@ scene "level3" {
         radius 100
         color 1 1 1
         brightness 1
+    }
+}
+scene "level4" {
+    size 12 12
+    levels 2
+    mainLevel 0
+    brightness 1
+    weather "none" 1
+    topography {
+        terrain "terrain"
+        levels [[1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 0 0 0 0 0 0 0 1 1 1] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1]]
+        brushes [[0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0]]
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 176 60 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "yukari"
+    }
+    entity "actor" {
+        name "yk1"
+        tags []
+        layer "scene"
+        position 16 60 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "yukari"
     }
 }

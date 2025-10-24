@@ -9,7 +9,7 @@ final class ButtonController : Controller!Prop {
 }
 
 final class ButtonBehavior : Behavior!Prop {
-    private bool _active;
+    private bool _active = false;
 
     override void update() {
         Vec3i playerPos = Atelier.world.player.getPosition();
