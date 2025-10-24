@@ -24,6 +24,15 @@ scene "level1" {
         angle 180
         rid "button"
     }
+    entity "actor" {
+        name "enm1"
+        tags []
+        layer "scene"
+        position 165 39 16
+        graphic "idle"
+        angle 180
+        rid "tenshi"
+    }
     entity "teleporter" {
         name ""
         tags []

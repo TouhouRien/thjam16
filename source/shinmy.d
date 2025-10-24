@@ -1,10 +1,18 @@
 module shinmy;
 
 import atelier;
+import material;
 
 final class PlayerController : Controller!Actor {
     override void onStart() {
         setBehavior(new MoveBehavior);
+    }
+
+    override void onUpdate() {
+        // Respawn when hitting water
+        if (entity.getLevel() == 0) { // entity.getMaterial() == Material.Water && 
+            Atelier.world.load(Atelier.env.getScene(), Atelier.env.getTeleporter());
+        }
     }
 
     override void onTeleport(uint direction, bool isExit) {
