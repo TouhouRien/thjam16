@@ -4,16 +4,23 @@ import atelier;
 import material;
 
 final class PlayerController : Controller!Actor {
+    private {
+        Vec3i _lastValidPosition = Vec3i.zero;
+    }
+
     override void onStart() {
         setBehavior(new PlayerBehavior);
     }
 
     override void onUpdate() {
+        // Record last valid ground tile
+        if (entity.getLevel() == 1 && entity.isOnGround) {
+            _lastValidPosition = entity.getPosition();
+        }
+
         // Respawn when hitting water
-        if (entity.getLevel() == 0) { // entity.getMaterial() == Material.Water && 
-            Atelier.world.transitionScene(Atelier.env.getScene(),
-                                          Atelier.env.getTeleporter(),
-                                          cast(uint)Atelier.env.getTeleporterDirection());
+        if (entity.getLevel() == 0 && entity.isOnGround) {
+            entity.setPosition(_lastValidPosition);
         }
     }
 
