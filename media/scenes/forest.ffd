@@ -34,4 +34,36 @@ scene "level1" {
         direction 0
         hitbox 16 16 16
     }
+    entity "teleporter" {
+        name "east"
+        tags []
+        layer "scene"
+        position 304 41 16
+        scene "level2"
+        target "north"
+        direction 6
+        hitbox 32 65 16
+    }
+}
+scene "level2" {
+    size 5 10
+    levels 2
+    mainLevel 0
+    brightness 1
+    weather "none" 1
+    topography {
+        terrain "terrain"
+        levels [[1 1 1 1 1 1] [1 1 1 1 1 1] [0 0 1 1 0 0] [0 0 1 1 0 0] [0 0 1 1 0 0] [0 0 1 1 0 0] [0 1 1 1 1 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0]]
+        brushes [[0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0]]
+    }
+    entity "teleporter" {
+        name "north"
+        tags []
+        layer "scene"
+        position 40 132 0
+        scene ""
+        target "east"
+        direction 4
+        hitbox 80 16 16
+    }
 }

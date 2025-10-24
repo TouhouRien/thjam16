@@ -5,10 +5,10 @@ texture "player" {
 multidiranimation "player" {
     texture "player"
     clip 0 0 32 32
-    frameTime 0
-    frames [0]
-    repeat false
-    lines 1
+    frameTime 8
+    frames [0 1 2 3]
+    repeat true
+    lines 4
     columns 1
     margin 0 0
     dirStartAngle 180
