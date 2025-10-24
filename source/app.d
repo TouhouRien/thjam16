@@ -58,6 +58,11 @@ void cliDefault(Cli.Result cli) {
 	Atelier atelier = new Atelier(false, Atelier_Window_Width,
 		Atelier_Window_Height, Atelier_Window_Title, &setupResourceLoaders, &setupLibLoaders);
 
+	Atelier.window.setSize(1280, 720);
+	Atelier.renderer.setScaling(Renderer.Scaling.stretch);
+	Atelier.renderer.setPixelSharpness(2);
+	//Atelier.window.setDisplay();
+
 	atelier.loadArchives();
 	atelier.loadResources();
 	atelier.window.setIcon(Atelier_Window_Icon);
@@ -71,20 +76,22 @@ void cliDefault(Cli.Result cli) {
 	Atelier.input.addAction("needleThrow");
 
 	Atelier.input.addActionEvent("left",
-	    InputEvent.keyButton(InputEvent.KeyButton.Button.a, InputState(KeyState.pressed)));
+		InputEvent.keyButton(InputEvent.KeyButton.Button.a, InputState(KeyState.pressed)));
 	Atelier.input.addActionEvent("right",
-	    InputEvent.keyButton(InputEvent.KeyButton.Button.d, InputState(KeyState.pressed)));
+		InputEvent.keyButton(InputEvent.KeyButton.Button.d, InputState(KeyState.pressed)));
 	Atelier.input.addActionEvent("up",
-	    InputEvent.keyButton(InputEvent.KeyButton.Button.w, InputState(KeyState.pressed)));
+		InputEvent.keyButton(InputEvent.KeyButton.Button.w, InputState(KeyState.pressed)));
 	Atelier.input.addActionEvent("down",
-	    InputEvent.keyButton(InputEvent.KeyButton.Button.s, InputState(KeyState.pressed)));
+		InputEvent.keyButton(InputEvent.KeyButton.Button.s, InputState(KeyState.pressed)));
 
 	Atelier.input.addActionEvent("needleSwing",
-	    InputEvent.mouseButton(InputEvent.MouseButton.Button.left,
-							   InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
+		InputEvent.mouseButton(
+			InputEvent.MouseButton.Button.left,
+			InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
 	Atelier.input.addActionEvent("needleThrow",
-	    InputEvent.mouseButton(InputEvent.MouseButton.Button.right,
-							   InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
+		InputEvent.mouseButton(
+			InputEvent.MouseButton.Button.right,
+			InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
 
 	Atelier.world.addController("control", { return new PlayerController(); });
 	Atelier.env.setPlayerController("control");
