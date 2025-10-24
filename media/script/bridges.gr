@@ -1,0 +1,150 @@
+func bridge_select(name : string) ([Entity]) {
+    return @World.findEntitiesByTag(name);
+}
+
+
+func bridge_spawn(name : string) {
+    for(elem, bridge_select(name).each) {
+        elem.setEnabled(true);
+    }
+}
+
+func bridge_despawn(name : string) {
+    for(elem, bridge_select(name).each) {
+        elem.setEnabled(false);
+    }
+}
+
+func sort_northwise(laliste : [Entity]) ([Entity]) {
+    loop(i: int, laliste.size) {
+        loop(j: int, laliste.size) {
+            if(i == j) continue;
+            var ix, iy, iz = laliste[i].getPosition();
+            var jx, jy, jz = laliste[j].getPosition();
+            if(iy > jy) {
+                var tmp = laliste[i];
+                laliste[i] = laliste[j];
+                laliste[j] = tmp;
+            }
+        }
+    }
+    return laliste;
+}
+
+func sort_southwise(laliste : [Entity]) ([Entity]) {
+    loop(i: int, laliste.size) {
+        loop(j: int, laliste.size) {
+            if(i == j) continue;
+            var ix, iy, iz = laliste[i].getPosition();
+            var jx, jy, jz = laliste[j].getPosition();
+            if(iy < jy) {
+                var tmp = laliste[i];
+                laliste[i] = laliste[j];
+                laliste[j] = tmp;
+            }
+        }
+    }
+    return laliste;
+}
+
+func sort_eastwise(laliste : [Entity]) ([Entity]) {
+    loop(i: int, laliste.size) {
+        loop(j: int, laliste.size) {
+            if(i == j) continue;
+            var ix, iy, iz = laliste[i].getPosition();
+            var jx, jy, jz = laliste[j].getPosition();
+            if(ix > jx) {
+                var tmp = laliste[i];
+                laliste[i] = laliste[j];
+                laliste[j] = tmp;
+            }
+        }
+    }
+    return laliste;
+}
+
+func sort_westwise(laliste : [Entity]) ([Entity]) {
+    loop(i: int, laliste.size) {
+        loop(j: int, laliste.size) {
+            if(i == j) continue;
+            var ix, iy, iz = laliste[i].getPosition();
+            var jx, jy, jz = laliste[j].getPosition();
+            if(ix < jx) {
+                var tmp = laliste[i];
+                laliste[i] = laliste[j];
+                laliste[j] = tmp;
+            }
+        }
+    }
+    return laliste;
+}
+
+task bridge_northwise(name : string, frame_wait : int) {
+    var bridge = sort_northwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(true);
+    }
+}
+
+task bridge_westwise(name : string, frame_wait : int) {
+    var bridge = sort_westwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(true);
+    }
+}
+
+task bridge_southwise(name : string, frame_wait : int) {
+    var bridge = sort_southwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(true);
+    }
+}
+
+task bridge_eastwise(name : string, frame_wait : int) {
+    var bridge = sort_eastwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(true);
+    }
+}
+
+task unbridge_northwise(name : string, frame_wait : int) {
+    var bridge = sort_northwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(false);
+    }
+}
+
+task unbridge_westwise(name : string, frame_wait : int) {
+    var bridge = sort_westwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(false);
+    }
+}
+
+task unbridge_southwise(name : string, frame_wait : int) {
+    var bridge = sort_southwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(false);
+    }
+}
+
+task unbridge_eastwise(name : string, frame_wait : int) {
+    var bridge = sort_eastwise(bridge_select(name));
+    for(elem, bridge.each) {
+        wait(frame_wait)
+        elem.setEnabled(false);
+    }
+}
+
+event scene_level0_0 {
+    bridge_despawn("ad");
+    bridge_northwise("ad", 6);
+}
+

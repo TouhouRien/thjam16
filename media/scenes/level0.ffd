@@ -11,73 +11,70 @@ scene "level0_0" {
     }
     entity "prop" {
         name ""
-        tags []
+        tags ["ad"]
         layer "scene"
-        position 160 147 12
+        position 148 144 12
+        controller ""
         graphic "base"
         angle 180
         rid "bridge_piece"
     }
     entity "prop" {
         name ""
-        tags []
+        tags ["ad"]
         layer "scene"
-        position 160 163 12
+        position 148 160 12
+        controller ""
         graphic "base"
         angle 180
         rid "bridge_piece"
     }
     entity "prop" {
         name ""
-        tags []
+        tags ["ad"]
         layer "scene"
-        position 160 184 12
+        position 148 176 12
+        controller ""
         graphic "base"
         angle 180
         rid "bridge_piece"
     }
     entity "prop" {
         name ""
-        tags []
+        tags ["ad"]
         layer "scene"
-        position 160 205 12
+        position 148 192 12
+        controller ""
         graphic "base"
         angle 180
         rid "bridge_piece"
     }
     entity "prop" {
         name ""
-        tags []
+        tags ["ad"]
         layer "scene"
-        position 160 221 -4
+        position 148 208 12
+        controller ""
         graphic "base"
         angle 180
         rid "bridge_piece"
     }
     entity "prop" {
         name ""
-        tags []
+        tags ["ad"]
         layer "scene"
-        position 160 221 12
+        position 148 224 12
+        controller ""
         graphic "base"
         angle 180
         rid "bridge_piece"
     }
-    entity "teleporter" {
-        name "hazard"
-        tags []
-        layer "scene"
-        position 384 190 0
-        scene "level0_0"
-        target "spawn"
-        direction 0
-        hitbox 320 80 8
-    }
     entity "prop" {
         name ""
-        tags []
+        tags ["ad"]
         layer "scene"
-        position 160 237 12
+        position 148 240 12
+        controller ""
         graphic "base"
         angle 180
         rid "bridge_piece"
@@ -86,8 +83,9 @@ scene "level0_0" {
         name "spawn"
         tags []
         layer "scene"
-        position 150 264 0
-        scene ""
+        position 211 280 32
+        controller ""
+        scene "level0_0"
         target ""
         direction 0
         hitbox 16 16 16
@@ -96,7 +94,8 @@ scene "level0_0" {
         name ""
         tags []
         layer "scene"
-        position 121 280 0
+        position 121 280 16
+        controller ""
         scene "level0_0"
         target ""
         direction 0
