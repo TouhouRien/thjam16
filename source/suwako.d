@@ -15,10 +15,14 @@ final class SuwakoBehavior : Behavior!Actor {
         Vec3i playerPos = Atelier.world.player.getPosition();
         Vec3i distToPlayer = playerPos - entity.getPosition();
 
+        // if distance less than 80 pixels
         if (distToPlayer.lengthSquared < 80 * 80) {
+            // move towards player at 75% of their speed
             Vec2f movedir = Vec2f(distToPlayer.x, distToPlayer.y).normalized;
             entity.angle = radToDeg(movedir.angle()) + 90f;
             acceldir += movedir * 0.75f;
+
+            // fire!
         }
 
         entity.accelerate(Vec3f(acceldir, 0f));

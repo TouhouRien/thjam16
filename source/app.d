@@ -1,6 +1,7 @@
 import atelier;
 
 import thj;
+import button;
 import shinmy;
 import suwako;
 
@@ -111,6 +112,12 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("suwako", { return new SuwakoController(); });
 	foreach(entity; Atelier.world.findByTag("suwako")) {
 		entity.setController("suwako");
+	}
+
+	// only attaches on level1 first load
+	Atelier.world.addController("button", { return new ButtonController(); });
+	foreach(entity; Atelier.world.findByTag("button")) {
+		entity.setController("button");
 	}
 
 	atelier.run();

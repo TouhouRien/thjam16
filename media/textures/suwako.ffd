@@ -33,7 +33,7 @@ actor "suwako" {
         size 12 12 2
     }
     repulsor {
-        type "strong"
+        type "weak"
         radius 6
         height 2
     }

@@ -16,8 +16,8 @@ scene "level1" {
         tiles [[-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]]
     }
     entity "prop" {
-        name ""
-        tags []
+        name "bt1"
+        tags ["button"]
         layer "scene"
         position 94 38 16
         graphic "inactif"
@@ -28,7 +28,7 @@ scene "level1" {
         name "enm1"
         tags ["suwako"]
         layer "scene"
-        position 165 39 16
+        position 165 40 16
         graphic "idle"
         angle 270.895
         rid "suwako"
