@@ -1,0 +1,45 @@
+texture "needle" {
+    file "needle.png"
+    isSmooth true
+}
+sprite "needle.shot" {
+    texture "needle"
+    clip 4 6 27 5
+}
+sprite "needle.string" {
+    texture "needle"
+    clip 32 0 8 1
+}
+sprite "needle.stuck" {
+    texture "needle"
+    clip 51 2 11 14
+}
+shot "needle" {
+    render "" {
+        type "sprite"
+        rid "needle.shot"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating true
+        angleOffset -90
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 8 8 2
+    }
+    hurtbox {
+        faction "allied"
+        type "both"
+        minRadius 0
+        maxRadius 26
+        height 6
+        angle 90
+        angleDelta 10
+        offsetDist 12
+        offsetAngle 270
+    }
+    material 2
+}
