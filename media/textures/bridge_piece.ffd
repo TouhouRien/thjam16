@@ -6,9 +6,9 @@ prop "bridge_piece" {
     render "base" {
         type "sprite"
         rid "bridge_piece"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 -2
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
         isRotating false
         angleOffset 0
         blend "alpha"
