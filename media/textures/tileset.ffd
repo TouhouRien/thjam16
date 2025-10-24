@@ -1,5 +1,5 @@
 texture "tileset" {
-    file "tileset.png"
+    file "tilesetfinal.png"
     isSmooth false
 }
 tileset "tileset" {
