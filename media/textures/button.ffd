@@ -22,6 +22,7 @@ prop "button_on" {
         offsetDist 0
         offsetAngle 0
     }
+    zOrderOffset -1
     material 4
 }
 prop "button_off" {
@@ -61,4 +62,33 @@ sprite "button_off" {
 texture "button" {
     file "button.png"
     isSmooth false
+}
+prop "button" {
+    render "inactif" {
+        type "sprite"
+        rid "button_off"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    render "actif" {
+        type "sprite"
+        rid "button_on"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    hurtbox
+    zOrderOffset -1
+    material 0
 }
