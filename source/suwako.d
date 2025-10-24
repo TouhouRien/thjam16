@@ -1,16 +1,24 @@
 module suwako;
 
 import atelier;
-import std.stdio;
 
 final class SuwakoController : Controller!Actor {
     override void onStart() {
-        setBehavior(new SuwakoBehavior);
+        setBehavior(new SuwakoBehavior());
     }
 }
 
 final class SuwakoBehavior : Behavior!Actor {
     bool _shot = false;
+    GrTask _task;
+
+    override void onStart() {
+        _task = Atelier.script.callEvent("suwakoBehavior", [grGetNativeType("Entity")], [GrValue(entity)]);
+    }
+
+    override void onImpact(Entity target, Vec3f normal) {
+        // Suwako getting hit
+    }
 
     override void update() {
         Vec2f acceldir = Vec2f.zero;
@@ -28,21 +36,6 @@ final class SuwakoBehavior : Behavior!Actor {
 
             entity.angle = radToDeg(moveDir.angle()) + 90f;
             acceldir += moveDir * 0.75f;
-
-            // fire!
-            /*if (!_shot) {
-                Shot shot = Atelier.res.get!Shot("bullet");
-                if (shot) {
-                    shot.setPosition(suwakoPos);
-                    shot.setSpeed(2f, 0f);
-                    shot.angle(moveAng);
-                    Atelier.world.addEntity(shot);
-                }
-
-                writeln("FIRE AT THEM");
-
-                _shot = true;
-            }*/
         }
 
         entity.accelerate(Vec3f(acceldir, 0f));

@@ -14,7 +14,7 @@ final class PlayerController : Controller!Actor {
 
     override void onUpdate() {
         // Record last valid ground tile
-        if (entity.getLevel() == 1 && entity.isOnGround) {
+        if (entity.getLevel() == 1 && entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
             _lastValidPosition = entity.getPosition();
         }
 

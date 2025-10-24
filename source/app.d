@@ -2,6 +2,7 @@ import atelier;
 
 import thj;
 import button;
+import enemy;
 import reel;
 import shinmy;
 import suwako;
@@ -106,6 +107,7 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
 	Atelier.world.addController("button", { return new ButtonController(); });
 	Atelier.world.addController("suwako", { return new SuwakoController(); });
+	Atelier.world.addController("marisa", { return new EnemyController("marisa"); });
 	Atelier.world.addController("reel", { return new ReelController(); });
 
 	// playTrack

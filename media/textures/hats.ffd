@@ -59,9 +59,9 @@ actor "tenshi" {
         size 12 12 2
     }
     repulsor {
-        type "strong"
-        radius 0
-        height 0
+        type "weak"
+        radius 6
+        height 2
     }
     hurtbox {
         faction "enemy"
@@ -74,6 +74,8 @@ actor "tenshi" {
         offsetDist 0
         offsetAngle 0
     }
+    controller ""
+    zOrderOffset 0
 }
 actor "yukari" {
     render "idle" {
@@ -92,9 +94,9 @@ actor "yukari" {
         size 12 12 2
     }
     repulsor {
-        type "strong"
-        radius 0
-        height 0
+        type "weak"
+        radius 6
+        height 2
     }
     hurtbox {
         faction "enemy"
@@ -107,6 +109,8 @@ actor "yukari" {
         offsetDist 0
         offsetAngle 0
     }
+    controller ""
+    zOrderOffset 0
 }
 actor "marisa" {
     render "idle" {
@@ -125,9 +129,9 @@ actor "marisa" {
         size 12 12 2
     }
     repulsor {
-        type "strong"
-        radius 0
-        height 0
+        type "weak"
+        radius 6
+        height 2
     }
     hurtbox {
         faction "enemy"
@@ -140,6 +144,8 @@ actor "marisa" {
         offsetDist 0
         offsetAngle 0
     }
+    controller "marisa"
+    zOrderOffset 0
 }
 actor "reimu" {
     render "idle" {
@@ -158,9 +164,9 @@ actor "reimu" {
         size 12 12 2
     }
     repulsor {
-        type "strong"
-        radius 0
-        height 0
+        type "weak"
+        radius 6
+        height 2
     }
     hurtbox {
         faction "enemy"
@@ -173,4 +179,6 @@ actor "reimu" {
         offsetDist 0
         offsetAngle 0
     }
+    controller ""
+    zOrderOffset 0
 }

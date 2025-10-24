@@ -22,7 +22,7 @@ shot "bullet" {
         isRotating false
         angleOffset 0
         blend "alpha"
-        isDefault false
+        isDefault true
         isBehind []
     }
     hurtbox {

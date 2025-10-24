@@ -2,14 +2,13 @@ func bridge_select(name : string) ([Entity]) {
     return @World.findEntitiesByTag(name);
 }
 
-
-func bridge_spawn(name : string) {
+export func bridge_spawn(name : string) {
     for(elem, bridge_select(name).each) {
         elem.setEnabled(true);
     }
 }
 
-func bridge_despawn(name : string) {
+export func bridge_despawn(name : string) {
     for(elem, bridge_select(name).each) {
         elem.setEnabled(false);
     }
@@ -79,7 +78,7 @@ func sort_westwise(laliste : [Entity]) ([Entity]) {
     return laliste;
 }
 
-task bridge_northwise(name : string, frame_wait : int) {
+export task bridge_northwise(name : string, frame_wait : int) {
     var bridge = sort_northwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -87,7 +86,7 @@ task bridge_northwise(name : string, frame_wait : int) {
     }
 }
 
-task bridge_westwise(name : string, frame_wait : int) {
+export task bridge_westwise(name : string, frame_wait : int) {
     var bridge = sort_westwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -95,7 +94,7 @@ task bridge_westwise(name : string, frame_wait : int) {
     }
 }
 
-task bridge_southwise(name : string, frame_wait : int) {
+export task bridge_southwise(name : string, frame_wait : int) {
     var bridge = sort_southwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -103,7 +102,7 @@ task bridge_southwise(name : string, frame_wait : int) {
     }
 }
 
-task bridge_eastwise(name : string, frame_wait : int) {
+export task bridge_eastwise(name : string, frame_wait : int) {
     var bridge = sort_eastwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -111,7 +110,7 @@ task bridge_eastwise(name : string, frame_wait : int) {
     }
 }
 
-task unbridge_northwise(name : string, frame_wait : int) {
+export task unbridge_northwise(name : string, frame_wait : int) {
     var bridge = sort_northwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -119,7 +118,7 @@ task unbridge_northwise(name : string, frame_wait : int) {
     }
 }
 
-task unbridge_westwise(name : string, frame_wait : int) {
+export task unbridge_westwise(name : string, frame_wait : int) {
     var bridge = sort_westwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -127,7 +126,7 @@ task unbridge_westwise(name : string, frame_wait : int) {
     }
 }
 
-task unbridge_southwise(name : string, frame_wait : int) {
+export task unbridge_southwise(name : string, frame_wait : int) {
     var bridge = sort_southwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -135,7 +134,7 @@ task unbridge_southwise(name : string, frame_wait : int) {
     }
 }
 
-task unbridge_eastwise(name : string, frame_wait : int) {
+export task unbridge_eastwise(name : string, frame_wait : int) {
     var bridge = sort_eastwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
@@ -147,4 +146,3 @@ event scene_level0_0 {
     bridge_despawn("ad");
     bridge_northwise("ad", 6);
 }
-

@@ -1,0 +1,9 @@
+import "bridges.gr";
+
+event scene_level1 {
+    bridge_despawn("br1");
+    
+    var button = @World.findEntitiesByTag("bt1");
+    
+    //bridge_northwise("ad", 6);
+}

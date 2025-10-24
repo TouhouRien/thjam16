@@ -6,7 +6,7 @@ scene "level1" {
     weather "none" 1
     topography {
         terrain "terrain"
-        levels [[0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 -1 -1 -1 -1 -1] [0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1] [0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]]
+        levels [[0 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0 0 -1 -1 -1 -1 -1] [0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1] [0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1] [0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1] [0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]]
         brushes [[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]]
     }
     terrainLayer "bg" {
@@ -17,9 +17,9 @@ scene "level1" {
     }
     entity "prop" {
         name "bt1"
-        tags ["button"]
+        tags ["bt1"]
         layer "scene"
-        position 94 38 16
+        position 100 42 16
         controller ""
         graphic "inactif"
         angle 180
@@ -29,7 +29,7 @@ scene "level1" {
         name "enm1"
         tags ["suwako"]
         layer "scene"
-        position 165 40 16
+        position 248 39 16
         controller ""
         graphic "idle"
         angle 270.895
@@ -45,11 +45,71 @@ scene "level1" {
         angle 180
         rid "reel"
     }
+    entity "prop" {
+        name ""
+        tags ["br1"]
+        layer "scene"
+        position 191 42 12
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags ["br1"]
+        layer "scene"
+        position 175 42 12
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags ["br1"]
+        layer "scene"
+        position 160 42 12
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags ["br1"]
+        layer "scene"
+        position 129 42 12
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags ["br1"]
+        layer "scene"
+        position 145 42 12
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags ["br1"]
+        layer "scene"
+        position 207 42 12
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
     entity "teleporter" {
         name ""
         tags []
         layer "scene"
-        position 32 42 16
+        position 32 43 16
         controller ""
         scene ""
         target ""

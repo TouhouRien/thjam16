@@ -1,0 +1,9 @@
+import "bridges"
+
+event button_activate_bt1(button: Entity) {
+    bridge_westwise("br1", 10);
+}
+
+event button_deactivate_bt1(button: Entity) {
+    unbridge_westwise("br1", 10);
+}

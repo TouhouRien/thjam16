@@ -1,0 +1,34 @@
+event suwakoBehavior(suwako: Entity) {
+    suwako.update;
+}
+
+task update(suwako: Entity) {
+    var acc = @Vec2f.zero;
+
+    loop {
+        var player = @World.getPlayer?;
+        
+        var px, py, pz = player.getPosition;
+        var sx, sy, sz = suwako.getPosition;
+        
+        var dist = @Vec2f(px - sx, py - sy);
+        
+        if (dist.lengthSquared < 100) {
+            var dir = dist.normalized;
+            var angle = dist.angle.deg;
+            
+            acc += dir * 0.75f;
+            //suwako.setAcceleration();
+            //print("dist: #{dist.x} #{dist.y}");
+            //print("angle: #{angle}");
+
+            var shot = @Shot("bullet");
+            shot.setPosition(suwako.getPosition);
+            shot.setAngle(angle);
+            shot.setSpeed(4f, 0f);
+            @World.addEntity(shot);
+        }
+        
+        wait(60);
+    }
+}

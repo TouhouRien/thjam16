@@ -1,0 +1,23 @@
+event marisaBehavior(marisa: Entity) {
+    marisa.update;
+}
+
+task update(marisa: Entity) {
+    var angle = 0f;
+
+    loop {
+        while (angle < 360f) {
+            var shot = @Shot("bullet");
+            shot.setPosition(marisa.getPosition);
+            shot.setAngle(angle);
+            shot.setSpeed(0.5f, 0f);
+            @World.addEntity(shot);
+            
+            angle += 35f;
+        }
+        
+        angle = angle % 360f;
+        
+        wait(500);
+    }
+}

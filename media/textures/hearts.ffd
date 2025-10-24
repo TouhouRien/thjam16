@@ -1,0 +1,24 @@
+texture "hearts" {
+    file "hearts.png"
+    isSmooth false
+}
+sprite "heart_full" {
+    texture "hearts"
+    clip 0 0 16 16
+}
+sprite "heart_34" {
+    texture "hearts"
+    clip 16 0 16 16
+}
+sprite "heart_half" {
+    texture "hearts"
+    clip 32 0 16 16
+}
+sprite "heart_14" {
+    texture "hearts"
+    clip 48 0 16 16
+}
+sprite "heart_empty" {
+    texture "hearts"
+    clip 64 0 16 16
+}
