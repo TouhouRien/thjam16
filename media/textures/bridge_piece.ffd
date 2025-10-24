@@ -1,0 +1,30 @@
+texture "bridge_piece" {
+    file "bridge_piece.png"
+    isSmooth false
+}
+prop "bridge_piece" {
+    render "base" {
+        type "sprite"
+        rid "bridge_piece"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 -2
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 16 16 4
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    zOrderOffset 0
+    material 1
+}
+sprite "bridge_piece" {
+    texture "bridge_piece"
+    clip 0 0 16 20
+}

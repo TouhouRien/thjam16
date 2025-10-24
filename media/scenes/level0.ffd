@@ -1,0 +1,105 @@
+scene "level0_0" {
+    size 20 20
+    levels 3
+    mainLevel 0
+    brightness 1
+    weather "none" 1
+    topography {
+        terrain "terrain"
+        levels [[0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] [-1 0 0 -1 -1 -1 0 0 0 0 0 0 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 0 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]]
+        brushes [[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]]
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 160 128 -4
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 160 144 -4
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 160 160 -4
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 160 176 -4
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 160 192 -4
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 160 208 -4
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "teleporter" {
+        name "hazard"
+        tags []
+        layer "scene"
+        position 384 190 0
+        scene "level0_0"
+        target "spawn"
+        direction 0
+        hitbox 320 80 8
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 160 224 -4
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "teleporter" {
+        name "spawn"
+        tags []
+        layer "scene"
+        position 150 264 0
+        scene ""
+        target ""
+        direction 0
+        hitbox 16 16 16
+    }
+    entity "teleporter" {
+        name ""
+        tags []
+        layer "scene"
+        position 121 280 0
+        scene "level0_0"
+        target ""
+        direction 0
+        hitbox 16 16 16
+    }
+}
