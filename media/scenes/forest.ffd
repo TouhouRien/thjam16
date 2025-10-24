@@ -15,4 +15,23 @@ scene "level1" {
         terrain "terrain"
         tiles [[-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1] [-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1]]
     }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 94 38 16
+        graphic "button"
+        angle 180
+        rid "button_on"
+    }
+    entity "teleporter" {
+        name ""
+        tags []
+        layer "scene"
+        position 32 42 16
+        scene ""
+        target ""
+        direction 0
+        hitbox 16 16 16
+    }
 }

@@ -1,2 +1,7 @@
-media "etabli" true
 media "script" true
+media "sfx" true
+media "music" true
+media "misc" true
+media "scenes" true
+media "textures" true
+media "etabli" true
