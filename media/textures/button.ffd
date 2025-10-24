@@ -22,7 +22,7 @@ prop "button_on" {
         offsetDist 0
         offsetAngle 0
     }
-    material 0
+    material 4
 }
 prop "button_off" {
     render "" {
@@ -48,7 +48,7 @@ prop "button_off" {
         offsetDist 0
         offsetAngle 0
     }
-    material 0
+    material 4
 }
 sprite "button_on" {
     texture "button"
