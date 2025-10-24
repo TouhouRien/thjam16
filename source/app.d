@@ -6,6 +6,7 @@ import shinmy;
 import suwako;
 
 import std.stdio;
+import checkpoint;
 
 extern (C) __gshared string[] rt_options = [
 	"gcopt=initReserve:128 minPoolSize:256 parallel:2"
@@ -100,7 +101,9 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("control", { return new PlayerController(); });
 	Atelier.env.setPlayerController("control");
 	Atelier.env.setPlayerActor("shinmy");
-	
+
+	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
+
 	// playTrack
 	// stopTrack
 	Music overworldMusic = Atelier.res.get!Music("overworld");
@@ -110,13 +113,13 @@ void cliDefault(Cli.Result cli) {
 
 	// only attaches on level1 first load
 	Atelier.world.addController("suwako", { return new SuwakoController(); });
-	foreach(entity; Atelier.world.findByTag("suwako")) {
+	foreach (entity; Atelier.world.findByTag("suwako")) {
 		entity.setController("suwako");
 	}
 
 	// only attaches on level1 first load
 	Atelier.world.addController("button", { return new ButtonController(); });
-	foreach(entity; Atelier.world.findByTag("button")) {
+	foreach (entity; Atelier.world.findByTag("button")) {
 		entity.setController("button");
 	}
 
