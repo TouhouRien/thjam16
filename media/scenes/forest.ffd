@@ -20,9 +20,9 @@ scene "level1" {
         tags []
         layer "scene"
         position 94 38 16
-        graphic "button"
+        graphic "inactif"
         angle 180
-        rid "button_on"
+        rid "button"
     }
     entity "teleporter" {
         name ""
