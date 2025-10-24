@@ -1,0 +1,85 @@
+texture "yamame" {
+    file "yamame.png"
+    isSmooth false
+}
+multidiranimation "yamame_yesbow" {
+    texture "yamame"
+    clip 0 0 32 32
+    frameTime 8
+    frames [0 1 2 3]
+    repeat true
+    lines 4
+    columns 1
+    margin 0 0
+    dirStartAngle 180
+    dirOffset 32 0
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+multidiranimation "yamame_nobow" {
+    texture "yamame"
+    clip 0 128 32 32
+    frameTime 8
+    frames [0 1 2 3]
+    repeat true
+    lines 4
+    columns 1
+    margin 0 0
+    dirStartAngle 180
+    dirOffset 32 0
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+animation "yamame_bow" {
+    texture "yamame"
+    clip 128 0 32 32
+    frameTime 8
+    frames [0 1 2 3]
+    repeat true
+    lines 4
+    columns 1
+    margin 0 0
+}
+actor "yamame" {
+    render "yesbow" {
+        type "multidiranimation"
+        rid "yamame_yesbow"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    render "nobow" {
+        type "multidiranimation"
+        rid "yamame_nobow"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 12 12 12
+    }
+    repulsor
+    hurtbox {
+        faction "enemy"
+        type "target"
+        minRadius 0
+        maxRadius 4
+        height 10
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+    controller ""
+    zOrderOffset 0
+}

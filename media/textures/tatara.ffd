@@ -1,9 +1,9 @@
-texture "suwako" {
-    file "suwako.png"
+texture "tatara" {
+    file "tatara.png"
     isSmooth false
 }
-multidiranimation "suwako" {
-    texture "suwako"
+animation "tatara" {
+    texture "tatara"
     clip 0 0 32 32
     frameTime 8
     frames [0 1 2 3]
@@ -11,15 +11,11 @@ multidiranimation "suwako" {
     lines 1
     columns 4
     margin 0 0
-    dirStartAngle 180
-    dirOffset 0 32
-    dirIndexes [0 1 2 3 4 3 2 1]
-    dirFlipXs [0 0 0 0 0 1 1 1]
 }
-actor "suwako" {
+actor "tatara" {
     render "idle" {
-        type "multidiranimation"
-        rid "suwako"
+        type "animation"
+        rid "tatara"
         anchor 0.5 0.5
         pivot 0.5 0.5
         offset 0 0
@@ -30,24 +26,20 @@ actor "suwako" {
         isBehind []
     }
     hitbox {
-        size 12 12 2
+        size 16 16 6
     }
-    repulsor {
-        type "weak"
-        radius 6
-        height 2
-    }
+    repulsor
     hurtbox {
         faction "enemy"
         type "target"
         minRadius 0
-        maxRadius 6
-        height 2
+        maxRadius 8
+        height 6
         angle 0
         angleDelta 0
         offsetDist 0
         offsetAngle 0
     }
-    controller "suwako"
+    controller ""
     zOrderOffset 0
 }

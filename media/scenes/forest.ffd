@@ -39,7 +39,7 @@ scene "level1" {
         name "rl1"
         tags []
         layer "scene"
-        position 242 41 16
+        position 263 41 16
         controller ""
         graphic "reel"
         angle 180
@@ -84,6 +84,7 @@ scene "level2" {
         tags []
         layer "scene"
         position 40 16 16
+        controller ""
         scene "level3"
         target "south"
         direction 0
@@ -93,7 +94,8 @@ scene "level2" {
         name "south"
         tags []
         layer "scene"
-        position 40 132 16
+        position 40 136 16
+        controller ""
         scene "level1"
         target "east"
         direction 4
@@ -110,6 +112,17 @@ scene "level3" {
         terrain "terrain"
         levels [[1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [0 0 0 1 1 1 1 1 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1]]
         brushes [[0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0]]
+    }
+    entity "teleporter" {
+        name "north"
+        tags []
+        layer "scene"
+        position 80 16 16
+        controller ""
+        scene "level4"
+        target "south"
+        direction 0
+        hitbox 160 16 16
     }
     entity "actor" {
         name "m1"
@@ -188,18 +201,18 @@ scene "level4" {
     weather "none" 1
     topography {
         terrain "terrain"
-        levels [[1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 0 0 0 0 0 0 0 1 1 1] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1]]
+        levels [[1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 0 0 0 0 0 0 0 1 1 1] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [1 1 1 0 0 0 0 0 0 0 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1 1 1]]
         brushes [[0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0 0 0]]
     }
-    entity "actor" {
+    entity "prop" {
         name ""
         tags []
         layer "scene"
-        position 176 60 16
+        position 16 48 16
         controller ""
-        graphic "idle"
+        graphic "reel"
         angle 180
-        rid "yukari"
+        rid "reel"
     }
     entity "actor" {
         name "yk1"
@@ -210,5 +223,36 @@ scene "level4" {
         graphic "idle"
         angle 180
         rid "yukari"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 178 113 16
+        controller ""
+        graphic "reel"
+        angle 180
+        rid "reel"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 178 125 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "yukari"
+    }
+    entity "teleporter" {
+        name "south"
+        tags []
+        layer "scene"
+        position 96 176 16
+        controller ""
+        scene "level3"
+        target "north"
+        direction 4
+        hitbox 192 16 16
     }
 }
