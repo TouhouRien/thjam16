@@ -1,0 +1,51 @@
+texture "player" {
+    file "player.png"
+    isSmooth false
+}
+multidiranimation "player" {
+    texture "player"
+    clip 0 0 32 32
+    frameTime 0
+    frames [0]
+    repeat false
+    lines 1
+    columns 1
+    margin 0 0
+    dirStartAngle 180
+    dirOffset 32 0
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+actor "shinmy" {
+    render "idle" {
+        type "multidiranimation"
+        rid "player"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 12 12 12
+    }
+    repulsor {
+        type "weak"
+        radius 6
+        height 12
+    }
+    hurtbox {
+        faction "allied"
+        type "target"
+        minRadius 0
+        maxRadius 4
+        height 10
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+}
