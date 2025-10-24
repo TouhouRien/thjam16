@@ -2,6 +2,9 @@ import atelier;
 
 import thj;
 import shinmy;
+import suwako;
+
+import std.stdio;
 
 extern (C) __gshared string[] rt_options = [
 	"gcopt=initReserve:128 minPoolSize:256 parallel:2"
@@ -96,8 +99,19 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("control", { return new PlayerController(); });
 	Atelier.env.setPlayerController("control");
 	Atelier.env.setPlayerActor("shinmy");
+	
+	// playTrack
+	// stopTrack
+	Music overworldMusic = Atelier.res.get!Music("overworld");
+	Atelier.audio.playTrack(overworldMusic, 0f);
 
 	Atelier.world.load("level1");
+
+	// only attaches on level1 first load
+	Atelier.world.addController("suwako", { return new SuwakoController(); });
+	foreach(entity; Atelier.world.findByTag("suwako")) {
+		entity.setController("suwako");
+	}
 
 	atelier.run();
 }

@@ -1,0 +1,6 @@
+music "overworld" {
+    file "overworld.ogg"
+    volume 0.46
+    intro 0
+    outro 160
+}

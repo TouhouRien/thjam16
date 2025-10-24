@@ -26,12 +26,12 @@ scene "level1" {
     }
     entity "actor" {
         name "enm1"
-        tags []
+        tags ["suwako"]
         layer "scene"
         position 165 39 16
         graphic "idle"
-        angle 180
-        rid "tenshi"
+        angle 270.895
+        rid "suwako"
     }
     entity "teleporter" {
         name ""
@@ -66,6 +66,16 @@ scene "level2" {
         brushes [[0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0] [0 0 0 0 0 0]]
     }
     entity "teleporter" {
+        name "north"
+        tags []
+        layer "scene"
+        position 40 16 16
+        scene "level3"
+        target "south"
+        direction 0
+        hitbox 80 16 16
+    }
+    entity "teleporter" {
         name "south"
         tags []
         layer "scene"
@@ -74,5 +84,79 @@ scene "level2" {
         target "east"
         direction 4
         hitbox 80 16 16
+    }
+}
+scene "level3" {
+    size 10 20
+    levels 2
+    mainLevel 0
+    brightness 0.2
+    weather "none" 1
+    topography {
+        terrain "terrain"
+        levels [[1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [0 0 0 1 1 1 1 1 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [0 0 0 0 1 1 1 0 0 0 0] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 1 1 1 1 1]]
+        brushes [[0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0]]
+    }
+    entity "actor" {
+        name "m1"
+        tags []
+        layer "scene"
+        position 66 147 16
+        graphic "idle"
+        angle 180
+        rid "marisa"
+    }
+    entity "actor" {
+        name "m3"
+        tags []
+        layer "scene"
+        position 93 148 16
+        graphic "idle"
+        angle 180
+        rid "marisa"
+    }
+    entity "actor" {
+        name "m2"
+        tags []
+        layer "scene"
+        position 79 159 16
+        graphic "idle"
+        angle 180
+        rid "marisa"
+    }
+    entity "prop" {
+        name "bt2"
+        tags []
+        layer "scene"
+        position 128 250 16
+        graphic "inactif"
+        angle 180
+        rid "button"
+    }
+    entity "prop" {
+        name "bt1"
+        tags []
+        layer "scene"
+        position 36 250 16
+        graphic "inactif"
+        angle 180
+        rid "button"
+    }
+    entity "teleporter" {
+        name "south"
+        tags []
+        layer "scene"
+        position 80 300 16
+        scene "level2"
+        target "north"
+        direction 4
+        hitbox 160 16 16
+    }
+    light "pointLight" {
+        name ""
+        position 80 130
+        radius 100
+        color 1 1 1
+        brightness 1
     }
 }

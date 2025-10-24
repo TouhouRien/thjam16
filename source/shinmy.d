@@ -5,13 +5,15 @@ import material;
 
 final class PlayerController : Controller!Actor {
     override void onStart() {
-        setBehavior(new MoveBehavior);
+        setBehavior(new PlayerBehavior);
     }
 
     override void onUpdate() {
         // Respawn when hitting water
         if (entity.getLevel() == 0) { // entity.getMaterial() == Material.Water && 
-            Atelier.world.load(Atelier.env.getScene(), Atelier.env.getTeleporter());
+            Atelier.world.transitionScene(Atelier.env.getScene(),
+                                          Atelier.env.getTeleporter(),
+                                          cast(uint)Atelier.env.getTeleporterDirection());
         }
     }
 
@@ -20,7 +22,7 @@ final class PlayerController : Controller!Actor {
     }
 }
 
-final class MoveBehavior : Behavior!Actor {
+final class PlayerBehavior : Behavior!Actor {
     override void update() {
         Vec2f acceldir = Vec2f.zero;
         Vec2f movedir = Atelier.input.getActionVector("left", "right", "up", "down");
