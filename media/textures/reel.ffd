@@ -1,0 +1,41 @@
+texture "reel" {
+    file "reel.png"
+    isSmooth false
+}
+sprite "reel" {
+    texture "reel"
+    clip 0 0 16 32
+}
+prop "reel" {
+    render "reel" {
+        type "sprite"
+        rid "reel"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 6
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    hitbox {
+        size 16 16 16
+        shape "box"
+        bounciness 0
+    }
+    hurtbox {
+        faction "neutral"
+        type "target"
+        minRadius 0
+        maxRadius 6
+        height 16
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+    controller "reel"
+    zOrderOffset 0
+    material 0
+}

@@ -2,6 +2,7 @@ import atelier;
 
 import thj;
 import button;
+import reel;
 import shinmy;
 import suwako;
 
@@ -105,6 +106,7 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
 	Atelier.world.addController("button", { return new ButtonController(); });
 	Atelier.world.addController("suwako", { return new SuwakoController(); });
+	Atelier.world.addController("reel", { return new ReelController(); });
 
 	// playTrack
 	// stopTrack

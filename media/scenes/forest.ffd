@@ -35,6 +35,16 @@ scene "level1" {
         angle 270.895
         rid "suwako"
     }
+    entity "prop" {
+        name "rl1"
+        tags []
+        layer "scene"
+        position 242 41 16
+        controller ""
+        graphic "reel"
+        angle 180
+        rid "reel"
+    }
     entity "teleporter" {
         name ""
         tags []
