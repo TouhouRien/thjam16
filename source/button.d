@@ -24,15 +24,21 @@ final class ButtonBehavior : Behavior!Prop {
     }
 
     private void activate() {
-        // play sfx
-        entity.setGraphic("actif");
-        _active = true;
+        if (!_active) {
+            Sound sound = Atelier.res.get!Sound("button_click");
+            Atelier.audio.play(new SoundPlayer(sound));
+            entity.setGraphic("actif");
+            _active = true;
+        }
     }
 
     private void deactivate() {
-        // reverse sfx?
-        entity.setGraphic("inactif");
-        _active = false;
+        if (_active) {
+            //Sound sound = Atelier.res.get!Sound("button_unclick");
+            //Atelier.audio.play(new SoundPlayer(sound));
+            entity.setGraphic("inactif");
+            _active = false;
+        }
     }
 }
 
