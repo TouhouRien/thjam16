@@ -1,0 +1,22 @@
+texture "atelier:light" {
+    file "light.png"
+}
+texture "atelier:shadow" {
+    file "shadow.png"
+}
+sprite "atelier:shadow" {
+    texture "atelier:shadow"
+    clip 0 0 128 128
+}
+sprite "atelier:light.point512" {
+    texture "atelier:light"
+    clip 0 0 512 512
+}
+sprite "atelier:light.point256" {
+    texture "atelier:light"
+    clip 512 0 256 256
+}
+sprite "atelier:light.darkness" {
+    texture "atelier:light"
+    clip 768 0 1 1
+}
