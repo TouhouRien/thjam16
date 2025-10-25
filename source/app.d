@@ -124,8 +124,8 @@ void cliDefault(Cli.Result cli) {
 
 	// playTrack
 	// stopTrack
-	Music overworldMusic = Atelier.res.get!Music("overworld");
-	Atelier.audio.playTrack(overworldMusic, 0f);
+	/*Music overworldMusic = Atelier.res.get!Music("overworld");
+	Atelier.audio.playTrack(overworldMusic, 0f);*/
 
 	Atelier.addStartCommand("loadscene enemytest");
 

@@ -17,7 +17,8 @@ func spawnGap(yukari: Actor)(Actor) {
     var dx = px - dist.x / 2;
     var dy = py - dist.y / 2;
     gap.setPosition(dx, dy, ez);
-        
+    
+    @World.playSound("enemy_gap");
     @World.addEntity(gap);
     return gap;
 }

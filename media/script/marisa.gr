@@ -13,6 +13,7 @@ task update(marisa: Actor) {
         var shot = @Shot("star");
         var pos = @Vec2f(ex, ey) + dist.normalized * 15;
 
+        @World.playSound("enemy_shot");
         shot.setPosition(pos.x as <int>, pos.y as <int>, ez);
         shot.setAngle(angle);
         shot.setSpeed(1.5f, 0f);

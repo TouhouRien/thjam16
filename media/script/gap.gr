@@ -8,7 +8,8 @@ event gapBehavior(gap: Actor) {
         var dist = @Vec2f(px - ex, py - ey);
         var baseAngle = dist.angle.deg;
         var angle = baseAngle;
-            
+        
+        @World.playSound("enemy_shot");
         while (angle - baseAngle < 360f) {
             var shot = @Shot("star");
             

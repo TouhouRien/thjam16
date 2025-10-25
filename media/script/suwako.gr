@@ -23,6 +23,7 @@ task update(suwako: Actor) {
         }
 
         if (time == 60) {
+            @World.playSound("enemy_shot");
             var shot = @Shot("bullet");
             shot.setPosition(suwako.getPosition);
             shot.setAngle(angle);
