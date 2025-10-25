@@ -2,11 +2,29 @@ texture "needle" {
     file "needle.png"
     isSmooth true
 }
+actor "thread.node" {
+    /*render "" {
+        type "sprite"
+        rid "needle.thread"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating true
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }*/
+    repulsor
+    hurtbox
+    controller ""
+    zOrderOffset 0
+}
 sprite "needle.shot" {
     texture "needle"
     clip 4 6 27 5
 }
-sprite "needle.string" {
+sprite "needle.thread" {
     texture "needle"
     clip 32 0 8 1
 }
@@ -42,4 +60,35 @@ shot "needle" {
         offsetAngle 270
     }
     material 2
+}
+actor "needle" {
+    render "throw" {
+        type "sprite"
+        rid "needle.shot"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating true
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 8 8 2
+    }
+    repulsor
+    hurtbox {
+        faction "allied"
+        type "both"
+        minRadius 0
+        maxRadius 26
+        height 6
+        angle 90
+        angleDelta 10
+        offsetDist 12
+        offsetAngle 270
+    }
+    controller "needle"
+    zOrderOffset 0
 }

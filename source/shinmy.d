@@ -14,7 +14,8 @@ final class PlayerController : Controller!Actor {
 
     override void onUpdate() {
         // Record last valid ground tile
-        if (entity.getLevel() == 1 && entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
+        if (entity.getLevel() == 1 && entity.isOnGround && entity.getBaseMaterial() == Material
+            .Grass) {
             _lastValidPosition = entity.getPosition();
         }
 
@@ -40,6 +41,10 @@ final class PlayerBehavior : Behavior!Actor {
             acceldir += movedir * 1f;
         }
 
+        if (Atelier.input.isActionActivated("needleThrow")) {
+            needleThrow();
+        }
+
         entity.accelerate(Vec3f(acceldir, 0f));
     }
 
@@ -53,6 +58,12 @@ final class PlayerBehavior : Behavior!Actor {
     void needleThrow() {
         // check collisions against pins, walls
         //Entity[] enemies = Atelier.world.findByTag("pin");
+
+        // À faire: vérifier si on a l’aiguille sur nous
+        Actor needle = Atelier.res.get!Actor("needle");
+        needle.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
+        needle.angle = entity.angle - 90f;
+        Atelier.world.addEntity(needle);
     }
 
     // Space? Right click on ground?

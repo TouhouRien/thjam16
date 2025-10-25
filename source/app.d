@@ -6,6 +6,7 @@ import enemy;
 import reel;
 import shinmy;
 import suwako;
+import needle;
 
 import std.stdio;
 import checkpoint;
@@ -94,16 +95,17 @@ void cliDefault(Cli.Result cli) {
 	Atelier.input.addActionEvent("needleSwing",
 		InputEvent.mouseButton(
 			InputEvent.MouseButton.Button.left,
-			InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
+			InputState(KeyState.down), 1, Vec2f.zero, Vec2f.zero));
 	Atelier.input.addActionEvent("needleThrow",
 		InputEvent.mouseButton(
 			InputEvent.MouseButton.Button.right,
-			InputState(KeyState.pressed), 1, Vec2f.zero, Vec2f.zero));
+			InputState(KeyState.down), 1, Vec2f.zero, Vec2f.zero));
 
 	Atelier.world.addController("control", { return new PlayerController(); });
 	Atelier.env.setPlayerController("control");
 	Atelier.env.setPlayerActor("shinmy");
 
+	Atelier.world.addController("needle", { return new NeedleController(); });
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
 	Atelier.world.addController("button", { return new ButtonController(); });
 	Atelier.world.addController("suwako", { return new SuwakoController(); });
