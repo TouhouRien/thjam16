@@ -129,6 +129,8 @@ final class PlayerBehavior : Behavior!Actor {
         _hitTimer.start(30);
 
         _player.damage();
+        entity.setEffect(new FlashEffect(Color(1f, 0.8f, 0.8f), 1f, 15, 15, Spline.sineInOut));
+        entity.setVelocity(normal * 3f);
         if (_player.isDead()) {
             Atelier.log("GAME OVER");
         }

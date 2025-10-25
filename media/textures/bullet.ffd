@@ -35,6 +35,9 @@ shot "bullet" {
         isDefault true
         isBehind []
     }
+    hitbox {
+        size 8 8 2
+    }
     hurtbox {
         faction "enemy"
         type "projectile"
@@ -61,6 +64,9 @@ shot "star" {
         blend "alpha"
         isDefault true
         isBehind []
+    }
+    hitbox {
+        size 8 8 2
     }
     hurtbox {
         faction "enemy"
