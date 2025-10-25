@@ -16,6 +16,8 @@ final class PlayerController : Controller!Actor {
 final class PlayerBehavior : Behavior!Actor {
     Vec3i _lastValidPosition = Vec3i.zero;
     Timer _stateTimer;
+    Actor _needle;
+    bool _needleThrown;
 
     override void update() {
         _stateTimer.update();
@@ -27,8 +29,13 @@ final class PlayerBehavior : Behavior!Actor {
 
         // Respawn when hitting water
         if (entity.getLevel() < 0) {
+            entity.setGraphic("fall");
+            _stateTimer.start(40);
+        }
+
+        if (!entity.getGraphic().isPlaying) {
             entity.setPosition(_lastValidPosition);
-            _stateTimer.start(30);
+            entity.setGraphic("idle");
         }
 
         if (!_stateTimer.isRunning) {
@@ -45,12 +52,26 @@ final class PlayerBehavior : Behavior!Actor {
                 needleThrow();
             }
 
+            if (Atelier.input.isActionActivated("needleSwing")) {
+                needleSwing();
+            }
+
             entity.accelerate(Vec3f(acceldir, 0f));
         }
     }
 
+    override void onImpact(Entity target, Vec3f normal) {
+        /*if (target.hasTag("shot")) {
+            Atelier.log("Got hit by shot");
+        }*/
+        //Atelier.log("Got hit");
+    }
+
     // Left click: swing needle
     void needleSwing() {
+        if (!_needleThrown) {
+            entity.setGraphic("swing");
+        }
         // check collisions against enemies
         //Entity[] enemies = Atelier.world.findByTag("enemy");
     }
@@ -61,10 +82,16 @@ final class PlayerBehavior : Behavior!Actor {
         //Entity[] enemies = Atelier.world.findByTag("pin");
 
         // À faire: vérifier si on a l’aiguille sur nous
-        Actor needle = Atelier.res.get!Actor("needle");
-        needle.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
-        needle.angle = entity.angle - 90f;
-        Atelier.world.addEntity(needle);
+        if (!_needleThrown) {
+            _needle = Atelier.res.get!Actor("needle");
+            _needle.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
+            _needle.angle = entity.angle - 90f;
+            Atelier.world.addEntity(_needle);
+            _needleThrown = true;
+        } else {
+            _needle.unregister();
+            _needleThrown = false;
+        }
     }
 
     // Space? Right click on ground?

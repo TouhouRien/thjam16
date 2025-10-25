@@ -1,4 +1,7 @@
 event yukariBehavior(yukari: Actor) {
+    loop yield {
+        
+    }
     // opens a gap close to the player
     // fire a bullet through the gap
     // closes the gap

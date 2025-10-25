@@ -64,6 +64,7 @@ actor "needle" {
     }
     hitbox {
         size 8 8 2
+        bounciness 0
     }
     repulsor
     hurtbox {

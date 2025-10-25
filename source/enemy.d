@@ -30,10 +30,10 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void onStart() {
+        entity.setShadow(true);
+        //entity.setFrictionBrake(0f);
+        //entity.isHovering(true);
         _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [grGetNativeType("Actor")], [GrValue(entity)]);
-    }
-
-    override void onHit(Vec3f normal) {
     }
 
     override void update() {

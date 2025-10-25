@@ -1,0 +1,24 @@
+texture "gap" {
+    file "gap.png"
+    isSmooth false
+}
+animation "gap_out" {
+    texture "gap"
+    clip 0 0 32 32
+    frameTime 8
+    frames [0 1 2 3 4 5 6]
+    repeat false
+    lines 1
+    columns 7
+    margin 0 0
+}
+animation "gap_in" {
+    texture "gap"
+    clip 0 0 32 32
+    frameTime 8
+    frames [6 5 4 3 2 1 0]
+    repeat false
+    lines 1
+    columns 7
+    margin 0 0
+}

@@ -162,8 +162,13 @@ actor "reimu" {
     }
     hitbox {
         size 12 12 2
+        bounciness 1
     }
-    repulsor
+    repulsor {
+        type "weak"
+        radius 6
+        height 2
+    }
     hurtbox {
         faction "enemy"
         type "target"

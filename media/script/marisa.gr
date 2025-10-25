@@ -6,14 +6,17 @@ task update(marisa: Actor) {
     loop {
         var player = @World.getPlayer?;
         var px, py, pz = player.getPosition;
-        var sx, sy, sz = marisa.getPosition;
-        var dist = @Vec2f(px - sx, py - sy);
+        var ex, ey, ez = marisa.getPosition;
+        var dist = @Vec2f(px - ex, py - ey);
         var angle = dist.angle.deg;
        
-        var shot = @Shot("bullet");
-        shot.setPosition(marisa.getPosition);
+        var shot = @Shot("star");
+        var pos = @Vec2f(ex, ey) + dist.normalized * 15;
+
+        shot.setPosition(pos.x as <int>, pos.y as <int>, 0);
         shot.setAngle(angle);
-        shot.setSpeed(0.5f, 0f);
+        shot.setSpeed(1.5f, 0f);
+        shot.setDelay(30);
         @World.addEntity(shot);
         
         wait(60);

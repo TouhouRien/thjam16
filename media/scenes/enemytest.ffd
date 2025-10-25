@@ -13,7 +13,7 @@ scene "enemytest" {
         name ""
         tags []
         layer "scene"
-        position 875 760 0
+        position 875 760 4
         controller ""
         graphic "idle"
         angle 180
