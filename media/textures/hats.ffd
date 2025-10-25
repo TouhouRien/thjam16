@@ -74,7 +74,7 @@ actor "tenshi" {
         offsetDist 0
         offsetAngle 0
     }
-    controller ""
+    controller "tenshi"
     zOrderOffset 0
 }
 actor "yukari" {
@@ -109,7 +109,7 @@ actor "yukari" {
         offsetDist 0
         offsetAngle 0
     }
-    controller ""
+    controller "yukari"
     zOrderOffset 0
 }
 actor "marisa" {
@@ -163,11 +163,7 @@ actor "reimu" {
     hitbox {
         size 12 12 2
     }
-    repulsor {
-        type "weak"
-        radius 6
-        height 2
-    }
+    repulsor
     hurtbox {
         faction "enemy"
         type "target"
@@ -179,6 +175,6 @@ actor "reimu" {
         offsetDist 0
         offsetAngle 0
     }
-    controller ""
+    controller "reimu"
     zOrderOffset 0
 }

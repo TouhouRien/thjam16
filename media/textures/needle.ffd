@@ -3,18 +3,6 @@ texture "needle" {
     isSmooth true
 }
 actor "thread.node" {
-    /*render "" {
-        type "sprite"
-        rid "needle.thread"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
-        isRotating true
-        angleOffset 0
-        blend "alpha"
-        isDefault true
-        isBehind []
-    }*/
     repulsor
     hurtbox
     controller ""
@@ -91,4 +79,33 @@ actor "needle" {
     }
     controller "needle"
     zOrderOffset 0
+}
+shot "needle.stuck" {
+    render "stuck" {
+        type "sprite"
+        rid "needle.stuck"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating true
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 8 8 2
+    }
+    hurtbox {
+        faction "allied"
+        type "both"
+        minRadius 0
+        maxRadius 26
+        height 6
+        angle 90
+        angleDelta 10
+        offsetDist 12
+        offsetAngle 270
+    }
+    material 0
 }

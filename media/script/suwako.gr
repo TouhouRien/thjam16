@@ -3,32 +3,38 @@ event suwakoBehavior(suwako: Entity) {
 }
 
 task update(suwako: Entity) {
-    var acc = @Vec2f.zero;
+    var time = 0;
 
-    loop {
+    loop yield {
+        var acc = @Vec2f.zero;
         var player = @World.getPlayer?;
         
         var px, py, pz = player.getPosition;
         var sx, sy, sz = suwako.getPosition;
         
         var dist = @Vec2f(px - sx, py - sy);
+        var angle = dist.angle.deg;
         
-        if (dist.lengthSquared < 100) {
+        if (dist.lengthSquared < 80*80 && time < 60 && player.isOnGround) {
             var dir = dist.normalized;
-            var angle = dist.angle.deg;
             
+            suwako.setAngle(angle);
             acc += dir * 0.75f;
-            //suwako.setAcceleration();
-            //print("dist: #{dist.x} #{dist.y}");
-            //print("angle: #{angle}");
+        }
 
+        if (time == 60) {
             var shot = @Shot("bullet");
             shot.setPosition(suwako.getPosition);
             shot.setAngle(angle);
             shot.setSpeed(4f, 0f);
             @World.addEntity(shot);
         }
+
+        if (time == 90) {
+            time = 0;
+        }
         
-        wait(60);
+        suwako.accelerate(acc.x, acc.y, 0f);
+        time++;
     }
 }
