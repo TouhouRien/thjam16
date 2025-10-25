@@ -1,6 +1,5 @@
-event reimuBehavior(reimu: Entity) {
-    var speed = 1.5f;
-    var angle = rand(0f, 360f);
-    reimu.setAngle(angle);
-    reimu.setSpeed(speed, 0f);
+event reimuBehavior(reimu: Actor) {
+    // select a random direction
+    // bounces on walls
+    // accelerates a bit on bounce?
 }

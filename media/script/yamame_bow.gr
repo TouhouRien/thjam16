@@ -1,0 +1,18 @@
+event yamameBowBehavior(bow: Actor) {
+    bow.posess;
+}
+
+task posess(bow: Actor) {
+    // turn off gravity
+    bow.setGravity(0f);
+
+    loop yield {
+        var bx, by, bz = bow.getPosition;
+        if (bz > 18) {
+            bow.accelerate(0f, 0f, -0.2f);
+        } else {
+            bow.accelerate(0f, 0f, 0f);
+            bow.setSpeed(0f, 0f);
+        }
+    }
+}

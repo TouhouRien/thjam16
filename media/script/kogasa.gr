@@ -1,8 +1,8 @@
-event kogasaBehavior(kogasa: Entity) {
+event kogasaBehavior(kogasa: Actor) {
     kogasa.update;
 }
 
-task update(suwako: Entity) {
+task update(suwako: Actor) {
     var time = 0;
 
     loop yield {
