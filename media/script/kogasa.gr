@@ -1,0 +1,54 @@
+event kogasaBehavior(kogasa: Entity) {
+    kogasa.update;
+}
+
+task update(suwako: Entity) {
+    var time = 0;
+
+    loop yield {
+        var acc = @Vec2f.zero;
+        var player = @World.getPlayer?;
+        
+        var px, py, pz = player.getPosition;
+        var sx, sy, sz = suwako.getPosition;
+        
+        var dist = @Vec2f(px - sx, py - sy);
+        var angle = dist.angle.deg;
+        
+        if (dist.lengthSquared > 100 && time < 60) {
+            var dir = dist.normalized;
+            
+            suwako.setAngle(angle);
+            acc += dir * 0.75f;
+        }
+
+        if (time == 60) {
+            var shot1 = @Shot("bullet");
+            var shot2 = @Shot("bullet");
+            var shot3 = @Shot("bullet");
+
+            shot1.setPosition(suwako.getPosition);
+            shot1.setAngle(angle);
+            shot1.setSpeed(4f, 0f);
+            
+            shot2.setPosition(suwako.getPosition);
+            shot2.setAngle(angle - 25f);
+            shot2.setSpeed(4f, 0f);
+            
+            shot3.setPosition(suwako.getPosition);
+            shot3.setAngle(angle + 25f);
+            shot3.setSpeed(4f, 0f);
+            
+            @World.addEntity(shot1);
+            @World.addEntity(shot2);
+            @World.addEntity(shot3);
+        }
+
+        if (time == 90) {
+            time = 0;
+        }
+        
+        suwako.accelerate(acc.x, acc.y, 0f);
+        time++;
+    }
+}

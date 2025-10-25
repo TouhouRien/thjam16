@@ -40,6 +40,6 @@ actor "tatara" {
         offsetDist 0
         offsetAngle 0
     }
-    controller ""
+    controller "kogasa"
     zOrderOffset 0
 }
