@@ -2,13 +2,13 @@ texture "tilewater" {
     file "env\tilewater.png"
     isSmooth false
 }
+sprite "tilewota" {
+    texture ""
+    clip 0 0 0 0
+}
 prop "tilewota" {
     hurtbox
     controller ""
     zOrderOffset 0
     material 0
-}
-sprite "tilewota" {
-    texture ""
-    clip 0 0 0 0
 }
