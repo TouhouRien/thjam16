@@ -25,8 +25,10 @@ final class PlayerBehavior : Behavior!Actor {
         _respawnTimer.update();
         _hitTimer.update();
 
-        // Record last valid ground tile
-        if (entity.isOnGround && entity.getLevel() > 0 && entity.getBaseMaterial() == Material.Grass) {
+        Atelier.log(Atelier.world.scene.getMaterial(entity.getPosition()));
+
+        // Record last valid ground grass tile
+        if (entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
             _lastValidPosition = entity.getPosition();
         }
 
@@ -61,7 +63,8 @@ final class PlayerBehavior : Behavior!Actor {
         }
 
         // Respawn when hitting water
-        if (entity.getLevel() == 0 && !_respawnTimer.isRunning) {
+        bool isEmptyTile = entity.getBaseMaterial() == Material.Water || entity.getBaseMaterial() == Material.Void;
+        if (entity.isOnGround && isEmptyTile && !_respawnTimer.isRunning) {
             Sound sound = Atelier.res.get!Sound("player_fall");
             Atelier.audio.play(new SoundPlayer(sound));
 

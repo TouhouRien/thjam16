@@ -1,22 +1,33 @@
-diff --git a/source/atelier/world/entity/base.d b/source/atelier/world/entity/base.d
-index 28c8976..b50b68d 100644
---- a/source/atelier/world/entity/base.d
-+++ b/source/atelier/world/entity/base.d
-@@ -801,11 +801,15 @@ abstract class Entity {
+diff --git a/source/atelier/script/world/world.d b/source/atelier/script/world/world.d
+index 26846bc..df97b89 100644
+--- a/source/atelier/script/world/world.d
++++ b/source/atelier/script/world/world.d
+@@ -8,6 +8,7 @@ import atelier.render;
+ import atelier.world;
+ import atelier.ui;
+ import atelier.script.util;
++import atelier.audio;
  
-         if (_collider && _collider.isDisplayed) {
-             _collider.drawBack(drawPos);
--            render(drawPos);
-+            if(_isEnabled) {
-+                render(drawPos);
-+            }
-             _collider.drawFront(drawPos);
-         }
-         else {
--            render(drawPos);
-+            if(_isEnabled) {
-+                render(drawPos);
-+            }
-         }
+ package void loadLibWorld_world(GrModule mod) {
+     mod.setModule("world.world");
+@@ -108,6 +109,20 @@ package void loadLibWorld_world(GrModule mod) {
+     mod.addStatic(&_findByTag, worldType, "findEntitiesByTag",
+         [grString], [grList(entityType)]);
  
-         if (_hurtbox && _hurtbox.isDisplayed) {
++
++    mod.setDescription(GrLocale.fr_FR,
++        "Lance un lecteur audio");
++    mod.setParameters(["audio resource"]);
++    mod.addStatic(&playSound, worldType, "playSound", [
++            grString
++        ]);
++
++}
++
++
++private void playSound(GrCall call) {
++    Sound sound = Atelier.res.get!Sound(call.getString(0));
++    Atelier.audio.play(new SoundPlayer(sound));
+ }
+ 
+ private void _addEntity(GrCall call) {

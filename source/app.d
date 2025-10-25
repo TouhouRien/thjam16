@@ -127,7 +127,7 @@ void cliDefault(Cli.Result cli) {
 	Music overworldMusic = Atelier.res.get!Music("overworld");
 	Atelier.audio.playTrack(overworldMusic, 0f);
 
-	Atelier.addStartCommand("loadscene level1");
+	Atelier.addStartCommand("loadscene enemytest");
 
 	Atelier.log(Atelier.world.find("yamame"));
 
