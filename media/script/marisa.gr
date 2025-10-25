@@ -1,8 +1,8 @@
-event marisaBehavior(marisa: Entity) {
+event marisaBehavior(marisa: Actor) {
     marisa.update;
 }
 
-task update(marisa: Entity) {
+task update(marisa: Actor) {
     var angle = 0f;
 
     loop {

@@ -28,7 +28,7 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void onStart() {
-        _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [grGetNativeType("Entity")], [GrValue(entity)]);
+        _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [grGetNativeType("Actor")], [GrValue(entity)]);
     }
 
     override void update() {

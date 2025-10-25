@@ -1,8 +1,8 @@
-event suwakoBehavior(suwako: Entity) {
+event suwakoBehavior(suwako: Actor) {
     suwako.update;
 }
 
-task update(suwako: Entity) {
+task update(suwako: Actor) {
     var time = 0;
 
     loop yield {
