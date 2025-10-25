@@ -4,25 +4,8 @@ import atelier;
 import material;
 
 final class PlayerController : Controller!Actor {
-    private {
-        Vec3i _lastValidPosition = Vec3i.zero;
-    }
-
     override void onStart() {
         setBehavior(new PlayerBehavior);
-    }
-
-    override void onUpdate() {
-        // Record last valid ground tile
-        if (entity.getLevel() == 1 && entity.isOnGround && entity.getBaseMaterial() == Material
-            .Grass) {
-            _lastValidPosition = entity.getPosition();
-        }
-
-        // Respawn when hitting water
-        if (entity.getLevel() == 0 && entity.isOnGround) {
-            entity.setPosition(_lastValidPosition);
-        }
     }
 
     override void onTeleport(uint direction, bool isExit) {
@@ -31,21 +14,39 @@ final class PlayerController : Controller!Actor {
 }
 
 final class PlayerBehavior : Behavior!Actor {
+    Vec3i _lastValidPosition = Vec3i.zero;
+    Timer _stateTimer;
+
     override void update() {
-        Vec2f acceldir = Vec2f.zero;
-        Vec2f movedir = Atelier.input.getActionVector("left", "right", "up", "down");
+        _stateTimer.update();
 
-        if (movedir != Vec2f.zero) {
-            movedir.normalize();
-            entity.angle = radToDeg(movedir.angle()) + 90f;
-            acceldir += movedir * 1f;
+        // Record last valid ground tile
+        if (entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
+            _lastValidPosition = entity.getPosition();
         }
 
-        if (Atelier.input.isActionActivated("needleThrow")) {
-            needleThrow();
+        // Respawn when hitting water
+        if (entity.getLevel() < 0) {
+            entity.setPosition(_lastValidPosition);
+            _stateTimer.start(30);
         }
 
-        entity.accelerate(Vec3f(acceldir, 0f));
+        if (!_stateTimer.isRunning) {
+            Vec2f acceldir = Vec2f.zero;
+            Vec2f movedir = Atelier.input.getActionVector("left", "right", "up", "down");
+
+            if (movedir != Vec2f.zero) {
+                movedir.normalize();
+                entity.angle = radToDeg(movedir.angle()) + 90f;
+                acceldir += movedir * 1f;
+            }
+
+            if (Atelier.input.isActionActivated("needleThrow")) {
+                needleThrow();
+            }
+
+            entity.accelerate(Vec3f(acceldir, 0f));
+        }
     }
 
     // Left click: swing needle

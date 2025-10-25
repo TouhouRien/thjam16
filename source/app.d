@@ -5,7 +5,6 @@ import button;
 import enemy;
 import reel;
 import shinmy;
-import suwako;
 import needle;
 
 import std.stdio;
@@ -108,8 +107,10 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("needle", { return new NeedleController(); });
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
 	Atelier.world.addController("button", { return new ButtonController(); });
-	Atelier.world.addController("suwako", { return new SuwakoController(); });
+	Atelier.world.addController("suwako", { return new EnemyController("suwako"); });
 	Atelier.world.addController("marisa", { return new EnemyController("marisa"); });
+	Atelier.world.addController("reimu", { return new EnemyController("reimu"); });
+	Atelier.world.addController("kogasa", { return new EnemyController("kogasa"); });
 	Atelier.world.addController("reel", { return new ReelController(); });
 
 	// playTrack
@@ -117,7 +118,7 @@ void cliDefault(Cli.Result cli) {
 	Music overworldMusic = Atelier.res.get!Music("overworld");
 	Atelier.audio.playTrack(overworldMusic, 0f);
 
-	Atelier.addStartCommand("loadscene level1");
+	Atelier.addStartCommand("loadscene enemytest");
 
 	atelier.run();
 }
