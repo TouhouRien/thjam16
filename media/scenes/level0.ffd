@@ -31,6 +31,16 @@ scene "level0_0" {
     }
     entity "prop" {
         name ""
+        tags []
+        layer "scene"
+        position 293 170 1
+        controller ""
+        graphic "tree"
+        angle 180
+        rid "tree"
+    }
+    entity "prop" {
+        name ""
         tags ["ad"]
         layer "scene"
         position 148 176 12
@@ -80,10 +90,10 @@ scene "level0_0" {
         rid "bridge_piece"
     }
     entity "teleporter" {
-        name "spawn"
+        name ""
         tags []
         layer "scene"
-        position 211 280 32
+        position 121 280 16
         controller ""
         scene "level0_0"
         target ""
@@ -91,10 +101,10 @@ scene "level0_0" {
         hitbox 16 16 16
     }
     entity "teleporter" {
-        name ""
+        name "spawn"
         tags []
         layer "scene"
-        position 121 280 16
+        position 211 280 32
         controller ""
         scene "level0_0"
         target ""
