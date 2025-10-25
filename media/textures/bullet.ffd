@@ -46,6 +46,7 @@ shot "bullet" {
         offsetDist 0
         offsetAngle 0
     }
+    bounces 0
     material 0
 }
 shot "star" {
@@ -72,5 +73,6 @@ shot "star" {
         offsetDist 0
         offsetAngle 0
     }
+    bounces 0
     material 0
 }

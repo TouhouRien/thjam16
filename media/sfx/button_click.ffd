@@ -1,8 +1,0 @@
-sound "button_click" {
-    file "button_click.ogg"
-    volume 0.74
-}
-sound "button_unclick" {
-    file "button_unclick.ogg"
-    volume 0.74
-}

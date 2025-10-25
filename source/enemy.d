@@ -30,12 +30,23 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void onStart() {
-        entity.setShadow(true);
-        //entity.setFrictionBrake(0f);
-        //entity.isHovering(true);
+        entity.setShadow(true); // @TODO expose
+        //entity.setFrictionBrake(0f); // @TODO expose
+        //entity.isHovering(true); // @TODO expose
         _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [grGetNativeType("Actor")], [GrValue(entity)]);
     }
 
+    override void onImpact(Entity target, Vec3f normal) {
+        _life--;
+    }
+
     override void update() {
+        if (_life == 0) {
+            Sound sound = Atelier.res.get!Sound("enemy_death");
+            Atelier.audio.play(new SoundPlayer(sound));
+
+            _task.kill(); // NE MARCHE PAS :( :( :(
+            entity.unregister();
+        }
     }
 }

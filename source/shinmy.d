@@ -16,24 +16,18 @@ final class PlayerController : Controller!Actor {
 final class PlayerBehavior : Behavior!Actor {
     Vec3i _lastValidPosition = Vec3i.zero;
     Timer _respawnTimer;
+    Timer _hitTimer;
     Actor _needleThrow;
     Actor _needlePlant;
-    bool _invulnerable;
     uint _health = 12; // 3 coeurs
 
     override void update() {
         _respawnTimer.update();
+        _hitTimer.update();
 
         // Record last valid ground tile
         if (entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
             _lastValidPosition = entity.getPosition();
-        }
-
-        // Respawn when hitting water
-        if (entity.getLevel() < 0) {
-            entity.setGraphic("fall");
-            _respawnTimer.start(40);
-            _invulnerable = true;
         }
 
         if (!entity.getGraphic().isPlaying) {
@@ -42,7 +36,6 @@ final class PlayerBehavior : Behavior!Actor {
         }
 
         if (!_respawnTimer.isRunning) {
-            _invulnerable = false;
             Vec2f acceldir = Vec2f.zero;
             Vec2f movedir = Atelier.input.getActionVector("left", "right", "up", "down");
 
@@ -66,12 +59,25 @@ final class PlayerBehavior : Behavior!Actor {
 
             entity.accelerate(Vec3f(acceldir, 0f));
         }
+
+        // Respawn when hitting water
+        if (entity.getLevel() < 0 && !_respawnTimer.isRunning) {
+            Sound sound = Atelier.res.get!Sound("player_fall");
+            Atelier.audio.play(new SoundPlayer(sound));
+
+            entity.setGraphic("fall");
+            _respawnTimer.start(48);
+        }
     }
 
     override void onImpact(Entity target, Vec3f normal) {
-        if (_invulnerable) {
+        if (_respawnTimer.isRunning || _hitTimer.isRunning) {
             return;
         }
+
+        Sound sound = Atelier.res.get!Sound("player_hit");
+        Atelier.audio.play(new SoundPlayer(sound));
+        _hitTimer.start(30);
 
         _health--;
         if (_health == 0) {
@@ -82,6 +88,9 @@ final class PlayerBehavior : Behavior!Actor {
     // Left click: swing needle
     void needleSwing() {
         if (!_needleThrow && !_needlePlant) {
+            Sound sound = Atelier.res.get!Sound("needle_swing");
+            Atelier.audio.play(new SoundPlayer(sound));
+
             entity.setGraphic("swing");
         }
         // check collisions against enemies
@@ -93,8 +102,10 @@ final class PlayerBehavior : Behavior!Actor {
         // check collisions against pins, walls
         //Entity[] enemies = Atelier.world.findByTag("pin");
 
-        // À faire: vérifier si on a l’aiguille sur nous
         if (!_needleThrow && !_needlePlant) {
+            Sound sound = Atelier.res.get!Sound("needle_throw");
+            Atelier.audio.play(new SoundPlayer(sound));
+
             _needleThrow = Atelier.res.get!Actor("needle");
             _needleThrow.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
             _needleThrow.angle = entity.angle - 90f;
@@ -114,6 +125,9 @@ final class PlayerBehavior : Behavior!Actor {
     void needlePlant() {
         // @TODO ajouter Behavior pour needle plant
         if (!_needleThrow && !_needlePlant) {
+            Sound sound = Atelier.res.get!Sound("needle_plant");
+            Atelier.audio.play(new SoundPlayer(sound));
+
             _needlePlant = Atelier.res.get!Actor("needle.plant");
             _needlePlant.setName("needle.plant"); // ne devrait pas etre necessaire Enalye :(
             _needlePlant.setPosition(entity.getPosition());

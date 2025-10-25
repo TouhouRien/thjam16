@@ -1,0 +1,36 @@
+event gapBehavior(gap: Actor) {
+    loop yield {
+        wait (30);
+    
+        var player = @World.getPlayer?;
+        var px, py, pz = player.getPosition;
+        var ex, ey, ez = gap.getPosition;
+        var dist = @Vec2f(px - ex, py - ey);
+        var baseAngle = dist.angle.deg;
+        var angle = baseAngle;
+            
+        while (angle - baseAngle < 360f) {
+            var shot = @Shot("star");
+            
+            var sx = ex + 15 * cos(angle.rad);
+            var sy = ey + 15 * sin(angle.rad);
+
+            shot.setPosition(sx as <int>, sy as <int>, 0);
+            shot.setAngle(angle);
+            shot.setSpeed(1.5f, 0f);
+            shot.setDelay(30);
+            @World.addEntity(shot);
+        
+            angle += 45f;
+        }
+
+        wait(30);
+        gap.setGraphic("disappear");
+        
+        // 7 animations of 8 frames
+        wait(56);
+        
+        gap.unregister();
+        break;
+    }
+}

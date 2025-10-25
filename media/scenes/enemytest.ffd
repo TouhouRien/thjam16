@@ -17,7 +17,7 @@ scene "enemytest" {
         controller ""
         graphic "idle"
         angle 180
-        rid "marisa"
+        rid "yukari"
     }
     entity "actor" {
         name ""

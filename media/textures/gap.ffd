@@ -22,3 +22,33 @@ animation "gap_in" {
     columns 7
     margin 0 0
 }
+actor "gap" {
+    render "appear" {
+        type "animation"
+        rid "gap_in"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    render "disappear" {
+        type "animation"
+        rid "gap_out"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    repulsor
+    hurtbox
+    controller "gap"
+    zOrderOffset 0
+}

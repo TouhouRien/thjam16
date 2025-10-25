@@ -1,0 +1,60 @@
+sound "bridge_appear" {
+    file "bridge_appear.ogg"
+    volume 1
+}
+sound "button_click" {
+    file "button_click.ogg"
+    volume 1
+}
+sound "button_unclick" {
+    file "button_unclick.ogg"
+    volume 1
+}
+sound "door_open" {
+    file "door_open.ogg"
+    volume 0.68
+}
+sound "enemy_death" {
+    file "enemy_death.ogg"
+    volume 0.68
+}
+sound "enemy_gap" {
+    file "enemy_gap.ogg"
+    volume 1
+}
+sound "enemy_hit" {
+    file "enemy_hit.ogg"
+    volume 1
+}
+sound "enemy_shot" {
+    file "enemy_shot.ogg"
+    volume 1
+}
+sound "needle_plant" {
+    file "needle_plant.ogg"
+    volume 1
+}
+sound "needle_swing" {
+    file "needle_swing.ogg"
+    volume 1
+}
+sound "needle_throw" {
+    file "needle_throw.ogg"
+    volume 1
+}
+sound "player_fall" {
+    file "player_fall.ogg"
+    volume 1
+}
+sound "player_hit" {
+    file "player_hit.ogg"
+    volume 1
+}
+sound "player_step1" {
+    file "player_step1.ogg"
+    volume 1
+}
+sound "player_step2" {
+    file "player_step2.ogg"
+    volume 1
+}

@@ -1,8 +1,23 @@
 event yukariBehavior(yukari: Actor) {
-    loop yield {
-        
+    loop {
+        var gap = yukari.spawnGap;
+        wait(60);
     }
-    // opens a gap close to the player
-    // fire a bullet through the gap
-    // closes the gap
+}
+
+func spawnGap(yukari: Actor)(Actor) {
+    var player = @World.getPlayer?;
+        
+    var gap = @Actor("gap");
+
+    var px, py, pz = player.getPosition;
+    var ex, ey, ez = yukari.getPosition;
+        
+    var dist = @Vec2i(px - ex, py - ey);
+    var dx = px - dist.x / 2;
+    var dy = py - dist.y / 2;
+    gap.setPosition(dx, dy, 0);
+        
+    @World.addEntity(gap);
+    return gap;
 }

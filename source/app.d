@@ -115,6 +115,8 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("suwako", { return new EnemyController("suwako"); });
 	Atelier.world.addController("marisa", { return new EnemyController("marisa"); });
 	Atelier.world.addController("reimu", { return new EnemyController("reimu"); });
+	Atelier.world.addController("yukari", { return new EnemyController("yukari"); });
+	Atelier.world.addController("gap", { return new EnemyController("gap"); });
 	Atelier.world.addController("kogasa", { return new EnemyController("kogasa"); });
 	Atelier.world.addController("yamame", { return new EnemyController("yamame"); });
 	Atelier.world.addController("yamameBow", { return new EnemyController("yamameBow"); });
