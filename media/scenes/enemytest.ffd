@@ -13,21 +13,41 @@ scene "enemytest" {
         name ""
         tags []
         layer "scene"
-        position 875 760 64
+        position 875 760 0
         controller ""
         graphic "idle"
         angle 180
-        rid "yamame_bow"
+        rid "marisa"
     }
     entity "actor" {
         name ""
         tags []
         layer "scene"
-        position 875 760 0
+        position 940 765 64
         controller ""
-        graphic "nobow"
+        graphic "idle"
         angle 180
-        rid "yamame"
+        rid "yamame_bow"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 752 805 -4
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 767 805 -4
+        controller ""
+        graphic "base"
+        angle 180
+        rid "bridge_piece"
     }
     entity "teleporter" {
         name ""

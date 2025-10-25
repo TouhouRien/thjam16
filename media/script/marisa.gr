@@ -3,21 +3,19 @@ event marisaBehavior(marisa: Actor) {
 }
 
 task update(marisa: Actor) {
-    var angle = 0f;
-
     loop {
-        while (angle < 360f) {
-            var shot = @Shot("bullet");
-            shot.setPosition(marisa.getPosition);
-            shot.setAngle(angle);
-            shot.setSpeed(0.5f, 0f);
-            @World.addEntity(shot);
-            
-            angle += 35f;
-        }
+        var player = @World.getPlayer?;
+        var px, py, pz = player.getPosition;
+        var sx, sy, sz = marisa.getPosition;
+        var dist = @Vec2f(px - sx, py - sy);
+        var angle = dist.angle.deg;
+       
+        var shot = @Shot("bullet");
+        shot.setPosition(marisa.getPosition);
+        shot.setAngle(angle);
+        shot.setSpeed(0.5f, 0f);
+        @World.addEntity(shot);
         
-        angle = angle % 360f;
-        
-        wait(500);
+        wait(60);
     }
 }
