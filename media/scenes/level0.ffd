@@ -155,8 +155,8 @@ scene "level0_1" {
         rid "gate_W"
     }
     entity "prop" {
-        name "gate2_mode1"
-        tags []
+        name ""
+        tags ["gate2_mode1"]
         layer "scene"
         position 187 76 16
         controller ""
@@ -165,8 +165,8 @@ scene "level0_1" {
         rid "gate_S"
     }
     entity "prop" {
-        name "gate2_mode1"
-        tags []
+        name ""
+        tags ["gate2_mode1"]
         layer "scene"
         position 246 76 16
         controller ""
@@ -218,7 +218,7 @@ scene "level0_1" {
         name ""
         tags ["gate1_mode0"]
         layer "scene"
-        position 405 252 16
+        position 405 258 16
         controller ""
         graphic "visuals"
         angle 180
@@ -228,7 +228,7 @@ scene "level0_1" {
         name ""
         tags ["gate1_mode1"]
         layer "scene"
-        position 392 260 15
+        position 392 264 15
         controller ""
         graphic "visuals"
         angle 180
@@ -248,7 +248,7 @@ scene "level0_1" {
         name ""
         tags ["gate1_mode1"]
         layer "scene"
-        position 392 293 16
+        position 392 291 16
         controller ""
         graphic "visuals"
         angle 180

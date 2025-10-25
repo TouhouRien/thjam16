@@ -142,6 +142,48 @@ export task unbridge_eastwise(name : string, frame_wait : int) {
     }
 }
 
+func select_gate(tag_prefix : string) ([Entity], [Entity]) {
+    return @World.findEntitiesByTag("#{tag_prefix}0"), @World.findEntitiesByTag("#{tag_prefix}1");
+}
+
+// Tag of the form XXX0 or XXX1 should be applied to the gate, we expect the XXX part here
+// The gate will be init to the 0 state
+export func gate_init(tag_prefix : string) {
+    var mode0, mode1 = select_gate(tag_prefix);
+    for(l, mode0.each()) {
+        l.setEnabled(true);
+    }
+    for(l, mode1.each()) {
+        l.setEnabled(false);
+    }
+}
+
+export func gate_active(tag_prefix : string) {
+    var mode0, mode1 = select_gate(tag_prefix);
+    for(l, mode0.each()) {
+        l.setEnabled(false);
+    }
+    for(l, mode1.each()) {
+        l.setEnabled(true);
+    }
+}
+
+export func gate_inactive(tag_prefix : string) {
+    var mode0, mode1 = select_gate(tag_prefix);
+    for(l, mode0.each()) {
+        l.setEnabled(true);
+    }
+    for(l, mode1.each()) {
+        l.setEnabled(false);
+    }
+}
+
+event scene_level0_1 {
+    gate_init("gate1_mode");
+    gate_init("gate2_mode");
+}
+
+
 event scene_level0_0 {
     bridge_despawn("ad");
     bridge_northwise("ad", 6);
