@@ -2,6 +2,33 @@ texture "bridge_piece" {
     file "bridge_piece.png"
     isSmooth false
 }
+sprite "bridge_piece_H" {
+    texture "bridge_piece"
+    clip 16 0 16 20
+}
+prop "bridge_piece_H" {
+    render "display" {
+        type "sprite"
+        rid "bridge_piece_H"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 16 16 4
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    controller ""
+    zOrderOffset 0
+    material 0
+}
 prop "bridge_piece" {
     render "base" {
         type "sprite"
@@ -21,6 +48,7 @@ prop "bridge_piece" {
         bounciness 0
     }
     hurtbox
+    controller ""
     zOrderOffset 0
     material 1
 }
