@@ -21,13 +21,12 @@ final class PlayerBehavior : Behavior!Actor {
         _stateTimer.update();
 
         // Record last valid ground tile
-        if (entity.getLevel() == 1 && entity.isOnGround &&
-            entity.getBaseMaterial() == Material.Grass) {
+        if (entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
             _lastValidPosition = entity.getPosition();
         }
 
         // Respawn when hitting water
-        if (entity.getLevel() == 0 && entity.isOnGround) {
+        if (entity.getLevel() < 0) {
             entity.setPosition(_lastValidPosition);
             _stateTimer.start(30);
         }
