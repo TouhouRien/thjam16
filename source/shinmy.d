@@ -15,12 +15,14 @@ final class PlayerController : Controller!Actor {
 
 final class PlayerBehavior : Behavior!Actor {
     Vec3i _lastValidPosition = Vec3i.zero;
-    Timer _stateTimer;
-    Actor _needle;
-    bool _needleThrown;
+    Timer _respawnTimer;
+    Actor _needleThrow;
+    Actor _needlePlant;
+    bool _invulnerable;
+    uint _health = 12; // 3 coeurs
 
     override void update() {
-        _stateTimer.update();
+        _respawnTimer.update();
 
         // Record last valid ground tile
         if (entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
@@ -30,7 +32,8 @@ final class PlayerBehavior : Behavior!Actor {
         // Respawn when hitting water
         if (entity.getLevel() < 0) {
             entity.setGraphic("fall");
-            _stateTimer.start(40);
+            _respawnTimer.start(40);
+            _invulnerable = true;
         }
 
         if (!entity.getGraphic().isPlaying) {
@@ -38,7 +41,8 @@ final class PlayerBehavior : Behavior!Actor {
             entity.setGraphic("idle");
         }
 
-        if (!_stateTimer.isRunning) {
+        if (!_respawnTimer.isRunning) {
+            _invulnerable = false;
             Vec2f acceldir = Vec2f.zero;
             Vec2f movedir = Atelier.input.getActionVector("left", "right", "up", "down");
 
@@ -56,20 +60,28 @@ final class PlayerBehavior : Behavior!Actor {
                 needleSwing();
             }
 
+            if (Atelier.input.isActionActivated("needlePlant")) {
+                needlePlant();
+            }
+
             entity.accelerate(Vec3f(acceldir, 0f));
         }
     }
 
     override void onImpact(Entity target, Vec3f normal) {
-        /*if (target.hasTag("shot")) {
-            Atelier.log("Got hit by shot");
-        }*/
-        //Atelier.log("Got hit");
+        if (_invulnerable) {
+            return;
+        }
+
+        _health--;
+        if (_health == 0) {
+            Atelier.log("GAME OVER");
+        }
     }
 
     // Left click: swing needle
     void needleSwing() {
-        if (!_needleThrown) {
+        if (!_needleThrow && !_needlePlant) {
             entity.setGraphic("swing");
         }
         // check collisions against enemies
@@ -82,20 +94,34 @@ final class PlayerBehavior : Behavior!Actor {
         //Entity[] enemies = Atelier.world.findByTag("pin");
 
         // À faire: vérifier si on a l’aiguille sur nous
-        if (!_needleThrown) {
-            _needle = Atelier.res.get!Actor("needle");
-            _needle.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
-            _needle.angle = entity.angle - 90f;
-            Atelier.world.addEntity(_needle);
-            _needleThrown = true;
-        } else {
-            _needle.unregister();
-            _needleThrown = false;
+        if (!_needleThrow && !_needlePlant) {
+            _needleThrow = Atelier.res.get!Actor("needle");
+            _needleThrow.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
+            _needleThrow.angle = entity.angle - 90f;
+            Atelier.world.addEntity(_needleThrow);
+        } else if (_needleThrow) {
+            // @TODO delayer
+            _needleThrow.unregister();
+            _needleThrow = null;
+        } else if (_needlePlant) {
+            // @TODO delayer
+            _needlePlant.unregister();
+            _needlePlant = null;
         }
     }
 
-    // Space? Right click on ground?
+    // E: plant needle
     void needlePlant() {
+        // @TODO ajouter Behavior pour needle plant
+        if (!_needleThrow && !_needlePlant) {
+            _needlePlant = Atelier.res.get!Actor("needle.plant");
+            _needlePlant.setName("needle.plant"); // ne devrait pas etre necessaire Enalye :(
+            _needlePlant.setPosition(entity.getPosition());
+            _needlePlant.angle = 0f;
+            Atelier.world.addEntity(_needlePlant);
+            //entity.setGraphic("plant");
+        }
+
         // check collisions against buttons
         //Entity[] enemies = Atelier.world.findByTag("button");
     }

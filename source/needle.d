@@ -2,7 +2,7 @@ module needle;
 
 import atelier;
 
-final class NeedleController : Controller!Actor {
+final class NeedleThrowController : Controller!Actor {
     override void onStart() {
         setBehavior(new NeedleThrowBehavior);
     }

@@ -25,16 +25,6 @@ scene "level1" {
         angle 180
         rid "button"
     }
-    entity "actor" {
-        name "enm1"
-        tags ["suwako"]
-        layer "scene"
-        position 248 39 16
-        controller ""
-        graphic "idle"
-        angle 270.895
-        rid "suwako"
-    }
     entity "prop" {
         name "rl1"
         tags []

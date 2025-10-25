@@ -81,6 +81,7 @@ void cliDefault(Cli.Result cli) {
 
 	Atelier.input.addAction("needleSwing");
 	Atelier.input.addAction("needleThrow");
+	Atelier.input.addAction("needlePlant");
 
 	Atelier.input.addActionEvent("left",
 		InputEvent.keyButton(InputEvent.KeyButton.Button.a, InputState(KeyState.pressed)));
@@ -99,12 +100,16 @@ void cliDefault(Cli.Result cli) {
 		InputEvent.mouseButton(
 			InputEvent.MouseButton.Button.right,
 			InputState(KeyState.down), 1, Vec2f.zero, Vec2f.zero));
+	Atelier.input.addActionEvent("needlePlant",
+		InputEvent.keyButton(
+			InputEvent.KeyButton.Button.e, InputState(KeyState.pressed)
+		));
 
 	Atelier.world.addController("control", { return new PlayerController(); });
 	Atelier.env.setPlayerController("control");
 	Atelier.env.setPlayerActor("shinmy");
 
-	Atelier.world.addController("needle", { return new NeedleController(); });
+	Atelier.world.addController("needleThrow", { return new NeedleThrowController(); });
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
 	Atelier.world.addController("button", { return new ButtonController(); });
 	Atelier.world.addController("suwako", { return new EnemyController("suwako"); });

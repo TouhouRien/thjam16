@@ -12,11 +12,25 @@ final class ButtonBehavior : Behavior!Prop {
     private bool _active = false;
 
     override void update() {
+        int radiusSquared = 16 * 16;
+        Vec3i entityPos = entity.getPosition();
+
+        bool isNeedleOnButton = false;
+
+        Entity needlePlant = Atelier.world.find("needle.plant");
+        if (needlePlant) {
+            Vec3i needlePos = needlePlant.getPosition();
+            Vec3i distToNeedle = needlePos - entityPos;
+            isNeedleOnButton = distToNeedle.lengthSquared < radiusSquared;
+        }
+
         Vec3i playerPos = Atelier.world.player.getPosition();
-        Vec3i distToPlayer = playerPos - entity.getPosition();
+        Vec3i distToPlayer = playerPos - entityPos;
+
+        bool isPlayerOnButton = distToPlayer.lengthSquared < radiusSquared;
 
         // if distance less than 16 pixels
-        if (distToPlayer.lengthSquared < 16 * 16) {
+        if (isPlayerOnButton || isNeedleOnButton) {
             activate();
         }
         else {
