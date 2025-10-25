@@ -2,6 +2,56 @@ texture "bridge_piece" {
     file "bridge_piece.png"
     isSmooth false
 }
+prop "gate_E" {
+    render "visuals" {
+        type "sprite"
+        rid "gate_E"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 -15
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 32 3 16
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    controller ""
+    zOrderOffset 0
+    material 0
+}
+sprite "gate_S" {
+    texture "bridge_piece"
+    clip 64 32 32 32
+}
+prop "gate_N" {
+    render "visuals" {
+        type "sprite"
+        rid "gate_N"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 13 -8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 5 16 16
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    controller ""
+    zOrderOffset 0
+    material 0
+}
 sprite "bridge_piece_H" {
     texture "bridge_piece"
     clip 16 0 16 20
@@ -55,4 +105,70 @@ prop "bridge_piece" {
 sprite "bridge_piece" {
     texture "bridge_piece"
     clip 0 0 16 20
+}
+sprite "gate_E" {
+    texture "bridge_piece"
+    clip 32 0 32 32
+}
+sprite "gate_EEN" {
+    texture "bridge_piece"
+    clip 64 0 32 32
+}
+sprite "gate_ENN" {
+    texture "bridge_piece"
+    clip 96 0 32 32
+}
+sprite "gate_N" {
+    texture "bridge_piece"
+    clip 128 0 32 32
+}
+sprite "gate_W" {
+    texture "bridge_piece"
+    clip 32 32 32 32
+}
+prop "gate_W" {
+    render "visuals" {
+        type "sprite"
+        rid "gate_W"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 -15
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 32 3 16
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    controller ""
+    zOrderOffset 0
+    material 0
+}
+prop "gate_S" {
+    render "visuals" {
+        type "sprite"
+        rid "gate_S"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 13 -8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 5 16 16
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    controller ""
+    zOrderOffset 0
+    material 0
 }
