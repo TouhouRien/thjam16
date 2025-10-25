@@ -124,6 +124,16 @@ scene "level0_1" {
         direction 0
         hitbox 64 32 16
     }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 214 208 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
     entity "prop" {
         name ""
         tags []
@@ -134,6 +144,66 @@ scene "level0_1" {
         angle 180
         rid "reel"
     }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 275 210 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 235 247 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 166 257 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 203 292 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 278 293 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 528 296 16
+        controller "marisa"
+        graphic "idle"
+        angle 180
+        rid "marisa"
+    }
     entity "prop" {
         name ""
         tags []
@@ -143,6 +213,16 @@ scene "level0_1" {
         graphic "reel"
         angle 180
         rid "reel"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 913 374 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
     }
     entity "prop" {
         name ""
@@ -239,6 +319,26 @@ scene "level0_1" {
         name ""
         tags ["bridge_phase_1"]
         layer "scene"
+        position 704 972 12
+        controller ""
+        graphic "display"
+        angle 180
+        rid "bridge_piece_H"
+    }
+    entity "prop" {
+        name ""
+        tags ["bridge_phase_1"]
+        layer "scene"
+        position 720 972 12
+        controller ""
+        graphic "display"
+        angle 180
+        rid "bridge_piece_H"
+    }
+    entity "prop" {
+        name ""
+        tags ["bridge_phase_1"]
+        layer "scene"
         position 736 972 12
         controller ""
         graphic "display"
@@ -310,26 +410,6 @@ scene "level0_1" {
         tags ["bridge_phase_1"]
         layer "scene"
         position 688 972 12
-        controller ""
-        graphic "display"
-        angle 180
-        rid "bridge_piece_H"
-    }
-    entity "prop" {
-        name ""
-        tags ["bridge_phase_1"]
-        layer "scene"
-        position 704 972 12
-        controller ""
-        graphic "display"
-        angle 180
-        rid "bridge_piece_H"
-    }
-    entity "prop" {
-        name ""
-        tags ["bridge_phase_1"]
-        layer "scene"
-        position 720 972 12
         controller ""
         graphic "display"
         angle 180
