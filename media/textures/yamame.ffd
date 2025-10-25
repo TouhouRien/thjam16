@@ -2,6 +2,10 @@ texture "yamame" {
     file "yamame.png"
     isSmooth false
 }
+sprite "invisible" {
+    texture "yamame"
+    clip 0 0 0 0
+}
 multidiranimation "yamame_nobow" {
     texture "yamame"
     clip 0 128 32 32
@@ -67,6 +71,7 @@ actor "yamame" {
     }
     hitbox {
         size 12 12 12
+        bounciness 0
     }
     repulsor {
         type "weak"
@@ -100,8 +105,21 @@ actor "yamame_bow" {
         isDefault false
         isBehind []
     }
+    render "invisible" {
+        type "sprite"
+        rid "invisible"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
     hitbox {
         size 12 12 2
+        bounciness 0
     }
     repulsor
     hurtbox {

@@ -48,7 +48,7 @@ sound "player_fall" {
 }
 sound "player_hit" {
     file "player_hit.ogg"
-    volume 1
+    volume 0.73
 }
 sound "player_step1" {
     file "player_step1.ogg"

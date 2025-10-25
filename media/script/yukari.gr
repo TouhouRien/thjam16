@@ -16,7 +16,7 @@ func spawnGap(yukari: Actor)(Actor) {
     var dist = @Vec2i(px - ex, py - ey);
     var dx = px - dist.x / 2;
     var dy = py - dist.y / 2;
-    gap.setPosition(dx, dy, 0);
+    gap.setPosition(dx, dy, ez);
         
     @World.addEntity(gap);
     return gap;

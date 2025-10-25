@@ -1,8 +1,8 @@
 event yamameBowBehavior(bow: Actor) {
-    bow.posess;
+    bow.onStart;
 }
 
-task posess(bow: Actor) {
+task onStart(bow: Actor) {
     // turn off gravity
     bow.setGravity(0f);
 
@@ -13,6 +13,23 @@ task posess(bow: Actor) {
         } else {
             bow.accelerate(0f, 0f, 0f);
             bow.setSpeed(0f, 0f);
+            bow.setGraphic("invisible");
+            yamameBow();
         }
     }
+}
+
+func yamameBow() {
+    var yamame = @World.find("yamame")?;
+    yamame.setGraphic("yesbow");
+    yamame.fight;
+}
+
+task fight(yamame: Entity) {
+    var R = 80;
+    var r = 30;
+
+    var angle = 0f;
+    var sx = (R - r) * cos(angle) + r * cos(((R - r) / r) * angle);
+    var sy = (R - r) * sin(angle) - r * sin(((R - r) / r) * angle); 
 }
