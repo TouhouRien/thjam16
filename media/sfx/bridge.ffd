@@ -1,0 +1,4 @@
+sound "bridge" {
+    file "bridge_appear.ogg"
+    volume 1
+}

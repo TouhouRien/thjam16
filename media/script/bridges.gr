@@ -82,6 +82,7 @@ export task bridge_northwise(name : string, frame_wait : int) {
     var bridge = sort_northwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(true);
     }
 }
@@ -90,6 +91,7 @@ export task bridge_westwise(name : string, frame_wait : int) {
     var bridge = sort_westwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(true);
     }
 }
@@ -98,6 +100,7 @@ export task bridge_southwise(name : string, frame_wait : int) {
     var bridge = sort_southwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(true);
     }
 }
@@ -106,6 +109,7 @@ export task bridge_eastwise(name : string, frame_wait : int) {
     var bridge = sort_eastwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(true);
     }
 }
@@ -114,6 +118,7 @@ export task unbridge_northwise(name : string, frame_wait : int) {
     var bridge = sort_northwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(false);
     }
 }
@@ -122,6 +127,7 @@ export task unbridge_westwise(name : string, frame_wait : int) {
     var bridge = sort_westwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(false);
     }
 }
@@ -130,6 +136,7 @@ export task unbridge_southwise(name : string, frame_wait : int) {
     var bridge = sort_southwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(false);
     }
 }
@@ -138,6 +145,7 @@ export task unbridge_eastwise(name : string, frame_wait : int) {
     var bridge = sort_eastwise(bridge_select(name));
     for(elem, bridge.each) {
         wait(frame_wait)
+        @World.playSound("bridge");
         elem.setEnabled(false);
     }
 }
