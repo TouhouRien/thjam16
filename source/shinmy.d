@@ -2,9 +2,48 @@ module shinmy;
 
 import atelier;
 import material;
+import hearts;
+
+final class PlayerComponent : EntityComponent {
+    private {
+        int _life, _hearts;
+    }
+
+    @property {
+        int life() const {
+            return _life;
+        }
+
+        int hearts() const {
+            return _hearts;
+        }
+
+        bool isDead() const {
+            return _life <= 0;
+        }
+    }
+
+    void setHearts(int hearts_) {
+        _hearts = max(1, hearts_);
+        _life = _hearts * 4;
+    }
+
+    void damage() {
+        if (_life > 0)
+            _life--;
+    }
+
+    override void setup() {
+    }
+
+    override void update() {
+    }
+}
 
 final class PlayerController : Controller!Actor {
     override void onStart() {
+        entity.addComponent!PlayerComponent();
+        Atelier.ui.addUI(new HeartsUI(entity.getComponent!PlayerComponent()));
         setBehavior(new PlayerBehavior);
     }
 
@@ -19,7 +58,12 @@ final class PlayerBehavior : Behavior!Actor {
     Timer _hitTimer;
     Actor _needleThrow;
     Actor _needlePlant;
-    uint _health = 12; // 3 coeurs
+    PlayerComponent _player;
+
+    override void onStart() {
+        _player = entity.getComponent!PlayerComponent();
+        _player.setHearts(4);
+    }
 
     override void update() {
         _respawnTimer.update();
@@ -84,8 +128,8 @@ final class PlayerBehavior : Behavior!Actor {
         Atelier.audio.play(new SoundPlayer(sound));
         _hitTimer.start(30);
 
-        _health--;
-        if (_health == 0) {
+        _player.damage();
+        if (_player.isDead()) {
             Atelier.log("GAME OVER");
         }
     }
