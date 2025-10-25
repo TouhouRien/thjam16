@@ -33,7 +33,7 @@ scene "enemytest" {
         name ""
         tags []
         layer "scene"
-        position 752 805 -4
+        position 752 805 9
         controller ""
         graphic "base"
         angle 180
@@ -43,7 +43,7 @@ scene "enemytest" {
         name ""
         tags []
         layer "scene"
-        position 767 805 -4
+        position 767 805 9
         controller ""
         graphic "base"
         angle 180

@@ -25,19 +25,20 @@ final class PlayerBehavior : Behavior!Actor {
         _respawnTimer.update();
         _hitTimer.update();
 
-        Atelier.log(Atelier.world.scene.getMaterial(entity.getPosition()));
-
-        // Record last valid ground grass tile
-        if (entity.isOnGround && entity.getBaseMaterial() == Material.Grass) {
-            _lastValidPosition = entity.getPosition();
-        }
-
         if (!entity.getGraphic().isPlaying) {
+            entity.setVelocity(Vec3f.zero);
+            entity.accelerate(Vec3f.zero);
             entity.setPosition(_lastValidPosition);
             entity.setGraphic("idle");
         }
 
         if (!_respawnTimer.isRunning) {
+            // Record last valid ground grass tile
+            int material = Atelier.world.scene.getMaterial(entity.getPosition());
+            if (entity.isOnGround && material == Material.Grass) {
+                _lastValidPosition = entity.getPosition();
+            }
+
             Vec2f acceldir = Vec2f.zero;
             Vec2f movedir = Atelier.input.getActionVector("left", "right", "up", "down");
 
@@ -63,7 +64,8 @@ final class PlayerBehavior : Behavior!Actor {
         }
 
         // Respawn when hitting water
-        bool isEmptyTile = entity.getBaseMaterial() == Material.Water || entity.getBaseMaterial() == Material.Void;
+        int material = Atelier.world.scene.getMaterial(entity.getPosition());
+        bool isEmptyTile = material == Material.Water;
         if (entity.isOnGround && isEmptyTile && !_respawnTimer.isRunning) {
             Sound sound = Atelier.res.get!Sound("player_fall");
             Atelier.audio.play(new SoundPlayer(sound));
@@ -113,11 +115,13 @@ final class PlayerBehavior : Behavior!Actor {
             _needleThrow.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
             _needleThrow.angle = entity.angle - 90f;
             Atelier.world.addEntity(_needleThrow);
-        } else if (_needleThrow) {
+        }
+        else if (_needleThrow) {
             // @TODO delayer
             _needleThrow.unregister();
             _needleThrow = null;
-        } else if (_needlePlant) {
+        }
+        else if (_needlePlant) {
             // @TODO delayer
             _needlePlant.unregister();
             _needlePlant = null;

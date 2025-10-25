@@ -78,7 +78,7 @@ actor "shinmy" {
         isBehind []
     }
     hitbox {
-        size 12 12 16
+        size 16 16 16
         bounciness 0
     }
     repulsor {
