@@ -12,6 +12,7 @@ final class ButtonBehavior : Behavior!Prop {
     private bool _active = false;
 
     override void update() {
+        if(!entity.isEnabled()) return;
         int radiusSquared = 16 * 16;
         Vec3i entityPos = entity.getPosition();
 

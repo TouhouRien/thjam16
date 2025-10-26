@@ -725,6 +725,16 @@ scene "level0_2" {
         angle 180
         rid "reel"
     }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 558 702 16
+        controller "marisa"
+        graphic "idle"
+        angle 180
+        rid "marisa"
+    }
     entity "prop" {
         name ""
         tags ["level0_2_bridge1" "flag_yvq"]
@@ -774,6 +784,36 @@ scene "level0_2" {
         graphic "reel"
         angle 180
         rid "reel"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 465 841 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 518 894 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 79 1020 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
     }
     entity "teleporter" {
         name "south"
