@@ -192,11 +192,50 @@ event pas_content_event(e : Entity) {
 
 
 /*****************************************************************************/
-
+var torch_0_5_1 = false;
+var torch_0_5_2 = false;
+var torch_0_5_3 = false;
+var torch_0_5_4 = false;
 
 event scene_level0_5() {
     bridge_despawn("br1");
     bridge_despawn("br2");
     bridge_despawn("br3");
     bridge_despawn("br4");
+    gate_init("gate_mode");
+}
+
+event button_activate_button_level0_5_1(e: Entity) {
+    var torch = @World.find("torch_level0_5_1")?;
+    torch.setGraphic("left");
+    torch_0_5_1 = true;
+    updateGate();
+}
+
+event button_activate_button_level0_5_2(e: Entity) {
+    var torch = @World.find("torch_level0_5_2")?;
+    torch.setGraphic("left");
+    torch_0_5_2 = true;
+    updateGate();
+}
+
+event button_activate_button_level0_5_3(e: Entity) {
+    var torch = @World.find("torch_level0_5_3")?;
+    torch.setGraphic("right");
+    torch_0_5_3 = true;
+    updateGate();
+}
+
+event button_activate_button_level0_5_4(e: Entity) {
+    updateGate();
+    var torch = @World.find("torch_level0_5_4")?;
+    torch.setGraphic("right");
+    torch_0_5_4 = true;
+    updateGate();
+}
+
+func updateGate() {
+    if (torch_0_5_1 && torch_0_5_2 && torch_0_5_3 && torch_0_5_4) {
+        gate_active("gate_mode");
+    }
 }
