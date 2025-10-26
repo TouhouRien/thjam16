@@ -54,12 +54,12 @@ actor "needle" {
         faction "allied"
         type "both"
         minRadius 0
-        maxRadius 26
+        maxRadius 32
         height 6
-        angle 90
+        angle 180
         angleDelta 10
-        offsetDist 12
-        offsetAngle 270
+        offsetDist -18
+        offsetAngle 180
     }
     controller "needleThrow"
     zOrderOffset 0

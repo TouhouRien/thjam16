@@ -6,6 +6,7 @@ final class NeedleThrowController : Controller!Actor {
     private {
         NeedleThrowBehavior _needleThrowBehavior;
         NeedleHookBehavior _needleHookBehavior;
+        NeedleGrabBehavior _needleGrabBehavior;
     }
 
     override void onStart() {
@@ -18,14 +19,30 @@ final class NeedleThrowController : Controller!Actor {
             sendEvent(event);
         }
         else if (event == "recall" && _needleThrowBehavior && _needleThrowBehavior.isPlanted()) {
-            _needleHookBehavior = new NeedleHookBehavior(_needleThrowBehavior);
-            setBehavior(_needleHookBehavior);
-            _needleThrowBehavior = null;
+            if (_needleThrowBehavior.hasReel()) {
+                _needleGrabBehavior = new NeedleGrabBehavior(_needleThrowBehavior);
+                setBehavior(_needleGrabBehavior);
+                _needleThrowBehavior = null;
 
-            Sound sound = Atelier.res.get!Sound("needle_unplant");
-            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+                Sound sound = Atelier.res.get!Sound("needle_grab");
+                Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+
+                return "grab";
+            }
+            else {
+                _needleHookBehavior = new NeedleHookBehavior(_needleThrowBehavior);
+                setBehavior(_needleHookBehavior);
+                _needleThrowBehavior = null;
+
+                Sound sound = Atelier.res.get!Sound("needle_unplant");
+                Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+                return "hook";
+            }
         }
         else if (event == "isRecalled" && _needleHookBehavior) {
+            return sendEvent(event);
+        }
+        else if (event == "isRecalled" && _needleGrabBehavior) {
             return sendEvent(event);
         }
 
@@ -39,11 +56,13 @@ final class NeedleHookBehavior : Behavior!Actor {
         Vec3i _startPoint;
         uint _nodeCount;
         EntityThreadRenderer _renderer;
+        Entity _target;
     }
 
     this(NeedleThrowBehavior throwBehavior) {
         _renderer = throwBehavior._renderer;
         _nodeCount = throwBehavior._nodeCount;
+        _target = throwBehavior._target;
     }
 
     override string onEvent(string event) {
@@ -75,6 +94,66 @@ final class NeedleHookBehavior : Behavior!Actor {
         Vec3f dir = (cast(Vec3f)(delta)).normalized();
         entity.setVelocity(dir * 3f);
 
+        if (_target) {
+            _target.setPosition(entity.getPosition());
+        }
+
+        if (Atelier.world.player.getPosition().distanceSquared(entity.getPosition()) < (25 * 25)) {
+            entity.unregister();
+        }
+
+        _timer.update();
+
+        if (!_timer.isRunning() && _nodeCount >= 0) {
+            _timer.start(10);
+            _renderer.removeNode();
+            _nodeCount--;
+        }
+    }
+}
+
+final class NeedleGrabBehavior : Behavior!Actor {
+    private {
+        Timer _timer;
+        Vec3i _startPoint;
+        uint _nodeCount;
+        EntityThreadRenderer _renderer;
+    }
+
+    this(NeedleThrowBehavior throwBehavior) {
+        _renderer = throwBehavior._renderer;
+        _nodeCount = throwBehavior._nodeCount;
+    }
+
+    override string onEvent(string event) {
+        switch (event) {
+        case "isRecalled":
+            return entity.isRegistered() ? "" : "done";
+        default:
+            return "";
+        }
+    }
+
+    override void onStart() {
+        Vec3i delta = Atelier.world.player.getPosition() - entity.getPosition();
+        Vec3f dir = (cast(Vec3f)(delta)).normalized();
+        entity.setVelocity(dir * 5f);
+
+        entity.setGravity(0f);
+        entity.setFrictionBrake(0f);
+        entity.setLayer(Entity.Layer.above);
+        entity.setGraphic("throw");
+
+        _startPoint = entity.getPosition();
+
+        _timer.start(10);
+    }
+
+    override void update() {
+        Vec3i delta = entity.getPosition() - Atelier.world.player.getPosition();
+        Vec3f dir = (cast(Vec3f)(delta)).normalized();
+        Atelier.world.player.setVelocity(dir * 5f);
+
         if (Atelier.world.player.getPosition().distanceSquared(entity.getPosition()) < (25 * 25)) {
             entity.unregister();
         }
@@ -96,11 +175,17 @@ final class NeedleThrowBehavior : Behavior!Actor {
         uint _nodeCount;
         EntityThreadRenderer _renderer;
         bool _isPlanted;
+        Entity _target;
+        bool _hasReel;
     }
 
     @property {
         bool isPlanted() {
             return _isPlanted;
+        }
+
+        bool hasReel() {
+            return _hasReel;
         }
     }
 
@@ -117,7 +202,7 @@ final class NeedleThrowBehavior : Behavior!Actor {
     }
 
     override void onStart() {
-        entity.setSpeed(2f, 0f);
+        entity.setSpeed(5f, 0f);
         entity.setGravity(0f);
         entity.setFrictionBrake(0f);
         entity.setLayer(Entity.Layer.above);
@@ -133,8 +218,12 @@ final class NeedleThrowBehavior : Behavior!Actor {
     }
 
     override void update() {
-        if (_isPlanted)
+        if (_isPlanted) {
+            if (_target) {
+                entity.setPosition(_target.getPosition());
+            }
             return;
+        }
 
         _timer.update();
 
@@ -150,7 +239,22 @@ final class NeedleThrowBehavior : Behavior!Actor {
         }
     }
 
-    override void onHit(Vec3f normal) {
+    override void onHit(Entity target, Vec3f normal) {
+        if (_isPlanted)
+            return;
+
+        _target = target;
+        if (_target) {
+            _hasReel = _target.hasTag("reel");
+        }
+        plant();
+    }
+
+    override void onImpact(Entity target, Vec3f normal) {
+        if (_isPlanted)
+            return;
+
+        _target = target;
         plant();
     }
 

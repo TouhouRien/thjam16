@@ -79,6 +79,20 @@ final class PlayerBehavior : Behavior!Actor {
             _animator.respawn();
         }
 
+        if (_animator.step == PlayerAnimator.Step.grab) {
+            if (!_needle) {
+                _animator.respawn();
+            }
+            else {
+                if (_needle.sendEvent("isRecalled") == "done") {
+                    _needle = null;
+
+                    Sound sound = Atelier.res.get!Sound("needle_get");
+                    Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+                }
+            }
+        }
+
         if (_animator.canMove()) {
             // Record last valid ground grass tile
             int material = Atelier.world.scene.getMaterial(entity.getPosition());
@@ -127,6 +141,10 @@ final class PlayerBehavior : Behavior!Actor {
         int material = Atelier.world.scene.getMaterial(entity.getPosition());
         bool isEmptyTile = material == Material.Water;
         if (entity.isOnGround && isEmptyTile && _animator.canMove()) {
+            if (_needle) {
+                _needle.unregister();
+                _needle = null;
+            }
             _animator.fall();
         }
     }
@@ -178,7 +196,9 @@ final class PlayerBehavior : Behavior!Actor {
             Atelier.world.addEntity(_needle);
         }
         else {
-            _needle.sendEvent("recall");
+            if ("grab" == _needle.sendEvent("recall")) {
+                _animator.grab();
+            }
         }
     }
 
@@ -204,6 +224,7 @@ struct PlayerAnimator {
         swing,
         plant,
         fall,
+        grab,
         respawn
     }
 
@@ -235,11 +256,30 @@ struct PlayerAnimator {
         case swing:
         case plant:
         case fall:
+        case grab:
             break;
         case init_:
         case walk:
             _actor.setGraphic("idle");
             _step = Step.idle;
+            break;
+        }
+        _walkTimer.start(4);
+    }
+
+    void grab() {
+        final switch (_step) with (Step) {
+        case idle:
+        case swing:
+        case plant:
+        case fall:
+        case init_:
+        case walk:
+            _actor.setGraphic("idle");
+            _step = Step.idle;
+            break;
+        case respawn:
+        case grab:
             break;
         }
         _walkTimer.start(4);
@@ -265,6 +305,7 @@ struct PlayerAnimator {
             }
             break;
         case respawn:
+        case grab:
             break;
         }
     }
@@ -281,6 +322,7 @@ struct PlayerAnimator {
         case swing:
         case plant:
         case fall:
+        case grab:
             break;
         }
     }
@@ -297,6 +339,7 @@ struct PlayerAnimator {
         case swing:
         case plant:
         case fall:
+        case grab:
             break;
         }
     }
@@ -308,6 +351,7 @@ struct PlayerAnimator {
         case walk:
         case swing:
         case plant:
+        case grab:
             _respawnTimer.start(48);
             _actor.setGraphic("fall");
             _step = Step.fall;
@@ -332,6 +376,7 @@ struct PlayerAnimator {
         case idle:
         case walk:
         case respawn:
+        case grab:
             break;
         case swing:
         case plant:
@@ -364,6 +409,7 @@ struct PlayerAnimator {
         case fall:
         case plant:
         case respawn:
+        case grab:
             return false;
         }
     }
@@ -376,6 +422,7 @@ struct PlayerAnimator {
         case swing:
         case plant:
         case fall:
+        case grab:
             return false;
         case respawn:
             return true;

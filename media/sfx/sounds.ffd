@@ -42,6 +42,10 @@ sound "needle_get" {
     file "needle_get.ogg"
     volume 1
 }
+sound "needle_grab" {
+    file "needle_grab.ogg"
+    volume 1
+}
 sound "needle_swing" {
     file "needle_swing.ogg"
     volume 0.7

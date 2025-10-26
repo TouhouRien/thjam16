@@ -35,6 +35,7 @@ prop "reel" {
         offsetDist 0
         offsetAngle 0
     }
+    tags ["reel"]
     controller "reel"
     zOrderOffset 0
     material 0
