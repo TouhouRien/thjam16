@@ -389,6 +389,8 @@ struct PlayerAnimator {
     }
 
     void die() {
+        Sound sound = Atelier.res.get!Sound("player_death");
+        Atelier.audio.play(new SoundPlayer(sound));
         _deathTimer.start(120);
         _actor.setGraphic("die");
         _step = Step.die;

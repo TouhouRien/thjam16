@@ -23,6 +23,7 @@ final class Menu : UIElement {
         vbox.addUI(startGameBtn);
         startGameBtn.addEventListener("click", {
             Atelier.ui.clearUI();
+            Atelier.audio.play(new SoundPlayer(Atelier.res.get!Sound("menu_start")));
             Atelier.world.load("level0_5");
         });
 

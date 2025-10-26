@@ -6,6 +6,10 @@ sound "hover" {
     file "hover.ogg"
     volume 0.65
 }
+sound "menu_start" {
+    file "menu_start.ogg"
+    volume 1
+}
 sound "button_click" {
     file "button_click.ogg"
     volume 1
@@ -66,6 +70,10 @@ sound "player_hit" {
     file "player_hit.ogg"
     volume 0.73
 }
+sound "player_death" {
+    file "player_death.ogg"
+    volume 1
+}
 sound "player_step1" {
     file "player_step1.ogg"
     volume 0.6
@@ -73,4 +81,8 @@ sound "player_step1" {
 sound "player_step2" {
     file "player_step2.ogg"
     volume 0.6
+}
+sound "jingle" {
+    file "jingle.ogg"
+    volume 1
 }

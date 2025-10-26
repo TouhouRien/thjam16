@@ -118,6 +118,7 @@ final class NeedleGrabBehavior : Behavior!Actor {
         Vec3i _startPoint;
         uint _nodeCount;
         EntityThreadRenderer _renderer;
+        Timer _timeout;
     }
 
     this(NeedleThrowBehavior throwBehavior) {
@@ -143,9 +144,14 @@ final class NeedleGrabBehavior : Behavior!Actor {
         _startPoint = entity.getPosition();
 
         _timer.start(10);
+        _timeout.start(60);
     }
 
     override void update() {
+        if (!_timeout.isRunning) {
+            entity.unregister();
+        }
+
         Vec3i delta = entity.getPosition() - Atelier.world.player.getPosition();
         Vec3f dir = (cast(Vec3f)(delta)).normalized();
         Atelier.world.player.setVelocity(dir * 5f);
@@ -155,6 +161,7 @@ final class NeedleGrabBehavior : Behavior!Actor {
         }
 
         _timer.update();
+        _timeout.update();
 
         if (!_timer.isRunning() && _nodeCount >= 0) {
             _timer.start(10);
