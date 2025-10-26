@@ -65,7 +65,7 @@ void startup(string[] args) {
 
 void cliDefault(Cli.Result cli) {
 	Atelier atelier = new Atelier(false, Atelier_Window_Width,
-		Atelier_Window_Height, Atelier_Window_Title, &setupResourceLoaders, &setupLibLoaders);
+		Atelier_Window_Height, "Kobito de l'aiguille étincellante", &setupResourceLoaders, &setupLibLoaders);
 
 	Atelier.window.setSize(1280, 720);
 	Atelier.renderer.setScaling(Renderer.Scaling.stretch);
