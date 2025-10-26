@@ -1,4 +1,6 @@
 event gapBehavior(gap: Actor) {
+    gap.setShadow(false);
+
     loop yield {
         wait (30);
     
@@ -16,7 +18,7 @@ event gapBehavior(gap: Actor) {
             var sx = ex + 15 * cos(angle.rad);
             var sy = ey + 15 * sin(angle.rad);
 
-            shot.setPosition(sx as <int>, sy as <int>, 0);
+            shot.setPosition(sx as <int>, sy as <int>, ez);
             shot.setAngle(angle);
             shot.setSpeed(1.5f, 0f);
             shot.setDelay(30);

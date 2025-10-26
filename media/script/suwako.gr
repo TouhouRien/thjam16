@@ -1,4 +1,5 @@
 event suwakoBehavior(suwako: Actor) {
+    suwako.setShadow(false);
     var time = 0;
 
     loop yield {

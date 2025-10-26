@@ -1,4 +1,6 @@
 event marisaBehavior(marisa: Actor) {
+    marisa.setShadow(false);
+
     loop {
         while(!marisa.isEnabled()) { yield; }
         var player = @World.getPlayer?;

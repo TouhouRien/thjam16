@@ -34,6 +34,7 @@ final class PlayerComponent : EntityComponent {
     }
 
     override void setup() {
+        setHearts(4);
     }
 
     override void update() {
@@ -56,7 +57,6 @@ final class PlayerBehavior : Behavior!Actor {
     private {
         Vec3i _lastValidPosition = Vec3i.zero;
         Timer _hitTimer;
-        Timer _deathTimer;
         Actor _needle;
         PlayerComponent _player;
         PlayerAnimator _animator;
@@ -64,14 +64,11 @@ final class PlayerBehavior : Behavior!Actor {
 
     override void onStart() {
         _player = entity.getComponent!PlayerComponent();
-        _player.setHearts(4);
-
         _animator = PlayerAnimator(entity);
     }
 
     override void update() {
         _hitTimer.update();
-        _deathTimer.update();
         _animator.update();
 
         Vec2f delta = (Atelier.world.getMousePosition() - entity.cameraPosition());
@@ -87,10 +84,6 @@ final class PlayerBehavior : Behavior!Actor {
             entity.accelerate(Vec3f.zero);
             entity.setPosition(_lastValidPosition);
             _animator.respawn();
-        }
-
-        if (_animator.step == PlayerAnimator.Step.die && !_deathTimer.isRunning) {
-            reloadScene();
         }
 
         if (_needle && _needle.sendEvent("isRecalled") == "done") {
@@ -166,7 +159,6 @@ final class PlayerBehavior : Behavior!Actor {
 
         if (_player.isDead()) {
             _animator.die();
-            _deathTimer.start(120);
         }
     }
 
@@ -232,11 +224,6 @@ final class PlayerBehavior : Behavior!Actor {
             _animator.plant();
         }
     }
-
-    void reloadScene() {
-        string scene = Atelier.env.getScene();
-        Atelier.world.load(scene);
-    }
 }
 
 // Une FSM pour mieux organiser les anims
@@ -257,7 +244,7 @@ struct PlayerAnimator {
         Step _step = Step.init_;
         Actor _actor;
         Sound[] _walkSounds;
-        Timer _walkTimer, _respawnTimer;
+        Timer _walkTimer, _respawnTimer, _deathTimer;
     }
 
     @property {
@@ -402,6 +389,7 @@ struct PlayerAnimator {
     }
 
     void die() {
+        _deathTimer.start(120);
         _actor.setGraphic("die");
         _step = Step.die;
     }
@@ -429,8 +417,20 @@ struct PlayerAnimator {
             }
             break;
         case die:
+            _deathTimer.update();
+            if (!isPlaying() && !_deathTimer.isRunning) {
+                reloadScene();
+            }
             break;
         }
+    }
+
+    private void reloadScene() {
+        string scene = Atelier.env.getScene();
+        Atelier.world.load(scene);
+
+        PlayerComponent player = _actor.getComponent!PlayerComponent();
+        player.setHearts(4);
     }
 
     private bool isPlaying() {

@@ -1,5 +1,7 @@
 event kogasaBehavior(kogasa: Actor) {
     var time = 0;
+    
+    kogasa.setShadow(false);
 
     loop yield {
         var acc = @Vec2f.zero;

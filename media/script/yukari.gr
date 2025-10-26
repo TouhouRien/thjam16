@@ -1,25 +1,29 @@
 event yukariBehavior(yukari: Actor) {
+    yukari.setShadow(false);
+    
     loop {
         while(!yukari.isEnabled()) { yield; }
-        var gap = yukari.spawnGap;
+        yukari.spawnGap;
         wait(60);
     }
 }
 
-func spawnGap(yukari: Actor)(Actor) {
+func spawnGap(yukari: Actor) {
     var player = @World.getPlayer?;
-        
-    var gap = @Actor("gap");
 
     var px, py, pz = player.getPosition;
     var ex, ey, ez = yukari.getPosition;
-        
-    var dist = @Vec2i(px - ex, py - ey);
-    var dx = px - dist.x / 2;
-    var dy = py - dist.y / 2;
-    gap.setPosition(dx, dy, ez);
+
+    var dist = @Vec2f(px - ex, py - ey);
     
-    @World.playSound("enemy_gap");
-    @World.addEntity(gap);
-    return gap;
+    if (dist.lengthSquared < 320) {
+        var gap = @Actor("gap");
+
+        var dx = px - dist.x / 2;
+        var dy = py - dist.y / 2;
+        gap.setPosition(dx as <int>, dy as <int>, ez);
+    
+        @World.playSound("enemy_gap");
+        @World.addEntity(gap);
+    }
 }

@@ -134,7 +134,6 @@ void cliDefault(Cli.Result cli) {
 	Music overworldMusic = Atelier.res.get!Music("overworld");
 	Atelier.audio.playTrack(overworldMusic, 0f);
 
-	//Atelier.addStartCommand("loadscene level0_1");
 	Atelier.console.cli.addCommand(&cliReloadScene, "reloadScene", "Recharge le niveau actuel");
 	Atelier.renderer.setCursor(Atelier.res.get!Sprite("mallet"));
 

@@ -23,7 +23,7 @@ final class Menu : UIElement {
         vbox.addUI(startGameBtn);
         startGameBtn.addEventListener("click", {
             Atelier.ui.clearUI();
-            Atelier.world.load("level0_1");
+            Atelier.world.load("level0_3");
         });
 
         MenuButton quitGameBtn = new MenuButton("Quit");

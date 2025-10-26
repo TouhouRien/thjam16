@@ -1260,6 +1260,17 @@ scene "level0_3" {
         rid "reel"
     }
     entity "teleporter" {
+        name ""
+        tags []
+        layer "scene"
+        position 184 795 16
+        controller ""
+        scene ""
+        target ""
+        direction 0
+        hitbox 16 16 16
+    }
+    entity "teleporter" {
         name "south"
         tags []
         layer "scene"

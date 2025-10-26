@@ -72,6 +72,7 @@ final class EnemyBehavior : Behavior!Actor {
                 _dead = true;
 
                 entity.setGraphic("death");
+                entity.setLayer(Entity.Layer.above);
             }
         }
 
