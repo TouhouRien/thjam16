@@ -120,9 +120,9 @@ actor "shinmy" {
     render "plant" {
         type "multidiranimation"
         rid "player_plant"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 24
         isRotating false
         angleOffset 0
         blend "alpha"
