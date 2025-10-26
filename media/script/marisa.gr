@@ -1,8 +1,12 @@
 event marisaBehavior(marisa: Actor) {
     marisa.setShadow(false);
 
-    loop {
-        while(!marisa.isEnabled()) { yield; }
+    loop yield {
+        wait(60);
+        if (!marisa.isEnabled()) {
+            continue;
+        }
+
         var player = @World.getPlayer?;
         var px, py, pz = player.getPosition;
         var ex, ey, ez = marisa.getPosition;
@@ -18,7 +22,5 @@ event marisaBehavior(marisa: Actor) {
         shot.setSpeed(1.5f, 0f);
         shot.setDelay(30);
         @World.addEntity(shot);
-        
-        wait(60);
     }
 }

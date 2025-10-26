@@ -3,7 +3,9 @@ event suwakoBehavior(suwako: Actor) {
     var time = 0;
 
     loop yield {
-        while(!suwako.isEnabled()) { yield; }
+        if (!suwako.isEnabled()) {
+            continue;
+        }
 
         var acc = @Vec2f.zero;
         var player = @World.getPlayer?;

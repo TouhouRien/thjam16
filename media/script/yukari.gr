@@ -1,10 +1,13 @@
 event yukariBehavior(yukari: Actor) {
     yukari.setShadow(false);
     
-    loop {
-        while(!yukari.isEnabled()) { yield; }
-        yukari.spawnGap;
+    loop yield {
         wait(60);
+        if (!yukari.isEnabled()) {
+            continue;
+        }
+
+        yukari.spawnGap;
     }
 }
 

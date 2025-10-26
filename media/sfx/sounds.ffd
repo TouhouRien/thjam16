@@ -84,5 +84,5 @@ sound "player_step2" {
 }
 sound "jingle" {
     file "jingle.ogg"
-    volume 1
+    volume 0.7
 }

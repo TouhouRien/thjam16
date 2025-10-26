@@ -4,6 +4,10 @@ event kogasaBehavior(kogasa: Actor) {
     kogasa.setShadow(false);
 
     loop yield {
+        if (!kogasa.isEnabled()) {
+            continue;
+        }
+
         var acc = @Vec2f.zero;
         var player = @World.getPlayer?;
         

@@ -45,6 +45,10 @@ event button_deactivate_level0_1_bridge2_2(e : Entity) {
     activations--;
 }
 
+event mushroom(e: Trigger) {
+    @World.playSound("jingle");
+}
+
 event level0_1_ambush1(e : Trigger) {
     for(elem, @World.findEntitiesByTag("level0_1_ambusher1").each) {
         elem.setEnabled(true);
@@ -170,6 +174,7 @@ event scene_level0_3() {
 }
 
 event button_activate_oh_shiny(e : Entity) {
+    @World.playSound("jingle");
     for(elem, @World.findEntitiesByTag("pop_shiny").each) {
         elem.setEnabled(true);
     }
@@ -198,6 +203,10 @@ var torch_0_5_3 = false;
 var torch_0_5_4 = false;
 
 event scene_level0_5() {
+    for(elem, @World.findEntitiesByTag("boss_minion").each) {
+        elem.setEnabled(false);
+    }
+
     bridge_despawn("br1");
     bridge_despawn("br2");
     bridge_despawn("br3");
@@ -209,6 +218,7 @@ event button_activate_button_level0_5_1(e: Entity) {
     var torch = @World.find("torch_level0_5_1")?;
     torch.setGraphic("left");
     torch_0_5_1 = true;
+    @World.playSound("jingle");
     updateGate();
 }
 
@@ -216,6 +226,7 @@ event button_activate_button_level0_5_2(e: Entity) {
     var torch = @World.find("torch_level0_5_2")?;
     torch.setGraphic("left");
     torch_0_5_2 = true;
+    @World.playSound("jingle");
     updateGate();
 }
 
@@ -223,6 +234,7 @@ event button_activate_button_level0_5_3(e: Entity) {
     var torch = @World.find("torch_level0_5_3")?;
     torch.setGraphic("right");
     torch_0_5_3 = true;
+    @World.playSound("jingle");
     updateGate();
 }
 
@@ -231,7 +243,28 @@ event button_activate_button_level0_5_4(e: Entity) {
     var torch = @World.find("torch_level0_5_4")?;
     torch.setGraphic("right");
     torch_0_5_4 = true;
+    @World.playSound("jingle");
     updateGate();
+}
+
+event spawn_marisa(e: Trigger) {
+    var marisa = @World.find("marisa")?;
+    marisa.setEnabled(true);
+}
+
+event spawn_suwako(e: Trigger) {
+    var marisa = @World.find("suwako")?;
+    marisa.setEnabled(true);
+}
+
+event spawn_kogasa(e: Trigger) {
+    var marisa = @World.find("kogasa")?;
+    marisa.setEnabled(true);
+}
+
+event spawn_yukari(e: Trigger) {
+    var marisa = @World.find("yukari")?;
+    marisa.setEnabled(true);
 }
 
 func updateGate() {

@@ -84,6 +84,7 @@ final class PlayerBehavior : Behavior!Actor {
             entity.accelerate(Vec3f.zero);
             entity.setPosition(_lastValidPosition);
             _animator.respawn();
+            damage();
         }
 
         if (_needle && _needle.sendEvent("isRecalled") == "done") {
@@ -148,7 +149,6 @@ final class PlayerBehavior : Behavior!Actor {
                 _needle = null;
             }
             _animator.fall();
-            damage();
             entity.setGravity(0.8f);
         }
     }
@@ -429,7 +429,7 @@ struct PlayerAnimator {
 
     private void reloadScene() {
         string scene = Atelier.env.getScene();
-        Atelier.world.load(scene);
+        Atelier.world.transitionScene(scene, "", 0);
 
         PlayerComponent player = _actor.getComponent!PlayerComponent();
         player.setHearts(4);

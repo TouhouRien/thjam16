@@ -224,6 +224,16 @@ scene "level0_1" {
         name ""
         tags []
         layer "scene"
+        position 486 205 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
         position 624 208 16
         controller ""
         graphic "reel"
@@ -500,6 +510,16 @@ scene "level0_1" {
     }
     entity "prop" {
         name ""
+        tags []
+        layer "scene"
+        position 834 512 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
         tags ["bridge_phase_2"]
         layer "scene"
         position 912 512 12
@@ -538,16 +558,24 @@ scene "level0_1" {
         angle 180
         rid "Plant_Sign"
     }
-    entity "teleporter" {
+    entity "prop" {
         name ""
         tags []
         layer "scene"
-        position 208 832 16
+        position 209 798 16
         controller ""
-        scene ""
-        target ""
-        direction 0
-        hitbox 16 16 16
+        graphic "idle"
+        angle 180
+        rid "mushroom"
+    }
+    entity "trigger" {
+        name ""
+        tags []
+        layer "scene"
+        position 208 797 16
+        controller ""
+        event "mushroom"
+        hitbox 32 32 32
     }
     entity "prop" {
         name ""
@@ -568,6 +596,27 @@ scene "level0_1" {
         graphic ""
         angle 180
         rid "WASD_Sign"
+    }
+    entity "teleporter" {
+        name ""
+        tags []
+        layer "scene"
+        position 208 860 16
+        controller ""
+        scene ""
+        target ""
+        direction 0
+        hitbox 16 16 16
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 582 927 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
     }
     entity "prop" {
         name "level0_1_bridge1"
@@ -819,6 +868,16 @@ scene "level0_2" {
         rid "bridge_piece"
     }
     entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 387 450 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
         name "level0_2_p2_button"
         tags ["level0_2_p2_button"]
         layer "scene"
@@ -847,6 +906,16 @@ scene "level0_2" {
         graphic "reel"
         angle 180
         rid "reel"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 634 666 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
     }
     entity "prop" {
         name "button_level0_2_3"
@@ -982,6 +1051,16 @@ scene "level0_2" {
         name ""
         tags []
         layer "scene"
+        position 202 910 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
         position 152 992 32
         controller ""
         graphic "idle"
@@ -1052,6 +1131,16 @@ scene "level0_3" {
         name ""
         tags []
         layer "scene"
+        position 133 72 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
         position 356 110 32
         controller ""
         graphic "reel"
@@ -1078,6 +1167,26 @@ scene "level0_3" {
         target ""
         direction 0
         hitbox 16 16 16
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 791 161 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 61 207 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
     }
     entity "actor" {
         name ""
@@ -1118,6 +1227,26 @@ scene "level0_3" {
         controller ""
         event "pas_content_event"
         hitbox 73 22 16
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 206 400 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 544 428 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
     }
     entity "actor" {
         name ""
@@ -1188,6 +1317,16 @@ scene "level0_3" {
         graphic "reel"
         angle 180
         rid "reel"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 1036 533 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
     }
     entity "teleporter" {
         name "tp_shiny"
@@ -1350,6 +1489,45 @@ scene "level0_5" {
         angle 180
         rid "reel"
     }
+    entity "trigger" {
+        name ""
+        tags []
+        layer "scene"
+        position 384 43 16
+        controller ""
+        event "spawn_kogasa"
+        hitbox 48 48 16
+    }
+    entity "actor" {
+        name "kogasa"
+        tags ["boss_minion"]
+        layer "scene"
+        position 488 65 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tatara"
+    }
+    entity "actor" {
+        name "suwako"
+        tags ["boss_minion"]
+        layer "scene"
+        position 140 68 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "suwako"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 310 70 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tenshi"
+    }
     entity "prop" {
         name ""
         tags []
@@ -1369,6 +1547,15 @@ scene "level0_5" {
         graphic "inactif"
         angle 180
         rid "button"
+    }
+    entity "trigger" {
+        name ""
+        tags []
+        layer "scene"
+        position 48 93 16
+        controller ""
+        event "spawn_suwako"
+        hitbox 48 48 16
     }
     entity "prop" {
         name ""
@@ -1442,7 +1629,7 @@ scene "level0_5" {
     }
     entity "prop" {
         name ""
-        tags ["gate_mode1"]
+        tags ["gate_mode0"]
         layer "scene"
         position 312 195 16
         controller ""
@@ -1474,22 +1661,60 @@ scene "level0_5" {
         name ""
         tags []
         layer "scene"
+        position 111 214 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 529 216 16
+        controller ""
+        graphic "idle"
+        angle 177.955
+        rid "tree2"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
         position 593 224 16
         controller ""
         graphic "reel"
         angle 180
         rid "reel"
     }
-    entity "teleporter" {
+    entity "trigger" {
         name ""
         tags []
         layer "scene"
-        position 424 248 16
+        position 591 221 16
         controller ""
-        scene ""
-        target ""
-        direction 0
-        hitbox 16 16 16
+        event "spawn_yukari"
+        hitbox 48 48 16
+    }
+    entity "actor" {
+        name "yukari"
+        tags ["boss_minion"]
+        layer "scene"
+        position 488 245 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "yukari"
+    }
+    entity "actor" {
+        name "marisa"
+        tags ["boss_minion"]
+        layer "scene"
+        position 144 249 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "marisa"
     }
     entity "prop" {
         name ""
@@ -1500,6 +1725,17 @@ scene "level0_5" {
         graphic "reel"
         angle 180
         rid "reel"
+    }
+    entity "teleporter" {
+        name ""
+        tags []
+        layer "scene"
+        position 311 268 16
+        controller ""
+        scene ""
+        target ""
+        direction 0
+        hitbox 16 16 16
     }
     entity "prop" {
         name "button_level0_5_4"
@@ -1540,6 +1776,15 @@ scene "level0_5" {
         graphic "idle"
         angle 180
         rid "mushroom"
+    }
+    entity "trigger" {
+        name ""
+        tags []
+        layer "scene"
+        position 238 271 16
+        controller ""
+        event "spawn_marisa"
+        hitbox 48 48 16
     }
     entity "teleporter" {
         name "south"

@@ -127,6 +127,7 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("yamameBow", {
 		return new EnemyController("yamameBow");
 	});
+	Atelier.world.addController("tenshi", { return new EnemyController("tenshi"); });
 	Atelier.world.addController("reel", { return new ReelController(); });
 
 	// playTrack
