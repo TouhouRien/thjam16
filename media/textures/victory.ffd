@@ -4,5 +4,5 @@ texture "victory" {
 }
 sprite "victory" {
     texture "victory"
-    clip 0 0 0 0
+    clip 0 0 640 360
 }

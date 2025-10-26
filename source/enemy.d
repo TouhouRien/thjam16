@@ -43,7 +43,7 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void onImpact(Entity target, Vec3f normal) {
-        if(entity.isEnabled()) {
+        if (entity.isEnabled()) {
             _life--;
             if (_life > 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_hit");
@@ -63,7 +63,7 @@ final class EnemyBehavior : Behavior!Actor {
             _life = 0;
         }
 
-        if(entity.isEnabled && !_dead) {
+        if (entity.isEnabled && !_dead) {
             if (_life == 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_death");
                 Atelier.audio.play(new SoundPlayer(sound));
@@ -82,6 +82,8 @@ final class EnemyBehavior : Behavior!Actor {
             entity.unregister();
 
             if (entity.getName == "yamame") {
+                Atelier.ui.clearUI();
+                Atelier.world.close();
                 Atelier.ui.addUI(new Victory);
             }
         }

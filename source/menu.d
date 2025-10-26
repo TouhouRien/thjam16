@@ -1,6 +1,7 @@
 module menu;
 
 import atelier;
+import timer;
 
 final class Menu : UIElement {
     private {
@@ -8,6 +9,7 @@ final class Menu : UIElement {
     }
 
     this() {
+        resetTime();
         setSize(cast(Vec2f) Atelier.renderer.size);
 
         addUI(new Title);
