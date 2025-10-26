@@ -14,3 +14,31 @@ sprite "title" {
     texture "title"
     clip 0 0 640 256
 }
+texture "button_bg" {
+    file "start.png"
+    isSmooth false
+}
+ninepatch "button_bg" {
+    texture "button_bg"
+    clip 14 12 232 82
+    top 28
+    bottom 24
+    left 37
+    right 44
+}
+sprite "button_bg" {
+    texture "button_bg"
+    clip 27 6 234 84
+}
+texture "button_menu" {
+    file "title_buttons.png"
+    isSmooth false
+}
+sprite "button_menu_on" {
+    texture "button_menu"
+    clip 0 96 64 64
+}
+sprite "button_menu_off" {
+    texture "button_menu"
+    clip 0 32 64 64
+}
