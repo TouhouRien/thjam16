@@ -1,5 +1,6 @@
 event marisaBehavior(marisa: Actor) {
     loop {
+        while(!marisa.isEnabled()) { yield; }
         var player = @World.getPlayer?;
         var px, py, pz = player.getPosition;
         var ex, ey, ez = marisa.getPosition;

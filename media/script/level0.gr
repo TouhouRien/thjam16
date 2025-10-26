@@ -183,7 +183,7 @@ task content_ou_pas_content() {
     }
 }
 
-event pas_content_event(e : Entity) {
+event pas_content_event(e : Trigger) {
     for(elem, @World.findEntitiesByTag("pas_content").each) {
         elem.setEnabled(true);
     }
