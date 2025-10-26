@@ -155,3 +155,37 @@ event button_activate_button_level0_2_2(e : Entity) {
 event button_activate_button_level0_2_3(e : Entity) {
     buttons++;
 }
+
+
+event scene_level0_3() {
+        for(elem, @World.findEntitiesByTag("pop_shiny").each) {
+            elem.setEnabled(false);
+        }
+        for(elem, @World.findEntitiesByTag("pas_content").each) {
+            elem.setEnabled(false);
+        }
+        for(elem, @World.findEntitiesByTag("content").each) {
+            elem.setEnabled(false);
+        }
+}
+
+event button_activate_oh_shiny(e : Entity) {
+    for(elem, @World.findEntitiesByTag("pop_shiny").each) {
+        elem.setEnabled(true);
+    }
+}
+
+task content_ou_pas_content() {
+    while(@World.findEntitiesByTag("pas_content").size != 0) {yield;}
+    
+    for(elem, @World.findEntitiesByTag("content").each) {
+        elem.setEnabled(true);
+    }
+}
+
+event pas_content_event(e : Entity) {
+    for(elem, @World.findEntitiesByTag("pas_content").each) {
+        elem.setEnabled(true);
+    }
+    content_ou_pas_content();
+}
