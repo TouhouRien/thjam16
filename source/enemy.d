@@ -64,7 +64,6 @@ final class EnemyBehavior : Behavior!Actor {
                 _deathTimer.start(40);
                 _dead = true;
 
-                // @Enalye animation de mort ici
                 entity.setGraphic("death");
             }
         }

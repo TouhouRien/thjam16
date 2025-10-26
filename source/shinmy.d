@@ -56,6 +56,7 @@ final class PlayerBehavior : Behavior!Actor {
     private {
         Vec3i _lastValidPosition = Vec3i.zero;
         Timer _hitTimer;
+        Timer _deathTimer;
         Actor _needle;
         PlayerComponent _player;
         PlayerAnimator _animator;
@@ -70,6 +71,7 @@ final class PlayerBehavior : Behavior!Actor {
 
     override void update() {
         _hitTimer.update();
+        _deathTimer.update();
         _animator.update();
 
         if (_animator.mustRespawn()) {
@@ -77,6 +79,10 @@ final class PlayerBehavior : Behavior!Actor {
             entity.accelerate(Vec3f.zero);
             entity.setPosition(_lastValidPosition);
             _animator.respawn();
+        }
+
+        if (_animator.step == PlayerAnimator.Step.die && !_deathTimer.isRunning) {
+            reloadScene();
         }
 
         if (_animator.step == PlayerAnimator.Step.grab) {
@@ -162,7 +168,8 @@ final class PlayerBehavior : Behavior!Actor {
         entity.setEffect(new FlashEffect(Color(1f, 0.8f, 0.8f), 1f, 15, 15, Spline.sineInOut));
         entity.setVelocity(normal * 3f);
         if (_player.isDead()) {
-            Atelier.log("GAME OVER");
+            _animator.die();
+            _deathTimer.start(120);
         }
     }
 
@@ -206,12 +213,18 @@ final class PlayerBehavior : Behavior!Actor {
     void needlePlant() {
         if (!_needle) {
             _needle = Atelier.res.get!Actor("needle");
+            _needle.setName("needle.plant");
             _needle.setPosition(entity.getPosition());
             Atelier.world.addEntity(_needle);
             _needle.sendEvent("plant");
 
             _animator.plant();
         }
+    }
+
+    void reloadScene() {
+        string scene = Atelier.env.getScene();
+        Atelier.world.load(scene);
     }
 }
 
@@ -225,7 +238,8 @@ struct PlayerAnimator {
         plant,
         fall,
         grab,
-        respawn
+        respawn,
+        die
     }
 
     private {
@@ -257,6 +271,7 @@ struct PlayerAnimator {
         case plant:
         case fall:
         case grab:
+        case die:
             break;
         case init_:
         case walk:
@@ -280,6 +295,7 @@ struct PlayerAnimator {
             break;
         case respawn:
         case grab:
+        case die:
             break;
         }
         _walkTimer.start(4);
@@ -306,6 +322,7 @@ struct PlayerAnimator {
             break;
         case respawn:
         case grab:
+        case die:
             break;
         }
     }
@@ -323,6 +340,7 @@ struct PlayerAnimator {
         case plant:
         case fall:
         case grab:
+        case die:
             break;
         }
     }
@@ -340,6 +358,7 @@ struct PlayerAnimator {
         case plant:
         case fall:
         case grab:
+        case die:
             break;
         }
     }
@@ -361,6 +380,7 @@ struct PlayerAnimator {
             break;
         case respawn:
         case fall:
+        case die:
             break;
         }
     }
@@ -368,6 +388,11 @@ struct PlayerAnimator {
     void respawn() {
         _actor.setGraphic("idle");
         _step = Step.idle;
+    }
+
+    void die() {
+        _actor.setGraphic("die");
+        _step = Step.die;
     }
 
     void update() {
@@ -392,6 +417,8 @@ struct PlayerAnimator {
                 _step = Step.respawn;
             }
             break;
+        case die:
+            break;
         }
     }
 
@@ -410,6 +437,7 @@ struct PlayerAnimator {
         case plant:
         case respawn:
         case grab:
+        case die:
             return false;
         }
     }
@@ -423,6 +451,7 @@ struct PlayerAnimator {
         case plant:
         case fall:
         case grab:
+        case die:
             return false;
         case respawn:
             return true;

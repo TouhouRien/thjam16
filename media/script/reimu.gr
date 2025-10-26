@@ -1,6 +1,7 @@
 event reimuBehavior(reimu: Actor) {
     // turn off gravity
-    reimu.setHovering(false);
+    reimu.setHovering(true);
+    reimu.setFrictionBrake(0f);
 
     // select a random direction
     var dir = @Vec2f(rand(-1f, 1f), rand(-1f, 1f)).normalized;

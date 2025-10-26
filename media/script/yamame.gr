@@ -17,7 +17,7 @@ event yamameBehavior(yamame: Actor) {
             var ang = dir.angle.deg;
             
             yamame.setAngle(ang + 90f);
-            acc += dir * 0.25f;
+            acc += dir * 0.8f;
 
             yamame.accelerate(acc.x, acc.y, 0f);
             time++;

@@ -68,6 +68,10 @@ animation "player_fall" {
     columns 6
     margin 0 0
 }
+sprite "player_dead" {
+    texture "player"
+    clip 288 224 32 32
+}
 actor "shinmy" {
     render "idle" {
         type "multidiranimation"
@@ -129,6 +133,18 @@ actor "shinmy" {
         isDefault false
         isBehind []
     }
+    render "die" {
+        type "sprite"
+        rid "player_dead"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
     hitbox {
         size 16 16 16
         bounciness 0
@@ -149,6 +165,7 @@ actor "shinmy" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller ""
     zOrderOffset 0
 }
