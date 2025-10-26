@@ -12,6 +12,9 @@ event scene_level0_1 {
     for(elem, @World.findEntitiesByTag("level0_1_ambusher1").each) {
         elem.setEnabled(false);
     }
+    for(elem, @World.findEntitiesByTag("level0_1_gate3_enemy").each) {
+        elem.setEnabled(false);
+    }
 }
 
 event button_activate_level0_1_bridge1(e : Entity) {
@@ -50,6 +53,9 @@ event level0_1_ambush1(e : Trigger) {
 
 event level0_1_encounter(e : Trigger) {
     gate_active("gate1_mode");
+    for(elem, @World.findEntitiesByTag("level0_1_gate3_enemy").each) {
+        elem.setEnabled(true);
+    }
     monitor_gate();
 }
 
@@ -61,4 +67,71 @@ task monitor_gate() {
         wait(5);
         monitor_gate();
     }
+}
+
+/*****************************************************************************/
+
+
+var buttons : int = 0;
+
+event scene_level0_1 {
+    bridge_despawn("level0_2_bridge1");
+    buttons = 0;
+    for(elem, @World.findEntitiesByTag("flag_yvq").each) {
+        elem.setEnabled(false);
+    }
+}
+
+event button_activate_button_level0_2_0(e : Entity) {
+    buttons++;
+    for(elem, @World.findEntitiesByTag("flag_yvq").each) {
+        elem.setEnabled(true);
+    }
+}
+
+event button_deactivate_button_level0_2_0(e : Entity) {
+    buttons--;
+    if(buttons <= 0) {
+        for(elem, @World.findEntitiesByTag("flag_yvq").each) {
+            elem.setEnabled(false);
+        }
+    }
+}
+
+event button_deactivate_button_level0_2_1(e : Entity) {
+    buttons--;
+    if(buttons <= 0) {
+        for(elem, @World.findEntitiesByTag("flag_yvq").each) {
+            elem.setEnabled(false);
+        }
+    }
+}
+
+event button_deactivate_button_level0_2_2(e : Entity) {
+    buttons--;
+    if(buttons <= 0) {
+        for(elem, @World.findEntitiesByTag("flag_yvq").each) {
+            elem.setEnabled(false);
+        }
+    }
+}
+
+event button_deactivate_button_level0_2_3(e : Entity) {
+    if(buttons <= 0) {
+        for(elem, @World.findEntitiesByTag("flag_yvq").each) {
+            elem.setEnabled(false);
+        }
+    }
+}
+
+event button_activate_button_level0_2_1(e : Entity) {
+    buttons++;
+}
+
+event button_activate_button_level0_2_2(e : Entity) {
+    buttons++;
+}
+
+event button_activate_button_level0_2_3(e : Entity) {
+    buttons++;
 }
