@@ -14,7 +14,10 @@ final class NeedleThrowController : Controller!Actor {
     }
 
     override string onEvent(string event) {
-        if (event == "recall" && _needleThrowBehavior && _needleThrowBehavior.isPlanted()) {
+        if (event == "plant" && _needleThrowBehavior && !_needleThrowBehavior.isPlanted()) {
+            sendEvent(event);
+        }
+        else if (event == "recall" && _needleThrowBehavior && _needleThrowBehavior.isPlanted()) {
             _needleHookBehavior = new NeedleHookBehavior(_needleThrowBehavior);
             setBehavior(_needleHookBehavior);
             _needleThrowBehavior = null;
@@ -44,7 +47,12 @@ final class NeedleHookBehavior : Behavior!Actor {
     }
 
     override string onEvent(string event) {
-        return entity.isRegistered() ? "" : "done";
+        switch (event) {
+        case "isRecalled":
+            return entity.isRegistered() ? "" : "done";
+        default:
+            return "";
+        }
     }
 
     override void onStart() {
@@ -96,6 +104,18 @@ final class NeedleThrowBehavior : Behavior!Actor {
         }
     }
 
+    override string onEvent(string event) {
+        switch (event) {
+        case "plant":
+            if (entity.isRegistered() && !_isPlanted) {
+                plant();
+            }
+            return "";
+        default:
+            return "";
+        }
+    }
+
     override void onStart() {
         entity.setSpeed(2f, 0f);
         entity.setGravity(0f);
@@ -131,6 +151,10 @@ final class NeedleThrowBehavior : Behavior!Actor {
     }
 
     override void onHit(Vec3f normal) {
+        plant();
+    }
+
+    void plant() {
         if (!_isPlanted) {
             entity.accelerate(Vec3f.zero);
             entity.setSpeed(0f, 0f);

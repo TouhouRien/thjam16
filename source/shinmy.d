@@ -56,8 +56,7 @@ final class PlayerBehavior : Behavior!Actor {
     private {
         Vec3i _lastValidPosition = Vec3i.zero;
         Timer _hitTimer;
-        Actor _needleThrow;
-        Actor _needlePlant;
+        Actor _needle;
         PlayerComponent _player;
         PlayerAnimator _animator;
     }
@@ -100,9 +99,9 @@ final class PlayerBehavior : Behavior!Actor {
                 _animator.stop();
             }
 
-            if (_needleThrow) {
-                if (_needleThrow.sendEvent("isRecalled") == "done") {
-                    _needleThrow = null;
+            if (_needle) {
+                if (_needle.sendEvent("isRecalled") == "done") {
+                    _needle = null;
 
                     Sound sound = Atelier.res.get!Sound("needle_get");
                     Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
@@ -151,7 +150,7 @@ final class PlayerBehavior : Behavior!Actor {
 
     // Left click: swing needle
     void needleSwing() {
-        if (!_needleThrow && !_needlePlant) {
+        if (!_needle) {
             Sound sound = Atelier.res.get!Sound("needle_swing");
             Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
 
@@ -167,38 +166,30 @@ final class PlayerBehavior : Behavior!Actor {
 
     // Right click: throw needle
     void needleThrow() {
-        if (!_needleThrow && !_needlePlant) {
+        if (!_needle) {
             Sound sound = Atelier.res.get!Sound("needle_throw");
             Atelier.audio.play(new SoundPlayer(sound));
 
-            _needleThrow = Atelier.res.get!Actor("needle");
-            _needleThrow.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
+            _needle = Atelier.res.get!Actor("needle");
+            _needle.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
 
             Vec2f delta = (Atelier.world.getMousePosition() - entity.cameraPosition());
-            _needleThrow.angle = delta.angle().radToDeg();
-            Atelier.world.addEntity(_needleThrow);
+            _needle.angle = delta.angle().radToDeg();
+            Atelier.world.addEntity(_needle);
         }
-        else if (_needleThrow) {
-            _needleThrow.sendEvent("recall");
-        }
-        else if (_needlePlant) {
-            // @TODO delayer
-            _needlePlant.unregister();
-            _needlePlant = null;
+        else {
+            _needle.sendEvent("recall");
         }
     }
 
     // E: plant needle
     void needlePlant() {
-        if (!_needleThrow && !_needlePlant) {
-            Sound sound = Atelier.res.get!Sound("needle_plant");
-            Atelier.audio.play(new SoundPlayer(sound));
+        if (!_needle) {
+            _needle = Atelier.res.get!Actor("needle");
+            _needle.setPosition(entity.getPosition());
+            Atelier.world.addEntity(_needle);
+            _needle.sendEvent("plant");
 
-            _needlePlant = Atelier.res.get!Actor("needle.plant");
-            _needlePlant.setName("needle.plant"); // ne devrait pas etre necessaire Enalye :(
-            _needlePlant.setPosition(entity.getPosition());
-            _needlePlant.angle = 0f;
-            Atelier.world.addEntity(_needlePlant);
             _animator.plant();
         }
     }
