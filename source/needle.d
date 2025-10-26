@@ -94,7 +94,7 @@ final class NeedleHookBehavior : Behavior!Actor {
         Vec3f dir = (cast(Vec3f)(delta)).normalized();
         entity.setVelocity(dir * 3f);
 
-        if (_target) {
+        if (_target && _target.type == Entity.Type.actor) {
             _target.setPosition(entity.getPosition());
         }
 
@@ -135,10 +135,6 @@ final class NeedleGrabBehavior : Behavior!Actor {
     }
 
     override void onStart() {
-        Vec3i delta = Atelier.world.player.getPosition() - entity.getPosition();
-        Vec3f dir = (cast(Vec3f)(delta)).normalized();
-        entity.setVelocity(dir * 5f);
-
         entity.setGravity(0f);
         entity.setFrictionBrake(0f);
         entity.setLayer(Entity.Layer.above);
@@ -219,6 +215,8 @@ final class NeedleThrowBehavior : Behavior!Actor {
 
     override void update() {
         if (_isPlanted) {
+            entity.removeCollider();
+
             if (_target) {
                 entity.setPosition(_target.getPosition());
             }

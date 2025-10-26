@@ -178,7 +178,7 @@ final class PlayerBehavior : Behavior!Actor {
         Sound sound = Atelier.res.get!Sound("player_hit");
         Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.95f, 1.05f)));
         damage();
-        
+
         entity.setEffect(new FlashEffect(Color(1f, 0.8f, 0.8f), 1f, 15, 15, Spline.sineInOut));
         entity.setVelocity(normal * 3f);
     }
