@@ -1249,6 +1249,7 @@ scene "level0_3" {
         hitbox 69 28 16
     }
 }
+
 scene "level0_5" {
     size 40 20
     levels 4
