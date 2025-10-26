@@ -24,17 +24,7 @@ prop "reel" {
         shape "box"
         bounciness 0
     }
-    hurtbox {
-        faction "neutral"
-        type "target"
-        minRadius 0
-        maxRadius 6
-        height 16
-        angle 0
-        angleDelta 0
-        offsetDist 0
-        offsetAngle 0
-    }
+    hurtbox
     tags ["reel"]
     controller "reel"
     zOrderOffset 0
