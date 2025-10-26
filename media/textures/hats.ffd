@@ -2,6 +2,19 @@ texture "hats" {
     file "hats.png"
     isSmooth false
 }
+proxy "enemy_hitbox" {
+    hurtbox {
+        faction "enemy"
+        type "projectile"
+        minRadius 0
+        maxRadius 6
+        height 2
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+}
 animation "tenshi" {
     texture "hats"
     clip 0 0 32 32
@@ -87,6 +100,7 @@ actor "tenshi" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller "tenshi"
     zOrderOffset 0
 }

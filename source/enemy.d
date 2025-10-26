@@ -25,6 +25,7 @@ final class EnemyBehavior : Behavior!Actor {
         string _enemyId;
         GrTask _task;
         Timer _deathTimer;
+        Proxy _proxy;
     }
 
     this(string enemyId, int life = 5) {
@@ -37,6 +38,7 @@ final class EnemyBehavior : Behavior!Actor {
         _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [
                 grGetNativeType("Actor")
             ], [GrValue(entity)]);
+        setProxy();
     }
 
     override void onImpact(Entity target, Vec3f normal) {
@@ -72,5 +74,11 @@ final class EnemyBehavior : Behavior!Actor {
             entity.setEnabled(false);
             entity.unregister();
         }
+    }
+
+    void setProxy() {
+        _proxy = Atelier.res.get!Proxy("enemy_hitbox");
+        _proxy.attachTo(entity);
+        Atelier.world.addEntity(_proxy);
     }
 }

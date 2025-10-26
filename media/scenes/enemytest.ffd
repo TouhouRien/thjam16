@@ -29,26 +29,6 @@ scene "enemytest" {
         angle 180
         rid "bridge_piece"
     }
-    entity "actor" {
-        name "yamame_bow"
-        tags []
-        layer "scene"
-        position 875 760 64
-        controller ""
-        graphic "idle"
-        angle 180
-        rid "yamame_bow"
-    }
-    entity "actor" {
-        name "yamame"
-        tags []
-        layer "scene"
-        position 875 760 0
-        controller ""
-        graphic "nobow"
-        angle 180
-        rid "yamame"
-    }
     entity "prop" {
         name ""
         tags []

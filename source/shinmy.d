@@ -107,7 +107,9 @@ final class PlayerBehavior : Behavior!Actor {
         if (_animator.canMove()) {
             // Record last valid ground grass tile
             int material = Atelier.world.scene.getMaterial(entity.getPosition());
-            if (entity.isOnGround && material == Material.Grass) {
+            bool isGround = entity.getLevel() > 0;
+            bool isSolid = material == Material.Grass || material == Material.Earth;
+            if (entity.isOnGround && isGround && isSolid) {
                 _lastValidPosition = entity.getPosition();
             }
 
@@ -148,8 +150,8 @@ final class PlayerBehavior : Behavior!Actor {
         }
 
         // Respawn when hitting water
-        int material = Atelier.world.scene.getMaterial(entity.getPosition());
-        bool isEmptyTile = material == Material.Water;
+        //int material = Atelier.world.scene.getMaterial(entity.getPosition());
+        bool isEmptyTile = entity.getLevel() == 0; //material == Material.Water;
         if (entity.isOnGround && isEmptyTile && _animator.canMove()) {
             if (_needle) {
                 _needle.unregister();
