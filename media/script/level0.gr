@@ -1,0 +1,64 @@
+import "bridges"
+
+var activations : int = 0;
+
+event scene_level0_1 {
+    gate_init("gate1_mode");
+    gate_init("gate2_mode");
+    bridge_despawn("bridge_phase_1");
+    bridge_despawn("bridge_phase_2");
+    activations = 0;
+    
+    for(elem, @World.findEntitiesByTag("level0_1_ambusher1").each) {
+        elem.setEnabled(false);
+    }
+}
+
+event button_activate_level0_1_bridge1(e : Entity) {
+    bridge_eastwise("bridge_phase_1", 12);
+}
+
+event button_activate_level0_1_bridge2_1(e : Entity) {
+    activations++;
+    if(activations == 2) {
+        bridge_northwise("bridge_phase_2", 12);
+        activations = 1000;
+    }
+}
+
+event button_activate_level0_1_bridge2_2(e : Entity) {
+    activations++;
+    if(activations == 2) {
+        bridge_northwise("bridge_phase_2", 12);
+        activations = 1000;
+    }
+}
+
+event button_deactivate_level0_1_bridge2_1(e : Entity) {
+    activations--;
+}
+
+event button_deactivate_level0_1_bridge2_2(e : Entity) {
+    activations--;
+}
+
+event level0_1_ambush1(e : Trigger) {
+    for(elem, @World.findEntitiesByTag("level0_1_ambusher1").each) {
+        elem.setEnabled(true);
+    }
+}
+
+event level0_1_encounter(e : Trigger) {
+    gate_active("gate1_mode");
+    monitor_gate();
+}
+
+task monitor_gate() {
+    if(0 == @World.findEntitiesByTag("level0_1_gate3_enemy").size) {
+        gate_inactive("gate1_mode");
+        gate_active("gate2_mode");
+    } else {
+        wait(5);
+        monitor_gate();
+    }
+}

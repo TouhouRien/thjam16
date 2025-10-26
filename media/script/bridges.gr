@@ -52,7 +52,7 @@ func sort_eastwise(laliste : [Entity]) ([Entity]) {
             if(i == j) continue;
             var ix, iy, iz = laliste[i].getPosition();
             var jx, jy, jz = laliste[j].getPosition();
-            if(ix > jx) {
+            if(ix < jx) {
                 var tmp = laliste[i];
                 laliste[i] = laliste[j];
                 laliste[j] = tmp;
@@ -68,7 +68,7 @@ func sort_westwise(laliste : [Entity]) ([Entity]) {
             if(i == j) continue;
             var ix, iy, iz = laliste[i].getPosition();
             var jx, jy, jz = laliste[j].getPosition();
-            if(ix < jx) {
+            if(ix > jx) {
                 var tmp = laliste[i];
                 laliste[i] = laliste[j];
                 laliste[j] = tmp;
@@ -185,12 +185,6 @@ export func gate_inactive(tag_prefix : string) {
         l.setEnabled(false);
     }
 }
-
-event scene_level0_1 {
-    gate_init("gate1_mode");
-    gate_init("gate2_mode");
-}
-
 
 event scene_level0_0 {
     bridge_despawn("ad");

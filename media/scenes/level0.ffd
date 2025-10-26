@@ -176,7 +176,7 @@ scene "level0_1" {
     }
     entity "actor" {
         name ""
-        tags []
+        tags ["level0_1_gate3_enemy"]
         layer "scene"
         position 184 113 16
         controller "suwako"
@@ -186,7 +186,7 @@ scene "level0_1" {
     }
     entity "actor" {
         name ""
-        tags []
+        tags ["level0_1_gate3_enemy"]
         layer "scene"
         position 245 115 16
         controller "suwako"
@@ -206,7 +206,7 @@ scene "level0_1" {
     }
     entity "actor" {
         name ""
-        tags []
+        tags ["level0_1_gate3_enemy"]
         layer "scene"
         position 108 244 16
         controller "suwako"
@@ -236,7 +236,7 @@ scene "level0_1" {
     }
     entity "actor" {
         name ""
-        tags []
+        tags ["level0_1_gate3_enemy"]
         layer "scene"
         position 145 279 16
         controller "suwako"
@@ -288,14 +288,14 @@ scene "level0_1" {
         name ""
         tags []
         layer "scene"
-        position 358 271 16
+        position 349 271 8
         controller ""
-        event ""
-        hitbox 32 96 16
+        event "level0_1_encounter"
+        hitbox 48 96 32
     }
     entity "actor" {
         name ""
-        tags []
+        tags ["level0_1_gate3_enemy"]
         layer "scene"
         position 178 320 16
         controller "suwako"
@@ -305,7 +305,7 @@ scene "level0_1" {
     }
     entity "actor" {
         name ""
-        tags []
+        tags ["level0_1_gate3_enemy"]
         layer "scene"
         position 221 366 16
         controller "suwako"
@@ -315,7 +315,7 @@ scene "level0_1" {
     }
     entity "actor" {
         name ""
-        tags []
+        tags ["level0_1_ambusher1"]
         layer "scene"
         position 913 374 16
         controller "suwako"
@@ -383,6 +383,15 @@ scene "level0_1" {
         angle 180
         rid "bridge_piece"
     }
+    entity "trigger" {
+        name ""
+        tags []
+        layer "scene"
+        position 912 486 12
+        controller ""
+        event "level0_1_ambush1"
+        hitbox 38 16 32
+    }
     entity "prop" {
         name ""
         tags ["bridge_phase_2"]
@@ -404,8 +413,8 @@ scene "level0_1" {
         rid "bridge_piece"
     }
     entity "prop" {
-        name ""
-        tags []
+        name "level0_1_bridge2_1"
+        tags ["level0_1_bridge2_1"]
         layer "scene"
         position 882 536 16
         controller ""
@@ -414,8 +423,8 @@ scene "level0_1" {
         rid "button"
     }
     entity "prop" {
-        name ""
-        tags []
+        name "level0_1_bridge2_2"
+        tags ["level0_1_bridge2_2"]
         layer "scene"
         position 940 536 16
         controller ""
@@ -435,14 +444,24 @@ scene "level0_1" {
         hitbox 16 16 16
     }
     entity "prop" {
-        name ""
-        tags []
+        name "level0_1_bridge1"
+        tags ["level0_1_bridge1"]
         layer "scene"
         position 554 972 16
         controller ""
         graphic "inactif"
         angle 180
         rid "button"
+    }
+    entity "prop" {
+        name ""
+        tags ["bridge_phase_1"]
+        layer "scene"
+        position 640 972 12
+        controller ""
+        graphic "display"
+        angle 180
+        rid "bridge_piece_H"
     }
     entity "prop" {
         name ""
@@ -529,16 +548,6 @@ scene "level0_1" {
         tags ["bridge_phase_1"]
         layer "scene"
         position 624 972 12
-        controller ""
-        graphic "display"
-        angle 180
-        rid "bridge_piece_H"
-    }
-    entity "prop" {
-        name ""
-        tags ["bridge_phase_1"]
-        layer "scene"
-        position 640 972 12
         controller ""
         graphic "display"
         angle 180
