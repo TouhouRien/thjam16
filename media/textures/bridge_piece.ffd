@@ -2,6 +2,146 @@ texture "bridge_piece" {
     file "bridge_piece.png"
     isSmooth false
 }
+sprite "WASD_sign" {
+    texture "bridge_piece"
+    clip 0 68 64 64
+}
+sprite "M2_Sign" {
+    texture "bridge_piece"
+    clip 64 68 64 64
+}
+sprite "Plant_Sign" {
+    texture "bridge_piece"
+    clip 128 68 64 64
+}
+sprite "M1_Sign" {
+    texture "bridge_piece"
+    clip 192 68 64 64
+}
+sprite "Reel_Sign" {
+    texture "bridge_piece"
+    clip 0 133 64 64
+}
+prop "WASD_Sign" {
+    render "" {
+        type "sprite"
+        rid "WASD_sign"
+        anchor 0.5 1
+        pivot 0.5 0.5
+        offset 0 20
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 64 1 35
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}
+prop "M2_Sign" {
+    render "" {
+        type "sprite"
+        rid "M2_Sign"
+        anchor 0.5 1
+        pivot 0.5 0.5
+        offset 0 20
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 64 1 35
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}
+prop "Plant_Sign" {
+    render "" {
+        type "sprite"
+        rid "Plant_Sign"
+        anchor 0.5 1
+        pivot 0.5 0.5
+        offset 0 20
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 64 1 35
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}
+prop "M1_Sign" {
+    render "" {
+        type "sprite"
+        rid "M1_Sign"
+        anchor 0.5 1
+        pivot 0.5 0.5
+        offset 0 20
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 64 1 35
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}
+prop "Reel_Sign" {
+    render "" {
+        type "sprite"
+        rid "Reel_Sign"
+        anchor 0.5 1
+        pivot 0.5 0.5
+        offset 0 20
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 64 1 35
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}
 prop "gate_E" {
     render "visuals" {
         type "sprite"
