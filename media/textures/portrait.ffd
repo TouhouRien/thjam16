@@ -1,0 +1,16 @@
+texture "shinmy_portrait" {
+    file "shimmy_portrait.png"
+    isSmooth false
+}
+sprite "shinmy_portrait" {
+    texture "shinmy_portrait"
+    clip 0 0 256 256
+}
+texture "title" {
+    file "title.png"
+    isSmooth false
+}
+sprite "title" {
+    texture "title"
+    clip 0 0 640 256
+}

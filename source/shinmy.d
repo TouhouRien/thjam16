@@ -77,6 +77,11 @@ final class PlayerBehavior : Behavior!Actor {
         Vec2f delta = (Atelier.world.getMousePosition() - entity.cameraPosition());
         entity.angle = delta.angle().radToDeg() + 90f;
 
+        Image cursor = Atelier.renderer.getCursor();
+        if (cursor) {
+            cursor.angle = entity.angle;
+        }
+
         if (_animator.mustRespawn()) {
             entity.setVelocity(Vec3f.zero);
             entity.accelerate(Vec3f.zero);
