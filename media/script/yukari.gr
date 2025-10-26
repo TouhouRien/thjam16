@@ -1,5 +1,6 @@
 event yukariBehavior(yukari: Actor) {
     loop {
+        while(!yukari.isEnabled()) { yield; }
         var gap = yukari.spawnGap;
         wait(60);
     }
