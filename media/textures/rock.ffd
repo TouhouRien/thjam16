@@ -1,0 +1,32 @@
+texture "rock" {
+    file "rock.png"
+    isSmooth false
+}
+sprite "rock" {
+    texture "rock"
+    clip 0 0 32 32
+}
+prop "rock" {
+    render "idle" {
+        type "sprite"
+        rid "rock"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 20 9 8
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}

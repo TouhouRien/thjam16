@@ -1,0 +1,32 @@
+texture "mushroom" {
+    file "mushroom.png"
+    isSmooth false
+}
+sprite "mushroom" {
+    texture "mushroom"
+    clip 0 0 32 32
+}
+prop "mushroom" {
+    render "idle" {
+        type "sprite"
+        rid "mushroom"
+        anchor 1 1
+        pivot 1 1
+        offset 15 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 22 11 16
+        shape "box"
+        bounciness 0
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}
