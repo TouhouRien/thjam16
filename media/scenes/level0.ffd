@@ -198,6 +198,26 @@ scene "level0_1" {
         name ""
         tags []
         layer "scene"
+        position 157 161 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "mushroom"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 188 199 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "rock"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
         position 624 208 16
         controller ""
         graphic "reel"
@@ -303,6 +323,26 @@ scene "level0_1" {
         angle 180
         rid "suwako"
     }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 491 334 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "mushroom"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 304 353 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "mushroom"
+    }
     entity "actor" {
         name ""
         tags ["level0_1_gate3_enemy"]
@@ -313,6 +353,16 @@ scene "level0_1" {
         angle 180
         rid "suwako"
     }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 261 373 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "rock"
+    }
     entity "actor" {
         name ""
         tags ["level0_1_ambusher1"]
@@ -322,6 +372,16 @@ scene "level0_1" {
         graphic "idle"
         angle 180
         rid "suwako"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 948 376 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "mushroom"
     }
     entity "prop" {
         name ""
@@ -613,6 +673,16 @@ scene "level0_1" {
         angle 180
         rid "bridge_piece_H"
     }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 285 1034 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "rock"
+    }
 }
 scene "level0_2" {
     size 70 70
@@ -766,6 +836,16 @@ scene "level0_2" {
         rid "button"
     }
     entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 550 682 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "mushroom"
+    }
+    entity "prop" {
         name "button_level0_2_0"
         tags ["button_level0_2_0"]
         layer "scene"
@@ -855,6 +935,16 @@ scene "level0_2" {
         angle 180
         rid "suwako"
     }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 502 854 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "mushroom"
+    }
     entity "actor" {
         name ""
         tags []
@@ -864,6 +954,16 @@ scene "level0_2" {
         graphic "idle"
         angle 180
         rid "suwako"
+    }
+    entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 152 992 32
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "mushroom"
     }
     entity "actor" {
         name ""
