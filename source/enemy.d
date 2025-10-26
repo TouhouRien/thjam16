@@ -33,11 +33,20 @@ final class EnemyBehavior : Behavior!Actor {
         entity.setShadow(true); // @TODO expose
         //entity.setFrictionBrake(0f); // @TODO expose
         //entity.isHovering(true); // @TODO expose
-        _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [grGetNativeType("Actor")], [GrValue(entity)]);
+        _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [
+                grGetNativeType("Actor")
+            ], [GrValue(entity)]);
     }
 
     override void onImpact(Entity target, Vec3f normal) {
         _life--;
+        if (_life > 0) {
+            Sound sound = Atelier.res.get!Sound("enemy_hit");
+            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.8f, 1.1f)));
+            entity.setVelocity(normal * 3f);
+        }
+
+        entity.setEffect(new FlashEffect(Color.red, 1f, 10, 10, Spline.sineInOut));
     }
 
     override void update() {

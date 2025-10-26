@@ -6,6 +6,7 @@ import enemy;
 import reel;
 import shinmy;
 import needle;
+import swing;
 
 import std.stdio;
 import checkpoint;
@@ -103,14 +104,17 @@ void cliDefault(Cli.Result cli) {
 	Atelier.input.addActionEvent("needlePlant",
 		InputEvent.keyButton(
 			InputEvent.KeyButton.Button.e, InputState(KeyState.pressed)
-		));
+	));
 
 	Atelier.world.addController("control", { return new PlayerController(); });
 	Atelier.env.setPlayerController("control");
 	Atelier.env.setPlayerActor("shinmy");
 
-	Atelier.world.addController("needleThrow", { return new NeedleThrowController(); });
+	Atelier.world.addController("needleThrow", {
+		return new NeedleThrowController();
+	});
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
+	Atelier.world.addController("swing", { return new SwingController(); });
 	Atelier.world.addController("button", { return new ButtonController(); });
 	Atelier.world.addController("suwako", { return new EnemyController("suwako"); });
 	Atelier.world.addController("marisa", { return new EnemyController("marisa"); });
@@ -119,7 +123,9 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("gap", { return new EnemyController("gap"); });
 	Atelier.world.addController("kogasa", { return new EnemyController("kogasa"); });
 	Atelier.world.addController("yamame", { return new EnemyController("yamame"); });
-	Atelier.world.addController("yamameBow", { return new EnemyController("yamameBow"); });
+	Atelier.world.addController("yamameBow", {
+		return new EnemyController("yamameBow");
+	});
 	Atelier.world.addController("reel", { return new ReelController(); });
 
 	// playTrack

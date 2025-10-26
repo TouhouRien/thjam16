@@ -52,9 +52,9 @@ sound "player_hit" {
 }
 sound "player_step1" {
     file "player_step1.ogg"
-    volume 1
+    volume 0.6
 }
 sound "player_step2" {
     file "player_step2.ogg"
-    volume 1
+    volume 0.6
 }

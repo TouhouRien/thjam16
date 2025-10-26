@@ -16,19 +16,33 @@ multidiranimation "player" {
     dirIndexes [0 2 1 3]
     dirFlipXs []
 }
-multidiranimation "player_swing" {
+multidiranimation "player_idle" {
     texture "player"
     clip 0 128 32 32
-    frameTime 8
-    frames [0 1 2 3]
-    repeat false
+    frameTime 0
+    frames [0]
+    repeat true
     lines 1
-    columns 4
+    columns 1
     margin 0 0
     dirStartAngle 180
     dirOffset 0 32
     dirIndexes [0 2 1 3]
     dirFlipXs []
+}
+multidiranimation "player_swing" {
+    texture "player"
+    clip 192 0 64 64
+    frameTime 2
+    frames [0 1 2]
+    repeat false
+    lines 1
+    columns 3
+    margin 0 0
+    dirStartAngle 180
+    dirOffset 0 64
+    dirIndexes [0 2 1 2]
+    dirFlipXs [0 0 0 1]
 }
 animation "player_fall" {
     texture "player"
@@ -43,7 +57,7 @@ animation "player_fall" {
 actor "shinmy" {
     render "idle" {
         type "multidiranimation"
-        rid "player"
+        rid "player_idle"
         anchor 0.5 1
         pivot 0.5 1
         offset 0 8
@@ -51,6 +65,18 @@ actor "shinmy" {
         angleOffset 0
         blend "alpha"
         isDefault true
+        isBehind []
+    }
+    render "walk" {
+        type "multidiranimation"
+        rid "player"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
         isBehind []
     }
     render "fall" {
@@ -70,7 +96,7 @@ actor "shinmy" {
         rid "player_swing"
         anchor 0.5 1
         pivot 0.5 1
-        offset 0 8
+        offset 0 24
         isRotating false
         angleOffset 0
         blend "alpha"
@@ -99,4 +125,29 @@ actor "shinmy" {
     }
     controller ""
     zOrderOffset 0
+}
+proxy "player_swing" {
+    render "" {
+        type "sprite"
+        rid "heart_14"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    hurtbox {
+        faction "allied"
+        type "both"
+        minRadius 0
+        maxRadius 48
+        height 8
+        angle 180
+        angleDelta 45
+        offsetDist 0
+        offsetAngle 270
+    }
 }
