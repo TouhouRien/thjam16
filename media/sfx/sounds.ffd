@@ -34,6 +34,14 @@ sound "needle_plant" {
     file "needle_plant.ogg"
     volume 1
 }
+sound "needle_unplant" {
+    file "needle_unplant.ogg"
+    volume 1
+}
+sound "needle_get" {
+    file "needle_get.ogg"
+    volume 1
+}
 sound "needle_swing" {
     file "needle_swing.ogg"
     volume 0.7

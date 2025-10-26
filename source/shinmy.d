@@ -100,6 +100,15 @@ final class PlayerBehavior : Behavior!Actor {
                 _animator.stop();
             }
 
+            if (_needleThrow) {
+                if (_needleThrow.sendEvent("isRecalled") == "done") {
+                    _needleThrow = null;
+
+                    Sound sound = Atelier.res.get!Sound("needle_get");
+                    Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+                }
+            }
+
             if (Atelier.input.isActionActivated("needleThrow")) {
                 needleThrow();
             }
@@ -164,13 +173,13 @@ final class PlayerBehavior : Behavior!Actor {
 
             _needleThrow = Atelier.res.get!Actor("needle");
             _needleThrow.setPosition(entity.getPosition() + Vec3i(0, 0, 6));
-            _needleThrow.angle = entity.angle - 90f;
+
+            Vec2f delta = (Atelier.world.getMousePosition() - entity.cameraPosition());
+            _needleThrow.angle = delta.angle().radToDeg();
             Atelier.world.addEntity(_needleThrow);
         }
         else if (_needleThrow) {
-            // @TODO delayer
-            _needleThrow.unregister();
-            _needleThrow = null;
+            _needleThrow.sendEvent("recall");
         }
         else if (_needlePlant) {
             // @TODO delayer

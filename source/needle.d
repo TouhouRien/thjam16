@@ -3,8 +3,81 @@ module needle;
 import atelier;
 
 final class NeedleThrowController : Controller!Actor {
+    private {
+        NeedleThrowBehavior _needleThrowBehavior;
+        NeedleHookBehavior _needleHookBehavior;
+    }
+
     override void onStart() {
-        setBehavior(new NeedleThrowBehavior);
+        _needleThrowBehavior = new NeedleThrowBehavior;
+        setBehavior(_needleThrowBehavior);
+    }
+
+    override string onEvent(string event) {
+        if (event == "recall" && _needleThrowBehavior && _needleThrowBehavior.isPlanted()) {
+            _needleHookBehavior = new NeedleHookBehavior(_needleThrowBehavior);
+            setBehavior(_needleHookBehavior);
+            _needleThrowBehavior = null;
+
+            Sound sound = Atelier.res.get!Sound("needle_unplant");
+            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+        }
+        else if (event == "isRecalled" && _needleHookBehavior) {
+            return sendEvent(event);
+        }
+
+        return "";
+    }
+}
+
+final class NeedleHookBehavior : Behavior!Actor {
+    private {
+        Timer _timer;
+        Vec3i _startPoint;
+        uint _nodeCount;
+        EntityThreadRenderer _renderer;
+    }
+
+    this(NeedleThrowBehavior throwBehavior) {
+        _renderer = throwBehavior._renderer;
+        _nodeCount = throwBehavior._nodeCount;
+    }
+
+    override string onEvent(string event) {
+        return entity.isRegistered() ? "" : "done";
+    }
+
+    override void onStart() {
+        Vec3i delta = Atelier.world.player.getPosition() - entity.getPosition();
+        Vec3f dir = (cast(Vec3f)(delta)).normalized();
+        entity.setVelocity(dir * 3f);
+
+        entity.setGravity(0f);
+        entity.setFrictionBrake(0f);
+        entity.setLayer(Entity.Layer.above);
+        entity.setGraphic("throw");
+
+        _startPoint = entity.getPosition();
+
+        _timer.start(10);
+    }
+
+    override void update() {
+        Vec3i delta = Atelier.world.player.getPosition() - entity.getPosition();
+        Vec3f dir = (cast(Vec3f)(delta)).normalized();
+        entity.setVelocity(dir * 3f);
+
+        if (Atelier.world.player.getPosition().distanceSquared(entity.getPosition()) < (25 * 25)) {
+            entity.unregister();
+        }
+
+        _timer.update();
+
+        if (!_timer.isRunning() && _nodeCount >= 0) {
+            _timer.start(10);
+            _renderer.removeNode();
+            _nodeCount--;
+        }
     }
 }
 
@@ -14,6 +87,13 @@ final class NeedleThrowBehavior : Behavior!Actor {
         Vec3i _startPoint;
         uint _nodeCount;
         EntityThreadRenderer _renderer;
+        bool _isPlanted;
+    }
+
+    @property {
+        bool isPlanted() {
+            return _isPlanted;
+        }
     }
 
     override void onStart() {
@@ -21,6 +101,7 @@ final class NeedleThrowBehavior : Behavior!Actor {
         entity.setGravity(0f);
         entity.setFrictionBrake(0f);
         entity.setLayer(Entity.Layer.above);
+        entity.setCulling(false);
 
         _startPoint = entity.getPosition();
 
@@ -32,6 +113,9 @@ final class NeedleThrowBehavior : Behavior!Actor {
     }
 
     override void update() {
+        if (_isPlanted)
+            return;
+
         _timer.update();
 
         if (!_timer.isRunning() && _nodeCount < 10) {
@@ -45,17 +129,35 @@ final class NeedleThrowBehavior : Behavior!Actor {
             _nodeCount++;
         }
     }
+
+    override void onHit(Vec3f normal) {
+        if (!_isPlanted) {
+            entity.accelerate(Vec3f.zero);
+            entity.setSpeed(0f, 0f);
+            entity.setGravity(0.8f);
+            entity.setGraphic("planted");
+            _isPlanted = true;
+
+            Sound sound = Atelier.res.get!Sound("needle_plant");
+            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+        }
+    }
 }
 
 final class EntityThreadRenderer : EntityGraphic {
     private {
         Entity _player, _needle;
         Actor[] _nodes;
+        Color[12] _colors;
     }
 
     this(Entity a, Entity b) {
         _player = a;
         _needle = b;
+
+        for (int i; i < _colors.length; ++i) {
+            _colors[i] = Color.white.lerp(Color.red, easeInOutSine(i / cast(float) _colors.length));
+        }
     }
 
     this(EntityThreadRenderer other) {
@@ -64,6 +166,11 @@ final class EntityThreadRenderer : EntityGraphic {
 
     void addNode(Actor node) {
         _nodes ~= node;
+    }
+
+    void removeNode() {
+        if (_nodes.length)
+            _nodes.length--;
     }
 
     override void update() {
@@ -98,23 +205,23 @@ final class EntityThreadRenderer : EntityGraphic {
 
     override void draw(Vec2f offset, float alpha = 1f) {
         offset -= _needle.cameraPosition();
-        Color[] colors = [Color.red, Color.blue, Color.white];
 
         Vec2f startPos = offset + _player.cameraPosition();
         if (!_nodes.length) {
             Vec2f endPos = offset + _needle.cameraPosition();
 
-            Atelier.renderer.drawLine(startPos, endPos, Color.red, 1f);
+            Atelier.renderer.drawLine(startPos, endPos, _colors[0], 1f);
         }
         else {
             int i;
             foreach (node; _nodes) {
                 Vec2f endPos = offset + node.cameraPosition();
-                Atelier.renderer.drawLine(startPos, endPos, colors[i % 3], 1f);
+                Atelier.renderer.drawLine(startPos, endPos, _colors[i % cast(int) _colors.length], 1f);
                 startPos = endPos;
                 i++;
             }
-            Atelier.renderer.drawLine(startPos, offset + _needle.cameraPosition(), colors[i % 3], 1f);
+            Atelier.renderer.drawLine(startPos, offset + _needle.cameraPosition(), _colors[i % cast(
+                        int) _colors.length], 1f);
         }
     }
 
