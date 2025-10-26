@@ -4,7 +4,7 @@ event yamameBehavior(yamame: Actor) {
     loop yield {
         if (yamame.hasGraphic("yesbow")) {
             if (time == 120) {
-                yamame.spiderWebRange(70f, 10f);
+                yamame.spiderWebRange(90f, 10f);
                 time = 0;
             }
             
@@ -19,7 +19,7 @@ event yamameBehavior(yamame: Actor) {
             yamame.setAngle(ang + 90f);
             acc += dir * 0.8f;
 
-            yamame.accelerate(acc.x, acc.y, 0f);
+            //yamame.accelerate(acc.x, acc.y, 0f);
             time++;
         }
     }

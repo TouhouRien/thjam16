@@ -23,7 +23,7 @@ final class Menu : UIElement {
         vbox.addUI(moncul);
         moncul.addEventListener("click", {
             Atelier.ui.clearUI();
-            Atelier.world.load("level0_1");
+            Atelier.world.load("level0_5");
         });
     }
 }
