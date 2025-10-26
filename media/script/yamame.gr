@@ -4,6 +4,7 @@ event yamameBehavior(yamame: Actor) {
     yamame.setShadow(false);
 
     loop yield {
+        while(!yamame.isEnabled()) { yield; }
         if (yamame.hasGraphic("yesbow")) {
             if (time == 120) {
                 yamame.spiderWebRange(90f, 10f);
