@@ -2,6 +2,8 @@ event yamameBowBehavior(bow: Actor) {
     // turn off gravity
     bow.setGravity(0f);
     
+    bow.setShadow(false);
+    
     var yamame = @World.find("yamame")?;
     var attached = false;
 
@@ -16,7 +18,7 @@ func target(bow: Actor, yamame: Entity) {
     var bx, by, bz = bow.getPosition;
     var ex, ey, ez = yamame.getPosition;
     
-    if (ex - bx == 0 && ey - by == 0 && bz == 18) {
+    if (ex - bx == 0 && ey - by == 0 && bz == 34) {
         bow.attach(yamame);
     }
     

@@ -1,5 +1,7 @@
 event yamameBehavior(yamame: Actor) {
     var time = 0;
+    
+    yamame.setShadow(false);
 
     loop yield {
         if (yamame.hasGraphic("yesbow")) {

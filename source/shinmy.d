@@ -155,26 +155,32 @@ final class PlayerBehavior : Behavior!Actor {
                 _needle = null;
             }
             _animator.fall();
+            damage();
             entity.setGravity(0.8f);
         }
     }
 
+    void damage() {
+        _hitTimer.start(30);
+        _player.damage();
+
+        if (_player.isDead()) {
+            _animator.die();
+            _deathTimer.start(120);
+        }
+    }
+
     override void onImpact(Entity target, Vec3f normal) {
-        if (!_animator.canMove() || _hitTimer.isRunning) {
+        if (_player.isDead()) {
             return;
         }
 
         Sound sound = Atelier.res.get!Sound("player_hit");
         Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.95f, 1.05f)));
-        _hitTimer.start(30);
-
-        _player.damage();
+        damage();
+        
         entity.setEffect(new FlashEffect(Color(1f, 0.8f, 0.8f), 1f, 15, 15, Spline.sineInOut));
         entity.setVelocity(normal * 3f);
-        if (_player.isDead()) {
-            _animator.die();
-            _deathTimer.start(120);
-        }
     }
 
     // Left click: swing needle
