@@ -72,6 +72,9 @@ final class PlayerBehavior : Behavior!Actor {
         _hitTimer.update();
         _animator.update();
 
+        Vec2f delta = (Atelier.world.getMousePosition() - entity.cameraPosition());
+        entity.angle = delta.angle().radToDeg() + 90f;
+
         if (_animator.mustRespawn()) {
             entity.setVelocity(Vec3f.zero);
             entity.accelerate(Vec3f.zero);
@@ -106,7 +109,6 @@ final class PlayerBehavior : Behavior!Actor {
             if (movedir != Vec2f.zero) {
                 _animator.walk();
                 movedir.normalize();
-                entity.angle = radToDeg(movedir.angle()) + 90f;
                 acceldir += movedir * 1f;
             }
             else {
