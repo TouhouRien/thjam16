@@ -33,9 +33,7 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void onStart() {
-        entity.setShadow(true); // @TODO expose
-        //entity.setFrictionBrake(0f); // @TODO expose
-        //entity.isHovering(true); // @TODO expose
+        entity.setShadow(true);
         _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [
                 grGetNativeType("Actor")
             ], [GrValue(entity)]);
@@ -61,8 +59,9 @@ final class EnemyBehavior : Behavior!Actor {
             if (_life == 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_death");
                 Atelier.audio.play(new SoundPlayer(sound));
-                _deathTimer.start(40);
+                entity.setShadow(false);
                 _task.kill();
+                _deathTimer.start(40);
                 _dead = true;
 
                 // @Enalye animation de mort ici

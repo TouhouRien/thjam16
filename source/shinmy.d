@@ -181,7 +181,6 @@ final class PlayerBehavior : Behavior!Actor {
 
     // E: plant needle
     void needlePlant() {
-        // @TODO ajouter Behavior pour needle plant
         if (!_needleThrow && !_needlePlant) {
             Sound sound = Atelier.res.get!Sound("needle_plant");
             Atelier.audio.play(new SoundPlayer(sound));

@@ -1,22 +1,38 @@
 event yamameBowBehavior(bow: Actor) {
     // turn off gravity
     bow.setGravity(0f);
+    
+    var yamame = @World.find("yamame")?;
+    var attached = false;
 
     loop yield {
-        var bx, by, bz = bow.getPosition;
-        if (bz > 18) {
-            bow.accelerate(0f, 0f, -0.2f);
-        } else {
-            bow.accelerate(0f, 0f, 0f);
-            bow.setSpeed(0f, 0f);
-            bow.setGraphic("invisible");
-            yamameBow();
-            break;
+        if (!attached) {
+            bow.target(yamame);
         }
     }
 }
 
-func yamameBow() {
-    var yamame = @World.find("yamame")?;
+func target(bow: Actor, yamame: Entity) {
+    var bx, by, bz = bow.getPosition;
+    var ex, ey, ez = yamame.getPosition;
+    
+    if (ex - bx == 0 && ey - by == 0 && bz == 18) {
+        bow.attach(yamame);
+    }
+    
+    var dir = @Vec2f(bx - ex, by - ey).normalized;
+    var acc = dir * 0.2f;
+    
+    var zacc = 0f;
+    if (bz > 18) {
+        zacc = -0.2f;
+    }
+    
+    bow.accelerate(acc.x, acc.y, zacc);
+}
+
+func attach(bow: Actor, yamame: Entity) {
+    bow.setSpeed(0f, 0f);
+    bow.setGraphic("invisible");
     yamame.setGraphic("yesbow");
 }

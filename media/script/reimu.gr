@@ -1,10 +1,10 @@
 event reimuBehavior(reimu: Actor) {
     // turn off gravity
-    reimu.setGravity(0f);
+    reimu.setHovering(false);
 
     // select a random direction
     var dir = @Vec2f(rand(-1f, 1f), rand(-1f, 1f)).normalized;
     var angle = dir.angle.deg;
-    var acc = dir * 5f;
+    var acc = dir * 50f;
     reimu.accelerate(acc.x, acc.y, 0f);
 }

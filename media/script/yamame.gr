@@ -1,12 +1,29 @@
 event yamameBehavior(yamame: Actor) {
+    var time = 0;
+
     loop yield {
         if (yamame.hasGraphic("yesbow")) {
-            yamame.spiderWebRange(70f, 10f);
-            wait(120);
+            if (time == 120) {
+                yamame.spiderWebRange(70f, 10f);
+                time = 0;
+            }
+            
+            var acc = @Vec2f.zero;
+            var player = @World.getPlayer?;
+            var px, py, pz = player.getPosition;
+            var ex, ey, ez = yamame.getPosition;
+            
+            var dir = @Vec2f(px - ex, py - ey).normalized;
+            var ang = dir.angle.deg;
+            
+            yamame.setAngle(ang + 90f);
+            acc += dir * 0.25f;
+
+            yamame.accelerate(acc.x, acc.y, 0f);
+            time++;
         }
     }
 }
-
 
 func spiderWebRange(yamame: Entity, R: float, r: float) {
     var angle = 0f;
