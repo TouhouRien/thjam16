@@ -134,14 +134,13 @@ void cliDefault(Cli.Result cli) {
 	Atelier.audio.playTrack(overworldMusic, 0f);*/
 
 	Atelier.addStartCommand("loadscene level0_1");
-    Atelier.console.cli.addCommand(&cliReloadScene, "reloadScene", "Recharge le niveau actuel");
-
-	Atelier.log(Atelier.world.find("yamame"));
+	Atelier.console.cli.addCommand(&cliReloadScene, "reloadScene", "Recharge le niveau actuel");
+	Atelier.renderer.setCursor(Atelier.res.get!Sprite("mallet"));
 
 	atelier.run();
 }
 
 void cliReloadScene(Cli.Result) {
-    string scene = Atelier.env.getScene();
-    Atelier.world.load(scene);
+	string scene = Atelier.env.getScene();
+	Atelier.world.load(scene);
 }

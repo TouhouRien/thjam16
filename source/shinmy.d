@@ -91,6 +91,7 @@ final class PlayerBehavior : Behavior!Actor {
         if (_animator.step == PlayerAnimator.Step.grab) {
             if (!_needle) {
                 _animator.respawn();
+                entity.setGravity(0.8f);
             }
             else {
                 if (_needle.sendEvent("isRecalled") == "done") {
@@ -98,6 +99,7 @@ final class PlayerBehavior : Behavior!Actor {
 
                     Sound sound = Atelier.res.get!Sound("needle_get");
                     Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+                    entity.setGravity(0.8f);
                 }
             }
         }
@@ -154,6 +156,7 @@ final class PlayerBehavior : Behavior!Actor {
                 _needle = null;
             }
             _animator.fall();
+            entity.setGravity(0.8f);
         }
     }
 
@@ -206,6 +209,7 @@ final class PlayerBehavior : Behavior!Actor {
         }
         else {
             if ("grab" == _needle.sendEvent("recall")) {
+                entity.setGravity(0f);
                 _animator.grab();
             }
         }
