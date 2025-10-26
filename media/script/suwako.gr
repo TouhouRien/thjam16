@@ -1,8 +1,4 @@
 event suwakoBehavior(suwako: Actor) {
-    suwako.update;
-}
-
-task update(suwako: Actor) {
     var time = 0;
 
     loop yield {
