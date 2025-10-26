@@ -19,9 +19,12 @@ final class EnemyController : Controller!Actor {
 final class EnemyBehavior : Behavior!Actor {
     private {
         bool _shot = false;
+        bool _dead = false;
+
         int _life;
         string _enemyId;
         GrTask _task;
+        Timer _deathTimer;
     }
 
     this(string enemyId, int life = 5) {
@@ -52,15 +55,24 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void update() {
-        if(entity.isEnabled()) {
+        _deathTimer.update();
+
+        if(entity.isEnabled && !_dead) {
             if (_life == 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_death");
                 Atelier.audio.play(new SoundPlayer(sound));
+                _deathTimer.start(40);
+                _task.kill();
+                _dead = true;
 
-                _task.kill(); // NE MARCHE PAS :( :( :(
-                entity.setEnabled(false);
-                entity.unregister();
+                // @Enalye animation de mort ici
+                entity.setGraphic("death");
             }
+        }
+
+        if (_dead && !_deathTimer.isRunning) {
+            entity.setEnabled(false);
+            entity.unregister();
         }
     }
 }

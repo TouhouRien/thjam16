@@ -1,2 +1,39 @@
 event yamameBehavior(yamame: Actor) {
+    loop yield {
+        if (yamame.hasGraphic("yesbow")) {
+            yamame.spiderWebRange(70f, 10f);
+            wait(120);
+        }
+    }
+}
+
+
+func spiderWebRange(yamame: Entity, R: float, r: float) {
+    var angle = 0f;
+    var dr = R - r;
+    var ratio = dr / r;
+    var ex, ey, ez = yamame.getPosition;
+
+    @World.playSound("enemy_shot");
+    while (angle < 360f) {
+        var t = angle.rad;
+
+        var dx = dr * cos(t) + r * cos(ratio * t);
+        var dy = dr * sin(t) - r * sin(ratio * t);
+        var sx = ex + dx as <int>;
+        var sy = ey + dy as <int>;
+
+        var shot = @Shot("bullet");
+        shot.setPosition(sx, sy, ez);
+        shot.setAngle(angle);
+        shot.fireAfterDelay(30, 1f);
+        @World.addEntity(shot);
+
+        angle += 10f;
+    }
+}
+
+task fireAfterDelay(shot: Shot, delay: int, speed: float) {
+    wait(delay);
+    shot.setSpeed(speed, 0f);
 }

@@ -1,8 +1,4 @@
 event marisaBehavior(marisa: Actor) {
-    marisa.update;
-}
-
-task update(marisa: Actor) {
     loop {
         var player = @World.getPlayer?;
         var px, py, pz = player.getPosition;

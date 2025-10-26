@@ -25,8 +25,21 @@ actor "tatara" {
         isDefault false
         isBehind []
     }
+    render "death" {
+        type "animation"
+        rid "enemy_death"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
     hitbox {
         size 16 16 6
+        bounciness 0
     }
     repulsor
     hurtbox {

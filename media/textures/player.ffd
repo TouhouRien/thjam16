@@ -34,15 +34,29 @@ multidiranimation "player_swing" {
     texture "player"
     clip 192 0 64 64
     frameTime 2
-    frames [0 1 2]
+    frames [0 1 2 3 4]
     repeat false
     lines 1
-    columns 3
+    columns 5
     margin 0 0
     dirStartAngle 180
     dirOffset 0 64
     dirIndexes [0 2 1 2]
     dirFlipXs [0 0 0 1]
+}
+multidiranimation "player_plant" {
+    texture "player"
+    clip 512 0 64 64
+    frameTime 8
+    frames [0 1 2 3]
+    repeat false
+    lines 4
+    columns 1
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 64 0
+    dirIndexes [2 0 2 1]
+    dirFlipXs [1 0 0 0]
 }
 animation "player_fall" {
     texture "player"
@@ -97,6 +111,18 @@ actor "shinmy" {
         anchor 0.5 1
         pivot 0.5 1
         offset 0 24
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    render "plant" {
+        type "multidiranimation"
+        rid "player_plant"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
         isRotating false
         angleOffset 0
         blend "alpha"

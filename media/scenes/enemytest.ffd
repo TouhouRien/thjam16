@@ -49,6 +49,16 @@ scene "enemytest" {
         angle 180
         rid "yamame"
     }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 802 792 0
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "tatara"
+    }
     entity "teleporter" {
         name ""
         tags []

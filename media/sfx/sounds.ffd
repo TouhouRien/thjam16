@@ -36,7 +36,7 @@ sound "needle_plant" {
 }
 sound "needle_swing" {
     file "needle_swing.ogg"
-    volume 1
+    volume 0.7
 }
 sound "needle_throw" {
     file "needle_throw.ogg"

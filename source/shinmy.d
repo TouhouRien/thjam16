@@ -154,15 +154,10 @@ final class PlayerBehavior : Behavior!Actor {
             proxy.setController("swing");
             Atelier.world.addEntity(proxy);
         }
-        // check collisions against enemies
-        //Entity[] enemies = Atelier.world.findByTag("enemy");
     }
 
     // Right click: throw needle
     void needleThrow() {
-        // check collisions against pins, walls
-        //Entity[] enemies = Atelier.world.findByTag("pin");
-
         if (!_needleThrow && !_needlePlant) {
             Sound sound = Atelier.res.get!Sound("needle_throw");
             Atelier.audio.play(new SoundPlayer(sound));
@@ -196,11 +191,8 @@ final class PlayerBehavior : Behavior!Actor {
             _needlePlant.setPosition(entity.getPosition());
             _needlePlant.angle = 0f;
             Atelier.world.addEntity(_needlePlant);
-            //entity.setGraphic("plant");
+            _animator.plant();
         }
-
-        // check collisions against buttons
-        //Entity[] enemies = Atelier.world.findByTag("button");
     }
 }
 
@@ -211,6 +203,7 @@ struct PlayerAnimator {
         idle,
         walk,
         swing,
+        plant,
         fall,
         respawn
     }
@@ -241,6 +234,7 @@ struct PlayerAnimator {
         case respawn:
         case idle:
         case swing:
+        case plant:
         case fall:
             break;
         case init_:
@@ -260,6 +254,7 @@ struct PlayerAnimator {
             _step = Step.walk;
             break;
         case swing:
+        case plant:
         case fall:
             break;
         case walk:
@@ -285,6 +280,23 @@ struct PlayerAnimator {
             break;
         case respawn:
         case swing:
+        case plant:
+        case fall:
+            break;
+        }
+    }
+
+    void plant() {
+        final switch (_step) with (Step) {
+        case init_:
+        case idle:
+        case walk:
+            _actor.setGraphic("plant");
+            _step = Step.plant;
+            break;
+        case respawn:
+        case swing:
+        case plant:
         case fall:
             break;
         }
@@ -296,6 +308,7 @@ struct PlayerAnimator {
         case idle:
         case walk:
         case swing:
+        case plant:
             _respawnTimer.start(48);
             _actor.setGraphic("fall");
             _step = Step.fall;
@@ -322,6 +335,7 @@ struct PlayerAnimator {
         case respawn:
             break;
         case swing:
+        case plant:
             if (!isPlaying()) {
                 _actor.setGraphic("idle");
                 _step = Step.idle;
@@ -349,6 +363,7 @@ struct PlayerAnimator {
         case swing:
             return true;
         case fall:
+        case plant:
         case respawn:
             return false;
         }
@@ -360,6 +375,7 @@ struct PlayerAnimator {
         case idle:
         case walk:
         case swing:
+        case plant:
         case fall:
             return false;
         case respawn:

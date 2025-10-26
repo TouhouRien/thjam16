@@ -1,0 +1,14 @@
+texture "enemy_death" {
+    file "enemy_death.png"
+    isSmooth false
+}
+animation "enemy_death" {
+    texture "enemy_death"
+    clip 0 0 64 64
+    frameTime 8
+    frames [0 1 2 3 4]
+    repeat false
+    lines 1
+    columns 5
+    margin 0 0
+}

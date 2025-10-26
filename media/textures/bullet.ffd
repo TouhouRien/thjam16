@@ -12,6 +12,26 @@ animation "bullet" {
     columns 7
     margin 0 0
 }
+animation "bullet_cyan" {
+    texture "bullet"
+    clip 0 48 8 8
+    frameTime 8
+    frames [0 1 2 3 4 5 6 5 4 3 2 1 0]
+    repeat true
+    lines 1
+    columns 7
+    margin 0 0
+}
+animation "bullet_lime" {
+    texture "bullet"
+    clip 0 24 8 8
+    frameTime 8
+    frames [0 1 2 3 4 5 6 5 4 3 2 1 0]
+    repeat true
+    lines 1
+    columns 7
+    margin 0 0
+}
 animation "star" {
     texture "bullet"
     clip 0 184 8 8
@@ -22,8 +42,12 @@ animation "star" {
     columns 7
     margin 0 0
 }
+sprite "kunai" {
+    texture "bullet"
+    clip 56 128 8 16
+}
 shot "bullet" {
-    render "idle" {
+    render "red" {
         type "animation"
         rid "bullet"
         anchor 0.5 0.5
@@ -33,6 +57,30 @@ shot "bullet" {
         angleOffset 0
         blend "alpha"
         isDefault true
+        isBehind []
+    }
+    render "cyan" {
+        type "animation"
+        rid "bullet_cyan"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    render "lime" {
+        type "animation"
+        rid "bullet_lime"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
         isBehind []
     }
     hitbox {
@@ -61,6 +109,36 @@ shot "star" {
         offset 0 0
         isRotating true
         angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    hitbox {
+        size 8 8 2
+    }
+    hurtbox {
+        faction "enemy"
+        type "projectile"
+        minRadius 0
+        maxRadius 2
+        height 1
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+    bounces 0
+    material 0
+}
+shot "kunai" {
+    render "idle" {
+        type "sprite"
+        rid "kunai"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating true
+        angleOffset 270
         blend "alpha"
         isDefault true
         isBehind []

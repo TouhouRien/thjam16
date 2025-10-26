@@ -11,7 +11,7 @@ event gapBehavior(gap: Actor) {
         
         @World.playSound("enemy_shot");
         while (angle - baseAngle < 360f) {
-            var shot = @Shot("star");
+            var shot = @Shot("kunai");
             
             var sx = ex + 15 * cos(angle.rad);
             var sy = ey + 15 * sin(angle.rad);
