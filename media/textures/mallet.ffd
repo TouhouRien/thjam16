@@ -1,0 +1,8 @@
+texture "mallet" {
+    file "mallet.png"
+    isSmooth false
+}
+sprite "mallet" {
+    texture "mallet"
+    clip 0 0 16 16
+}
