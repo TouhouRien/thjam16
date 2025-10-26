@@ -74,12 +74,32 @@ task monitor_gate() {
 
 var buttons : int = 0;
 
-event scene_level0_1 {
+event scene_level0_2 {
     bridge_despawn("level0_2_bridge1");
+    bridge_despawn("level0_2_1");
     buttons = 0;
     for(elem, @World.findEntitiesByTag("flag_yvq").each) {
         elem.setEnabled(false);
     }
+}
+
+event button_activate_level0_2_p2_button(e : Entity) {
+    bridge_northwise("level0_2_p2", 10);
+}
+
+event button_deactivate_level0_2_p2_button(e : Entity) {
+    wait(30);
+    unbridge_northwise("level0_2_p2", 10);
+}
+
+event button_activate_level0_2_return(e : Entity) {
+    wait(6)
+    bridge_southwise("level0_2_p2", 10);
+}
+
+event button_deactivate_level0_2_return(e : Entity) {
+    wait(30)
+    unbridge_southwise("level0_2_p2", 10);
 }
 
 event button_activate_button_level0_2_0(e : Entity) {
