@@ -1,0 +1,8 @@
+texture "victory" {
+    file "victory.png"
+    isSmooth false
+}
+sprite "victory" {
+    texture "victory"
+    clip 0 0 0 0
+}

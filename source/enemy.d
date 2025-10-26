@@ -1,6 +1,7 @@
 module enemy;
 
 import atelier;
+import victory;
 
 final class EnemyController : Controller!Actor {
     private {
@@ -79,6 +80,10 @@ final class EnemyBehavior : Behavior!Actor {
         if (_dead && !_deathTimer.isRunning) {
             entity.setEnabled(false);
             entity.unregister();
+
+            if (entity.getName == "yamame") {
+                Atelier.ui.addUI(new Victory);
+            }
         }
     }
 
