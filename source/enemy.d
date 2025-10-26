@@ -39,23 +39,27 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void onImpact(Entity target, Vec3f normal) {
-        _life--;
-        if (_life > 0) {
-            Sound sound = Atelier.res.get!Sound("enemy_hit");
-            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.8f, 1.1f)));
-            entity.setVelocity(normal * 3f);
-        }
+        if(entity._isEnabled) {
+            _life--;
+            if (_life > 0) {
+                Sound sound = Atelier.res.get!Sound("enemy_hit");
+                Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.8f, 1.1f)));
+                entity.setVelocity(normal * 3f);
+            }
 
-        entity.setEffect(new FlashEffect(Color.red, 1f, 10, 10, Spline.sineInOut));
+            entity.setEffect(new FlashEffect(Color.red, 1f, 10, 10, Spline.sineInOut));
+        }
     }
 
     override void update() {
-        if (_life == 0) {
-            Sound sound = Atelier.res.get!Sound("enemy_death");
-            Atelier.audio.play(new SoundPlayer(sound));
+        if(entity._isEnabled) {
+            if (_life == 0) {
+                Sound sound = Atelier.res.get!Sound("enemy_death");
+                Atelier.audio.play(new SoundPlayer(sound));
 
-            _task.kill(); // NE MARCHE PAS :( :( :(
-            entity.unregister();
+                _task.kill(); // NE MARCHE PAS :( :( :(
+                entity.unregister();
+            }
         }
     }
 }
