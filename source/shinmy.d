@@ -88,20 +88,12 @@ final class PlayerBehavior : Behavior!Actor {
             reloadScene();
         }
 
-        if (_animator.step == PlayerAnimator.Step.grab) {
-            if (!_needle) {
-                _animator.respawn();
-                entity.setGravity(0.8f);
-            }
-            else {
-                if (_needle.sendEvent("isRecalled") == "done") {
-                    _needle = null;
+        if (_needle && _needle.sendEvent("isRecalled") == "done") {
+            _needle = null;
 
-                    Sound sound = Atelier.res.get!Sound("needle_get");
-                    Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
-                    entity.setGravity(0.8f);
-                }
-            }
+            Sound sound = Atelier.res.get!Sound("needle_get");
+            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+            entity.setGravity(0.8f);
         }
 
         if (_animator.canMove()) {

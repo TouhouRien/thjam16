@@ -57,6 +57,11 @@ final class EnemyBehavior : Behavior!Actor {
     override void update() {
         _deathTimer.update();
 
+        // Kill enemy on fall
+        if (entity.getLevel == 0) {
+            _life = 0;
+        }
+
         if(entity.isEnabled && !_dead) {
             if (_life == 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_death");
