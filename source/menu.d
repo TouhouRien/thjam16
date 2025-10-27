@@ -12,6 +12,11 @@ final class Menu : UIElement {
         resetTime();
         setSize(cast(Vec2f) Atelier.renderer.size);
 
+        Sprite bg = Atelier.res.get!Sprite("title_bg");
+        bg.anchor = Vec2f.zero;
+        bg.position = Vec2f.zero;
+        addImage(bg);
+
         addUI(new Title);
         addUI(new Sukuna);
 

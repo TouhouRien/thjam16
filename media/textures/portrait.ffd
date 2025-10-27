@@ -2,6 +2,14 @@ texture "shinmy_portrait" {
     file "shimmy_portrait.png"
     isSmooth false
 }
+texture "title_bg" {
+    file "titlebg.png"
+    isSmooth false
+}
+sprite "title_bg" {
+    texture "title_bg"
+    clip 0 0 640 360
+}
 sprite "shinmy_portrait" {
     texture "shinmy_portrait"
     clip 0 0 256 256
