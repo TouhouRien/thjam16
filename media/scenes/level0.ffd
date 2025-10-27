@@ -1758,7 +1758,7 @@ scene "level0_5" {
     }
     entity "prop" {
         name ""
-        tags []
+        tags ["alwaysSpawn"]
         layer "scene"
         position 311 258 16
         controller ""

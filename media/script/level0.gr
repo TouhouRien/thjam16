@@ -208,6 +208,10 @@ event scene_level0_5() {
     }
 
     for(elem, @World.findEntitiesByTag("reel").each) {
+        if (elem.hasTag("alwaysSpawn")) {
+            continue;
+        }
+
         elem.setEnabled(false);
     }
 
