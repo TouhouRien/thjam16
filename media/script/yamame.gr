@@ -47,6 +47,7 @@ func spiderWebRange(yamame: Entity, R: float, r: float) {
         var sy = ey + dy as <int>;
 
         var shot = @Shot("bullet");
+        shot.setGraphic("purple");
         shot.setPosition(sx, sy, ez);
         shot.setAngle(angle);
         shot.fireAfterDelay(30, 1f);

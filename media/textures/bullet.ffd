@@ -32,6 +32,16 @@ animation "bullet_lime" {
     columns 7
     margin 0 0
 }
+animation "bullet_purple" {
+    texture "bullet"
+    clip 0 72 8 8
+    frameTime 8
+    frames [0 1 2 3 4 5 6 5 4 3 2 1 0]
+    repeat true
+    lines 1
+    columns 7
+    margin 0 0
+}
 animation "star" {
     texture "bullet"
     clip 0 184 8 8
@@ -74,6 +84,18 @@ shot "bullet" {
     render "lime" {
         type "animation"
         rid "bullet_lime"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    render "purple" {
+        type "animation"
+        rid "bullet_purple"
         anchor 0.5 0.5
         pivot 0.5 0.5
         offset 0 0

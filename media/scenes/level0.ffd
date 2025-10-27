@@ -636,7 +636,7 @@ scene "level0_1" {
         controller ""
         graphic "inactif"
         angle 180
-        rid "button"
+        rid "toggle"
     }
     entity "prop" {
         name ""
@@ -1296,7 +1296,7 @@ scene "level0_3" {
         controller ""
         graphic "inactif"
         angle 180
-        rid "button"
+        rid "toggle"
     }
     entity "prop" {
         name ""
@@ -1497,7 +1497,7 @@ scene "level0_5" {
         controller ""
         graphic "inactif"
         angle 180
-        rid "button"
+        rid "toggle"
     }
     entity "prop" {
         name ""
@@ -1586,7 +1586,7 @@ scene "level0_5" {
         controller ""
         graphic "inactif"
         angle 180
-        rid "button"
+        rid "toggle"
     }
     entity "trigger" {
         name ""
@@ -1695,7 +1695,7 @@ scene "level0_5" {
         controller ""
         graphic "inactif"
         angle 180
-        rid "button"
+        rid "toggle"
     }
     entity "prop" {
         name ""
@@ -1774,7 +1774,7 @@ scene "level0_5" {
         controller ""
         graphic "inactif"
         angle 180
-        rid "button"
+        rid "toggle"
     }
     entity "prop" {
         name ""
