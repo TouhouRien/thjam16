@@ -3,6 +3,7 @@ module shinmy;
 import atelier;
 import material;
 import hearts;
+import timer;
 
 final class PlayerComponent : EntityComponent {
     private {
@@ -45,6 +46,7 @@ final class PlayerController : Controller!Actor {
     override void onStart() {
         entity.addComponent!PlayerComponent();
         Atelier.ui.addUI(new HeartsUI(entity.getComponent!PlayerComponent()));
+        startTime();
         setBehavior(new PlayerBehavior);
     }
 
