@@ -117,6 +117,7 @@ void cliDefault(Cli.Result cli) {
 	Atelier.world.addController("checkpoint", { return new CheckpointController(); });
 	Atelier.world.addController("swing", { return new SwingController(); });
 	Atelier.world.addController("button", { return new ButtonController(); });
+	Atelier.world.addController("toggle", { return new ToggleController(); });
 	Atelier.world.addController("suwako", { return new EnemyController("suwako"); });
 	Atelier.world.addController("marisa", { return new EnemyController("marisa"); });
 	Atelier.world.addController("reimu", { return new EnemyController("reimu"); });

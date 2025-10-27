@@ -6,6 +6,10 @@ sprite "button_off" {
     texture "button"
     clip 16 0 16 16
 }
+sprite "button_toggled" {
+    texture "button"
+    clip 32 0 16 16
+}
 texture "button" {
     file "button.png"
     isSmooth false
@@ -36,7 +40,39 @@ prop "button" {
         isBehind []
     }
     hurtbox
+    tags []
     controller "button"
+    zOrderOffset -1
+    material 0
+}
+prop "toggle" {
+    render "inactif" {
+        type "sprite"
+        rid "button_off"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        isBehind []
+    }
+    render "actif" {
+        type "sprite"
+        rid "button_toggled"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    hurtbox
+    tags []
+    controller "toggle"
     zOrderOffset -1
     material 0
 }
@@ -55,7 +91,7 @@ prop "checkpoint" {
     }
     render "actif" {
         type "sprite"
-        rid "button_on"
+        rid "button_toggled"
         anchor 0.5 0.5
         pivot 0.5 0.5
         offset 0 0
@@ -66,6 +102,7 @@ prop "checkpoint" {
         isBehind []
     }
     hurtbox
+    tags []
     controller "checkpoint"
     zOrderOffset -1
     material 0
