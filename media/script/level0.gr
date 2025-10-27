@@ -267,8 +267,12 @@ event spawn_yukari(e: Trigger) {
     marisa.setEnabled(true);
 }
 
+event boss_gate_close(e: Trigger) {
+    gate_active("gate_mode");
+}
+
 func updateGate() {
     if (torch_0_5_1 && torch_0_5_2 && torch_0_5_3 && torch_0_5_4) {
-        gate_active("gate_mode");
+        gate_inactive("gate_mode");
     }
 }

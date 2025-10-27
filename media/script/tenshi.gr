@@ -1,3 +1,4 @@
 event tenshiBehavior(tenshi: Actor) {
     // She silently judges you for your sins
+    tenshi.setShadow(false);
 }
