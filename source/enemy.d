@@ -92,6 +92,7 @@ final class EnemyBehavior : Behavior!Actor {
     void setProxy() {
         _proxy = Atelier.res.get!Proxy("enemy_hitbox");
         _proxy.attachTo(entity);
+        _proxy.getHurtbox().isInvincible = true;
         Atelier.world.addEntity(_proxy);
     }
 }
