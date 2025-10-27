@@ -31,7 +31,7 @@ final class Menu : UIElement {
         startGameBtn.addEventListener("click", {
             Atelier.ui.clearUI();
             Atelier.audio.play(new SoundPlayer(Atelier.res.get!Sound("menu_start")));
-            Atelier.world.load("level0_5");
+            Atelier.world.load("level0_1");
         });
 
         MenuButton quitGameBtn = new MenuButton("Quit");

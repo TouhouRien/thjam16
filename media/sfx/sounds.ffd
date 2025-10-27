@@ -8,7 +8,7 @@ sound "hover" {
 }
 sound "menu_start" {
     file "menu_start.ogg"
-    volume 1
+    volume 0.72
 }
 sound "button_click" {
     file "button_click.ogg"
@@ -20,7 +20,7 @@ sound "button_unclick" {
 }
 sound "door_open" {
     file "door_open.ogg"
-    volume 0.68
+    volume 0.54
 }
 sound "enemy_death" {
     file "enemy_death.ogg"

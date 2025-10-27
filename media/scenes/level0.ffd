@@ -608,6 +608,16 @@ scene "level0_1" {
         direction 0
         hitbox 16 16 16
     }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 226 920 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "reimu"
+    }
     entity "prop" {
         name ""
         tags []
@@ -1228,6 +1238,16 @@ scene "level0_3" {
         event "pas_content_event"
         hitbox 73 22 16
     }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 1143 382 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "reimu"
+    }
     entity "prop" {
         name ""
         tags []
@@ -1258,6 +1278,16 @@ scene "level0_3" {
         angle 180
         rid "yukari"
     }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 1075 432 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "reimu"
+    }
     entity "prop" {
         name "oh_shiny"
         tags ["oh_shiny"]
@@ -1277,6 +1307,16 @@ scene "level0_3" {
         graphic "reel"
         angle 180
         rid "reel"
+    }
+    entity "actor" {
+        name ""
+        tags []
+        layer "scene"
+        position 1140 471 16
+        controller ""
+        graphic "idle"
+        angle 180
+        rid "reimu"
     }
     entity "actor" {
         name ""

@@ -167,6 +167,7 @@ export func gate_init(tag_prefix : string) {
 }
 
 export func gate_active(tag_prefix : string) {
+    @World.playSound("door_open");
     var mode0, mode1 = select_gate(tag_prefix);
     for(l, mode0.each()) {
         l.setEnabled(false);
@@ -177,6 +178,7 @@ export func gate_active(tag_prefix : string) {
 }
 
 export func gate_inactive(tag_prefix : string) {
+    @World.playSound("door_open");
     var mode0, mode1 = select_gate(tag_prefix);
     for(l, mode0.each()) {
         l.setEnabled(true);

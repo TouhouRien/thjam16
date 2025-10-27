@@ -81,7 +81,7 @@ actor "tenshi" {
         isBehind []
     }
     hitbox {
-        size 12 12 2
+        size 18 12 8
         bounciness 0
     }
     repulsor {
@@ -93,8 +93,8 @@ actor "tenshi" {
         faction "enemy"
         type "target"
         minRadius 0
-        maxRadius 6
-        height 2
+        maxRadius 9
+        height 8
         angle 0
         angleDelta 0
         offsetDist 0
@@ -130,7 +130,7 @@ actor "yukari" {
         isBehind []
     }
     hitbox {
-        size 12 12 2
+        size 18 12 8
         bounciness 0
     }
     repulsor {
@@ -142,13 +142,14 @@ actor "yukari" {
         faction "enemy"
         type "target"
         minRadius 0
-        maxRadius 6
-        height 2
+        maxRadius 9
+        height 8
         angle 0
         angleDelta 0
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller "yukari"
     zOrderOffset 0
 }
@@ -178,7 +179,7 @@ actor "marisa" {
         isBehind []
     }
     hitbox {
-        size 12 12 2
+        size 18 12 8
         bounciness 0
     }
     repulsor {
@@ -190,13 +191,14 @@ actor "marisa" {
         faction "enemy"
         type "target"
         minRadius 0
-        maxRadius 6
-        height 2
+        maxRadius 9
+        height 8
         angle 0
         angleDelta 0
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller "marisa"
     zOrderOffset 0
 }
@@ -204,9 +206,9 @@ actor "reimu" {
     render "idle" {
         type "animation"
         rid "reimu"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 10
         isRotating false
         angleOffset 0
         blend "alpha"
@@ -226,7 +228,7 @@ actor "reimu" {
         isBehind []
     }
     hitbox {
-        size 12 12 2
+        size 18 12 8
         bounciness 1
     }
     repulsor {
@@ -238,13 +240,14 @@ actor "reimu" {
         faction "enemy"
         type "target"
         minRadius 0
-        maxRadius 6
-        height 2
+        maxRadius 9
+        height 8
         angle 0
         angleDelta 0
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller "reimu"
     zOrderOffset 0
 }
