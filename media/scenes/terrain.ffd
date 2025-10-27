@@ -128,3 +128,26 @@ terrain "terrain" {
         cliffs 37 [109]
     }
 }
+sprite "tree3" {
+    texture "terrain"
+    clip 256 0 62 50
+}
+prop "tree3" {
+    render "tree" {
+        type "sprite"
+        rid "tree3"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
+    hurtbox
+    tags []
+    controller ""
+    zOrderOffset 0
+    material 0
+}
