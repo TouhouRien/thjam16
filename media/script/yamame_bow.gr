@@ -7,6 +7,10 @@ event yamameBowBehavior(bow: Actor) {
     var attached = false;
 
     loop yield {
+        if (!yamame.isEnabled()) {
+            continue;
+        }
+
         if (!attached) {
             bow.target(yamame);
         }
@@ -33,6 +37,10 @@ func target(bow: Actor, yamame: Entity) {
 }
 
 func attach(bow: Actor, yamame: Entity) {
+    for(elem, @World.findEntitiesByTag("reel").each) {
+        elem.setEnabled(true);
+    }
+
     bow.setSpeed(0f, 0f);
     bow.setGraphic("invisible");
     yamame.setGraphic("yesbow");

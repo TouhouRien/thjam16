@@ -207,6 +207,13 @@ event scene_level0_5() {
         elem.setEnabled(false);
     }
 
+    for(elem, @World.findEntitiesByTag("reel").each) {
+        elem.setEnabled(false);
+    }
+
+    var bow = @World.find("yamame_bow")?;
+    bow.setEnabled(false);
+
     bridge_despawn("br1");
     bridge_despawn("br2");
     bridge_despawn("br3");
@@ -269,6 +276,9 @@ event spawn_yukari(e: Trigger) {
 
 event boss_gate_close(e: Trigger) {
     gate_active("gate_mode");
+
+    var bow = @World.find("yamame_bow")?;
+    bow.setEnabled(true);
 }
 
 func updateGate() {
