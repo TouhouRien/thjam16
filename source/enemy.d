@@ -68,6 +68,8 @@ final class EnemyBehavior : Behavior!Actor {
                 Sound sound = Atelier.res.get!Sound("enemy_death");
                 Atelier.audio.play(new SoundPlayer(sound));
                 entity.setShadow(false);
+                entity.setSpeed(0f, 0f);
+                _proxy.unregister();
                 _task.kill();
                 _deathTimer.start(40);
                 _dead = true;
