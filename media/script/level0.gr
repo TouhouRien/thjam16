@@ -177,6 +177,7 @@ event button_activate_oh_shiny(e : Entity) {
     @World.playSound("jingle");
     for(elem, @World.findEntitiesByTag("pop_shiny").each) {
         elem.setEnabled(true);
+        elem.setAppearFX();
     }
 }
 

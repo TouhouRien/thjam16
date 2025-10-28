@@ -380,6 +380,9 @@ final class EntityThreadRenderer : EntityGraphic {
     override void setAngleOffset(float angle) {
     }
 
+    override void setEffectMargin(Vec2i margin) {
+    }
+
     override void setBlend(Blend blend) {
     }
 
@@ -429,6 +432,14 @@ final class EntityThreadRenderer : EntityGraphic {
     }
 
     override uint getHeight() const {
+        return 0;
+    }
+
+    override uint getEffectWidth() const {
+        return 0;
+    }
+
+    override uint getEffectHeight() const {
         return 0;
     }
 

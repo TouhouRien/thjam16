@@ -15,6 +15,7 @@ prop "mushroom" {
         offset 15 8
         isRotating false
         angleOffset 0
+        effectMargin 0 8
         blend "alpha"
         isDefault true
         isBehind []
