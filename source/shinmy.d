@@ -48,6 +48,10 @@ final class PlayerComponent : EntityComponent {
     override void update() {
         _iframes.update();
     }
+
+    void setIFrames(uint frames) {
+        _iframes.start(frames);
+    }
 }
 
 final class PlayerController : Controller!Actor {
@@ -442,7 +446,8 @@ struct PlayerAnimator {
         Atelier.world.transitionScene(scene, "", 0);
 
         PlayerComponent player = _actor.getComponent!PlayerComponent();
-        player.setHearts(4);
+        player.setup();
+        player.setIFrames(60);
     }
 
     private bool isPlaying() {
