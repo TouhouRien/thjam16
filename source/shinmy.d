@@ -8,6 +8,7 @@ import timer;
 final class PlayerComponent : EntityComponent {
     private {
         int _life, _hearts;
+        Timer _iframes;
     }
 
     @property {
@@ -29,9 +30,15 @@ final class PlayerComponent : EntityComponent {
         _life = _hearts * 4;
     }
 
-    void damage() {
+    bool damage() {
+        if (_iframes.isRunning())
+            return false;
+
         if (_life > 0)
             _life--;
+
+        _iframes.start(30);
+        return true;
     }
 
     override void setup() {
@@ -39,6 +46,7 @@ final class PlayerComponent : EntityComponent {
     }
 
     override void update() {
+        _iframes.update();
     }
 }
 
@@ -58,7 +66,6 @@ final class PlayerController : Controller!Actor {
 final class PlayerBehavior : Behavior!Actor {
     private {
         Vec3i _lastValidPosition = Vec3i.zero;
-        Timer _hitTimer;
         Actor _needle;
         PlayerComponent _player;
         PlayerAnimator _animator;
@@ -70,7 +77,6 @@ final class PlayerBehavior : Behavior!Actor {
     }
 
     override void update() {
-        _hitTimer.update();
         _animator.update();
 
         Vec2f delta = (Atelier.world.getMousePosition() - entity.cameraPosition());
@@ -155,13 +161,14 @@ final class PlayerBehavior : Behavior!Actor {
         }
     }
 
-    void damage() {
-        _hitTimer.start(30);
-        _player.damage();
+    bool damage() {
+        bool tookDamage = _player.damage();
 
         if (_player.isDead()) {
             _animator.die();
         }
+
+        return tookDamage;
     }
 
     override void onImpact(Entity target, Vec3f normal) {
@@ -169,12 +176,13 @@ final class PlayerBehavior : Behavior!Actor {
             return;
         }
 
-        Sound sound = Atelier.res.get!Sound("player_hit");
-        Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.95f, 1.05f)));
-        damage();
+        if (damage()) {
+            Sound sound = Atelier.res.get!Sound("player_hit");
+            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.95f, 1.05f)));
 
-        entity.setEffect(new FlashEffect(Color(1f, 0.8f, 0.8f), 1f, 15, 15, Spline.sineInOut));
-        entity.setVelocity(normal * 3f);
+            entity.setEffect(new FlashEffect(Color(1f, 0.8f, 0.8f), 1f, 15, 15, Spline.sineInOut));
+            entity.setVelocity(normal * 3f);
+        }
     }
 
     // Left click: swing needle
