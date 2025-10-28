@@ -46,6 +46,15 @@
         },
         {
             "name": "thjam16_export",
+            "targetType": "executable",
+            "targetPath": "export",
+            "subConfigurations": {
+                "atelier": "atelier"
+            }
+        },
+        {
+            "name": "thjam16_export_windows",
+            "targetType": "executable",
             "targetPath": "export",
             "lflags": [
                 "-subsystem:windows",
