@@ -27,16 +27,17 @@ prop "WASD_Sign" {
         type "sprite"
         rid "WASD_sign"
         anchor 0.5 1
-        pivot 0.5 0.5
-        offset 0 20
+        pivot 0.5 1
+        offset 0 4
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault true
         isBehind []
     }
     hitbox {
-        size 64 1 35
+        size 64 2 59
         shape "box"
         bounciness 0
     }
@@ -51,16 +52,17 @@ prop "M2_Sign" {
         type "sprite"
         rid "M2_Sign"
         anchor 0.5 1
-        pivot 0.5 0.5
-        offset 0 20
+        pivot 0.5 1
+        offset 0 4
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault true
         isBehind []
     }
     hitbox {
-        size 64 1 35
+        size 64 2 59
         shape "box"
         bounciness 0
     }
@@ -75,16 +77,17 @@ prop "Plant_Sign" {
         type "sprite"
         rid "Plant_Sign"
         anchor 0.5 1
-        pivot 0.5 0.5
-        offset 0 20
+        pivot 0.5 1
+        offset 0 4
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault true
         isBehind []
     }
     hitbox {
-        size 64 1 35
+        size 64 2 59
         shape "box"
         bounciness 0
     }
@@ -99,16 +102,17 @@ prop "M1_Sign" {
         type "sprite"
         rid "M1_Sign"
         anchor 0.5 1
-        pivot 0.5 0.5
-        offset 0 20
+        pivot 0.5 1
+        offset 0 4
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault true
         isBehind []
     }
     hitbox {
-        size 64 1 35
+        size 64 2 59
         shape "box"
         bounciness 0
     }
@@ -123,16 +127,17 @@ prop "Reel_Sign" {
         type "sprite"
         rid "Reel_Sign"
         anchor 0.5 1
-        pivot 0.5 0.5
-        offset 0 20
+        pivot 0.5 1
+        offset 0 4
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault true
         isBehind []
     }
     hitbox {
-        size 64 1 35
+        size 64 2 59
         shape "box"
         bounciness 0
     }
@@ -275,6 +280,7 @@ prop "gate_W" {
         offset 0 -15
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault true
         isBehind []
@@ -285,6 +291,7 @@ prop "gate_W" {
         bounciness 0
     }
     hurtbox
+    tags []
     controller ""
     zOrderOffset 0
     material 0
