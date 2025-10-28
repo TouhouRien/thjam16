@@ -185,12 +185,12 @@ proxy "player_swing" {
     hurtbox {
         faction "allied"
         type "both"
-        minRadius 0
-        maxRadius 48
+        minRadius 10
+        maxRadius 58
         height 8
         angle 180
         angleDelta 45
-        offsetDist 0
-        offsetAngle 270
+        offsetDist -10
+        offsetAngle 180
     }
 }
