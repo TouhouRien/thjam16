@@ -95,7 +95,7 @@ final class PlayerBehavior : Behavior!Actor {
             damage();
         }
 
-        if (_needle && _needle.sendEvent("isRecalled") == "done") {
+        if (_needle && (_needle.sendEvent("isRecalled") == "done" || !_needle.isRegistered())) {
             _needle = null;
 
             Sound sound = Atelier.res.get!Sound("needle_get");

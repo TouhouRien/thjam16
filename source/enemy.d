@@ -64,13 +64,22 @@ final class EnemyBehavior : Behavior!Actor {
         }
 
         if (entity.isEnabled && !_dead) {
-            if (_life == 0) {
+            if (_life <= 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_death");
                 Atelier.audio.play(new SoundPlayer(sound));
                 entity.setShadow(false);
                 entity.setSpeed(0f, 0f);
-                _proxy.unregister();
-                _task.kill();
+
+                if (_proxy) {
+                    _proxy.unregister();
+                    _proxy = null;
+                }
+
+                if (_task) {
+                    _task.kill();
+                    _task = null;
+                }
+
                 _deathTimer.start(40);
                 _dead = true;
 
@@ -88,6 +97,17 @@ final class EnemyBehavior : Behavior!Actor {
                 Atelier.world.close();
                 Atelier.ui.addUI(new Victory);
             }
+        }
+    }
+
+    override void onClose() {
+        if (_proxy) {
+            _proxy.unregister();
+            _proxy = null;
+        }
+        if (_task) {
+            _task.kill();
+            _task = null;
         }
     }
 
