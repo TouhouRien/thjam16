@@ -3,7 +3,6 @@ import atelier;
 import thj;
 import button;
 import enemy;
-import reel;
 import shinmy;
 import needle;
 import swing;
@@ -129,7 +128,6 @@ void cliDefault(Cli.Result cli) {
 		return new EnemyController("yamameBow");
 	});
 	Atelier.world.addController("tenshi", { return new EnemyController("tenshi"); });
-	Atelier.world.addController("reel", { return new ReelController(); });
 
 	// playTrack
 	// stopTrack

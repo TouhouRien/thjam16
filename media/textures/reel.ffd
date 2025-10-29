@@ -15,6 +15,7 @@ prop "reel" {
         offset 0 6
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault false
         isBehind []
@@ -26,7 +27,7 @@ prop "reel" {
     }
     hurtbox
     tags ["reel"]
-    controller "reel"
+    controller ""
     zOrderOffset 0
     material 0
 }
