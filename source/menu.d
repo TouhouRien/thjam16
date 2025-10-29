@@ -1,6 +1,7 @@
 module menu;
 
 import atelier;
+import shinmy;
 import timer;
 
 final class Menu : UIElement {
@@ -32,6 +33,9 @@ final class Menu : UIElement {
             Atelier.ui.clearUI();
             Atelier.audio.play(new SoundPlayer(Atelier.res.get!Sound("menu_start")));
             Atelier.world.load("level0_1");
+            Actor player = Atelier.world.player;
+            PlayerComponent playerComponent = player.getComponent!PlayerComponent();
+            playerComponent.setup();
         });
 
         MenuButton quitGameBtn = new MenuButton("Quit");
