@@ -47,6 +47,7 @@
         {
             "name": "thjam16_export",
             "targetType": "executable",
+            "targetName": "legend_of_tenshi",
             "targetPath": "export",
             "subConfigurations": {
                 "atelier": "atelier"
@@ -55,6 +56,7 @@
         {
             "name": "thjam16_export_windows",
             "targetType": "executable",
+            "targetName": "legend_of_tenshi",
             "targetPath": "export",
             "lflags": [
                 "-subsystem:windows",
