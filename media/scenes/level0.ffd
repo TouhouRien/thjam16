@@ -921,7 +921,7 @@ scene "level0_2" {
         name ""
         tags []
         layer "scene"
-        position 634 666 32
+        position 634 666 16
         controller ""
         graphic "idle"
         angle 180
