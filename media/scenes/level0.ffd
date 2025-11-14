@@ -935,7 +935,7 @@ scene "level0_2" {
         controller ""
         graphic "inactif"
         angle 180
-        rid "button"
+        rid "toggle"
     }
     entity "prop" {
         name ""

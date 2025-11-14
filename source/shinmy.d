@@ -2,6 +2,7 @@ module shinmy;
 
 import atelier;
 import material;
+import needle;
 import hearts;
 import timer;
 
@@ -150,6 +151,21 @@ final class PlayerBehavior : Behavior!Actor {
             }
 
             entity.accelerate(Vec3f(acceldir, 0f));
+
+            // player cannot go outside of thread length when planted
+            // @note: manual position update to correction isn't perfect: it might be better to 'cancel' an invalid movement instead
+            if (_needle) {
+                NeedleThrowController controller = cast(NeedleThrowController)_needle.getController();
+                if (controller.isPlanted) {
+                    Vec3i offset = entity.getPosition() - _needle.getPosition();
+                    if (offset.length > maxThreadLength) {
+                        Vec3f direction = (cast(Vec3f)(offset)).normalized;
+                        Vec3f correctedPos = cast(Vec3f)(_needle.getPosition()) + direction * maxThreadLength;
+                        correctedPos.z = entity.getPosition().z;
+                        entity.setPosition(correctedPos);
+                    }
+                }
+            }
         }
 
         // Respawn when hitting water
@@ -230,7 +246,6 @@ final class PlayerBehavior : Behavior!Actor {
     void needlePlant() {
         if (!_needle) {
             _needle = Atelier.res.get!Actor("needle");
-            _needle.setName("needle.plant");
             _needle.setPosition(entity.getPosition());
             Atelier.world.addEntity(_needle);
             _needle.sendEvent("plant");

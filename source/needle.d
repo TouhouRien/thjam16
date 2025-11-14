@@ -2,6 +2,8 @@ module needle;
 
 import atelier;
 
+const int maxThreadLength = 150;
+
 final class NeedleThrowController : Controller!Actor {
     private {
         NeedleThrowBehavior _needleThrowBehavior;
@@ -9,16 +11,25 @@ final class NeedleThrowController : Controller!Actor {
         NeedleGrabBehavior _needleGrabBehavior;
     }
 
+    @property {
+        bool isPlanted() {
+            return _needleThrowBehavior && _needleThrowBehavior.isPlanted();
+        }
+    }
+
     override void onStart() {
+        entity.setName("needle");
         _needleThrowBehavior = new NeedleThrowBehavior;
         setBehavior(_needleThrowBehavior);
     }
 
     override string onEvent(string event) {
-        if (event == "plant" && _needleThrowBehavior && !_needleThrowBehavior.isPlanted()) {
+        if (event == "plant" && !isPlanted) {
             sendEvent(event);
         }
-        else if (event == "recall" && _needleThrowBehavior && _needleThrowBehavior.isPlanted()) {
+        else if (event == "recall" && isPlanted) {
+            _needleThrowBehavior.unplant();
+
             if (_needleThrowBehavior.hasReel()) {
                 _needleGrabBehavior = new NeedleGrabBehavior(_needleThrowBehavior);
                 setBehavior(_needleGrabBehavior);
@@ -47,6 +58,124 @@ final class NeedleThrowController : Controller!Actor {
         }
 
         return "";
+    }
+}
+
+final class NeedleThrowBehavior : Behavior!Actor {
+    private {
+        Timer _timer;
+        Vec3i _startPoint;
+        uint _nodeCount;
+        EntityThreadRenderer _renderer;
+        bool _isPlanted;
+        Entity _target;
+        bool _hasReel;
+    }
+
+    @property {
+        bool isPlanted() {
+            return _isPlanted;
+        }
+
+        bool hasReel() {
+            return _hasReel;
+        }
+    }
+
+    override string onEvent(string event) {
+        switch (event) {
+        case "plant":
+            if (entity.isRegistered() && !_isPlanted) {
+                plant();
+            }
+            return "";
+        default:
+            return "";
+        }
+    }
+
+    override void onStart() {
+        entity.setSpeed(5f, 0f);
+        entity.setGravity(0f);
+        entity.setFrictionBrake(0f);
+        entity.setLayer(Entity.Layer.above);
+        entity.setCulling(false);
+
+        _startPoint = entity.getPosition();
+
+        _renderer = new EntityThreadRenderer(Atelier.world.player, entity);
+        entity.addGraphic("thread", _renderer);
+        entity.setAuxGraphic(0, "thread");
+
+        _timer.start(10);
+    }
+
+    override void update() {
+        if (_isPlanted) {
+            entity.removeCollider();
+
+            if (_target) {
+                entity.setPosition(_target.getPosition());
+            }
+
+            return;
+        }
+
+        _timer.update();
+
+        // spawn one node every 10 frames until we get 10 nodes
+        if (!_timer.isRunning() && _nodeCount < 10) {
+            _timer.start(10);
+
+            Actor node = Atelier.res.get!Actor("thread.node");
+            node.setPosition(entity.getPosition());
+            node.angle = node.angle;
+            _renderer.addNode(node);
+
+            _nodeCount++;
+        }
+
+        // plant needle if max thread length reached
+        Vec3i delta = Atelier.world.player.getPosition() - entity.getPosition();
+        if (delta.length >= maxThreadLength) {
+            plant();
+        }
+    }
+
+    override void onHit(Entity target, Vec3f normal) {
+        if (_isPlanted)
+            return;
+
+        _target = target;
+        if (_target) {
+            _hasReel = _target.hasTag("reel");
+        }
+        plant();
+    }
+
+    override void onImpact(Entity target, Vec3f normal) {
+        if (_isPlanted)
+            return;
+
+        _target = target;
+        plant();
+    }
+
+    void plant() {
+        if (!_isPlanted) {
+            entity.accelerate(Vec3f.zero);
+            entity.setSpeed(0f, 0f);
+            entity.setGravity(0.8f);
+            entity.setGraphic("planted");
+            _isPlanted = true;
+
+            Sound sound = Atelier.res.get!Sound("needle_plant");
+            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
+        }
+    }
+
+    void unplant() {
+        _isPlanted = false;
     }
 }
 
@@ -167,112 +296,6 @@ final class NeedleGrabBehavior : Behavior!Actor {
             _timer.start(10);
             _renderer.removeNode();
             _nodeCount--;
-        }
-    }
-}
-
-final class NeedleThrowBehavior : Behavior!Actor {
-    private {
-        Timer _timer;
-        Vec3i _startPoint;
-        uint _nodeCount;
-        EntityThreadRenderer _renderer;
-        bool _isPlanted;
-        Entity _target;
-        bool _hasReel;
-    }
-
-    @property {
-        bool isPlanted() {
-            return _isPlanted;
-        }
-
-        bool hasReel() {
-            return _hasReel;
-        }
-    }
-
-    override string onEvent(string event) {
-        switch (event) {
-        case "plant":
-            if (entity.isRegistered() && !_isPlanted) {
-                plant();
-            }
-            return "";
-        default:
-            return "";
-        }
-    }
-
-    override void onStart() {
-        entity.setSpeed(5f, 0f);
-        entity.setGravity(0f);
-        entity.setFrictionBrake(0f);
-        entity.setLayer(Entity.Layer.above);
-        entity.setCulling(false);
-
-        _startPoint = entity.getPosition();
-
-        _renderer = new EntityThreadRenderer(Atelier.world.player, entity);
-        entity.addGraphic("thread", _renderer);
-        entity.setAuxGraphic(0, "thread");
-
-        _timer.start(10);
-    }
-
-    override void update() {
-        if (_isPlanted) {
-            entity.removeCollider();
-
-            if (_target) {
-                entity.setPosition(_target.getPosition());
-            }
-            return;
-        }
-
-        _timer.update();
-
-        if (!_timer.isRunning() && _nodeCount < 10) {
-            _timer.start(10);
-
-            Actor node = Atelier.res.get!Actor("thread.node");
-            node.setPosition(entity.getPosition());
-            node.angle = node.angle;
-            _renderer.addNode(node);
-
-            _nodeCount++;
-        }
-    }
-
-    override void onHit(Entity target, Vec3f normal) {
-        if (_isPlanted)
-            return;
-
-        _target = target;
-        if (_target) {
-            _hasReel = _target.hasTag("reel");
-        }
-        plant();
-    }
-
-    override void onImpact(Entity target, Vec3f normal) {
-        if (_isPlanted)
-            return;
-
-        _target = target;
-        plant();
-    }
-
-    void plant() {
-        if (!_isPlanted) {
-            entity.accelerate(Vec3f.zero);
-            entity.setSpeed(0f, 0f);
-            entity.setGravity(0.8f);
-            entity.setGraphic("planted");
-            _isPlanted = true;
-
-            Sound sound = Atelier.res.get!Sound("needle_plant");
-            Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.9f, 1.05f)));
         }
     }
 }

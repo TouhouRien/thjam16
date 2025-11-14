@@ -1,6 +1,7 @@
 module button;
 
 import atelier;
+import needle;
 
 final class ButtonController : Controller!Prop {
     override void onStart() {
@@ -14,16 +15,22 @@ final class ButtonBehavior : Behavior!Prop {
     override void update() {
         if (!entity.isEnabled())
             return;
+
         int radiusSquared = 16 * 16;
         Vec3i entityPos = entity.getPosition();
 
         bool isNeedleOnButton = false;
 
-        Entity needlePlant = Atelier.world.find("needle.plant");
-        if (needlePlant) {
-            Vec3i needlePos = needlePlant.getPosition();
-            Vec3i distToNeedle = needlePos - entityPos;
-            isNeedleOnButton = distToNeedle.lengthSquared < radiusSquared;
+        Actor needle = cast(Actor)Atelier.world.find("needle");
+
+        if (needle) {
+            NeedleThrowController controller = cast(NeedleThrowController)needle.getController();
+
+            if (controller && controller.isPlanted) {
+                Vec3i needlePos = needle.getPosition();
+                Vec3i distToNeedle = needlePos - entityPos;
+                isNeedleOnButton = distToNeedle.lengthSquared < radiusSquared;
+            }
         }
 
         Vec3i playerPos = Atelier.world.player.getPosition();

@@ -29,6 +29,7 @@ actor "needle" {
         offset 0 0
         isRotating true
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault true
         isBehind []
@@ -41,6 +42,7 @@ actor "needle" {
         offset 0 0
         isRotating false
         angleOffset 0
+        effectMargin 0 0
         blend "alpha"
         isDefault false
         isBehind []
@@ -61,38 +63,7 @@ actor "needle" {
         offsetDist -18
         offsetAngle 180
     }
+    tags ["needle"]
     controller "needleThrow"
-    zOrderOffset 0
-}
-actor "needle.plant" {
-    render "plant" {
-        type "sprite"
-        rid "needle.plant"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
-        isRotating true
-        angleOffset 0
-        blend "alpha"
-        isDefault true
-        isBehind []
-    }
-    hitbox {
-        size 8 8 2
-        bounciness 0
-    }
-    repulsor
-    hurtbox {
-        faction "allied"
-        type "both"
-        minRadius 0
-        maxRadius 4
-        height 2
-        angle 0
-        angleDelta 0
-        offsetDist 0
-        offsetAngle 0
-    }
-    controller ""
     zOrderOffset 0
 }
