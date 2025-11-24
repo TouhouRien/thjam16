@@ -6,14 +6,16 @@ import victory;
 final class EnemyController : Controller!Actor {
     private {
         string _enemyId;
+        int _startLife;
     }
 
-    this(string enemyId) {
+    this(string enemyId, int startLife = 5) {
         _enemyId = enemyId;
+        _startLife = startLife;
     }
 
     override void onStart() {
-        setBehavior(new EnemyBehavior(_enemyId));
+        setBehavior(new EnemyBehavior(_enemyId, _startLife));
     }
 }
 
@@ -29,7 +31,7 @@ final class EnemyBehavior : Behavior!Actor {
         Proxy _proxy;
     }
 
-    this(string enemyId, int life = 5) {
+    this(string enemyId, int life) {
         _enemyId = enemyId;
         _life = life;
     }
@@ -39,7 +41,7 @@ final class EnemyBehavior : Behavior!Actor {
         _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [
                 grGetNativeType("Actor")
             ], [GrValue(entity)]);
-        setProxy();
+        setProxy("enemy_hitbox");
     }
 
     override void onImpact(Entity target, Vec3f normal) {
@@ -70,11 +72,6 @@ final class EnemyBehavior : Behavior!Actor {
                 entity.setShadow(false);
                 entity.setSpeed(0f, 0f);
 
-                if (_proxy) {
-                    _proxy.unregister();
-                    _proxy = null;
-                }
-
                 if (_task) {
                     _task.kill();
                     _task = null;
@@ -91,6 +88,11 @@ final class EnemyBehavior : Behavior!Actor {
         if (_dead && !_deathTimer.isRunning) {
             entity.setEnabled(false);
             entity.unregister();
+
+            if (_proxy) {
+                _proxy.unregister();
+                _proxy = null;
+            }
 
             if (entity.getName == "yamame") {
                 Atelier.ui.clearUI();
@@ -111,8 +113,9 @@ final class EnemyBehavior : Behavior!Actor {
         }
     }
 
-    void setProxy() {
-        _proxy = Atelier.res.get!Proxy("enemy_hitbox");
+    void setProxy(string proxyName) {
+        _proxy = Atelier.res.get!Proxy(proxyName);
+        _proxy.setName(proxyName);
         _proxy.attachTo(entity);
         _proxy.getHurtbox().isInvincible = true;
         Atelier.world.addEntity(_proxy);

@@ -1,0 +1,9 @@
+event mushroomBehavior(mushroom: Actor) {
+    mushroom.setShadow(false);
+}
+
+event mushroomSplode(mushroom: Actor) {
+    var mx, my, mz = mushroom.getPosition;
+
+    
+}

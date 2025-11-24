@@ -12,7 +12,7 @@ prop "mushroom" {
         rid "mushroom"
         anchor 1 1
         pivot 1 1
-        offset 15 8
+        offset 15 6
         isRotating false
         angleOffset 0
         effectMargin 0 8
@@ -20,14 +20,37 @@ prop "mushroom" {
         isDefault true
         isBehind []
     }
+    render "explode" {
+        type "animation"
+        rid "stockexplosion"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        effectMargin 0 0
+        blend "alpha"
+        isDefault false
+        isBehind []
+    }
     hitbox {
-        size 22 11 16
+        size 22 6 21
         shape "box"
         bounciness 0
     }
-    hurtbox
+    hurtbox {
+        faction "enemy"
+        type "target"
+        minRadius 0
+        maxRadius 4
+        height 16
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
     tags []
-    controller ""
+    controller "mushroom"
     zOrderOffset 0
     material 0
 }

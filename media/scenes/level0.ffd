@@ -379,16 +379,6 @@ scene "level0_1" {
         angle 180
         rid "rock"
     }
-    entity "actor" {
-        name ""
-        tags ["level0_1_ambusher1"]
-        layer "scene"
-        position 913 374 16
-        controller "suwako"
-        graphic "idle"
-        angle 180
-        rid "suwako"
-    }
     entity "prop" {
         name ""
         tags []
@@ -398,6 +388,16 @@ scene "level0_1" {
         graphic "idle"
         angle 180
         rid "mushroom"
+    }
+    entity "actor" {
+        name ""
+        tags ["level0_1_ambusher1"]
+        layer "scene"
+        position 913 374 16
+        controller "suwako"
+        graphic "idle"
+        angle 180
+        rid "suwako"
     }
     entity "prop" {
         name ""
@@ -562,20 +562,11 @@ scene "level0_1" {
         name ""
         tags []
         layer "scene"
-        position 209 798 16
+        position 208 798 16
         controller ""
         graphic "idle"
         angle 180
         rid "mushroom"
-    }
-    entity "trigger" {
-        name ""
-        tags []
-        layer "scene"
-        position 208 797 16
-        controller ""
-        event "mushroom"
-        hitbox 32 32 32
     }
     entity "prop" {
         name ""

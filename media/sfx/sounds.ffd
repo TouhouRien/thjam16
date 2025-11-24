@@ -2,6 +2,10 @@ sound "bridge_appear" {
     file "bridge_appear.ogg"
     volume 1
 }
+sound "sexplode" {
+    file "sexplode.wav"
+    volume 0.68
+}
 sound "hover" {
     file "hover.ogg"
     volume 0.65

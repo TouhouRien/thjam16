@@ -31,14 +31,17 @@ final class PlayerComponent : EntityComponent {
         _life = _hearts * 4;
     }
 
-    bool damage() {
+    bool damage(int damage = 1) {
         if (_iframes.isRunning())
             return false;
 
         if (_life > 0)
-            _life--;
+            _life -= damage;
 
-        _iframes.start(30);
+        if (_life < 0)
+            _life = 0;
+
+        _iframes.start(40);
         return true;
     }
 
@@ -157,12 +160,10 @@ final class PlayerBehavior : Behavior!Actor {
             if (_needle) {
                 NeedleThrowController controller = cast(NeedleThrowController)_needle.getController();
                 if (controller.isPlanted) {
-                    Vec3i offset = entity.getPosition() - _needle.getPosition();
+                    Vec3i offset = _needle.getPosition() - entity.getPosition();
                     if (offset.length > maxThreadLength) {
                         Vec3f direction = (cast(Vec3f)(offset)).normalized;
-                        Vec3f correctedPos = cast(Vec3f)(_needle.getPosition()) + direction * maxThreadLength;
-                        correctedPos.z = entity.getPosition().z;
-                        entity.setPosition(correctedPos);
+                        entity.accelerate(direction);
                     }
                 }
             }
@@ -181,8 +182,8 @@ final class PlayerBehavior : Behavior!Actor {
         }
     }
 
-    bool damage() {
-        bool tookDamage = _player.damage();
+    bool damage(int dmg = 1) {
+        bool tookDamage = _player.damage(dmg);
 
         if (_player.isDead()) {
             _animator.die();
@@ -196,7 +197,12 @@ final class PlayerBehavior : Behavior!Actor {
             return;
         }
 
-        if (damage()) {
+        int dmg = 1;
+        if (target.getName == "explosion_hitbox") {
+            dmg = 4;
+        }
+
+        if (damage(dmg)) {
             Sound sound = Atelier.res.get!Sound("player_hit");
             Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.95f, 1.05f)));
 

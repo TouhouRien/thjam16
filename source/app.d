@@ -7,6 +7,7 @@ import shinmy;
 import needle;
 import swing;
 import menu;
+import mushroom;
 
 import std.stdio;
 import checkpoint;
@@ -128,6 +129,7 @@ void cliDefault(Cli.Result cli) {
 		return new EnemyController("yamameBow");
 	});
 	Atelier.world.addController("tenshi", { return new EnemyController("tenshi"); });
+	Atelier.world.addController("mushroom", { return new MushroomController(); });
 
 	// playTrack
 	// stopTrack
