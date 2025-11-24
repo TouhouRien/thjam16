@@ -74,9 +74,13 @@ final class PlayerController : Controller!Actor {
 final class PlayerBehavior : Behavior!Actor {
     private {
         Vec3i _lastValidPosition = Vec3i.zero;
+        Vec3f _sourceNeedleForce = Vec3f.zero;
+        Vec3f _needleForce = Vec3f.zero;
         Actor _needle;
+        Timer _specialTimer;
         PlayerComponent _player;
         PlayerAnimator _animator;
+        bool wasPlanted;
     }
 
     override void onStart() {
@@ -153,20 +157,47 @@ final class PlayerBehavior : Behavior!Actor {
                 needlePlant();
             }
 
-            entity.accelerate(Vec3f(acceldir, 0f));
+            Vec3f direction = Vec3f(acceldir, 0f);
+            entity.accelerate(direction);
 
             // player cannot go outside of thread length when planted
             // @note: manual position update to correction isn't perfect: it might be better to 'cancel' an invalid movement instead
             if (_needle) {
                 NeedleThrowController controller = cast(NeedleThrowController)_needle.getController();
                 if (controller.isPlanted) {
+                    wasPlanted = true;
+
                     Vec3i offset = _needle.getPosition() - entity.getPosition();
-                    if (offset.length > maxThreadLength) {
-                        Vec3f direction = (cast(Vec3f)(offset)).normalized;
-                        entity.accelerate(direction);
+
+                    float length = offset.length;
+                    if (length > minThreadLength) {
+                        float ratio = 0f;
+                        if (length < maxThreadLength) {
+                            ratio = 1f - (maxThreadLength - length) / (maxThreadLength - minThreadLength);
+                        } else {
+                            ratio = 1f;
+                        }
+
+                        _needleForce = (cast(Vec3f)(offset)).normalized * ratio;
                     }
+                } else if (wasPlanted) {
+                    wasPlanted = false;
+                    _specialTimer.start(60);
+                    _sourceNeedleForce = _needleForce * 3f;
                 }
             }
+
+            if (_specialTimer.isRunning) {
+                _specialTimer.update();
+                if (_specialTimer.isRunning) {
+                    _needleForce = lerp(_sourceNeedleForce, Vec3f.zero, easeOutSine(_specialTimer.value01));
+                } else {
+                    _needleForce = Vec3f.zero;
+                }
+            }
+
+            direction += _needleForce;
+            entity.accelerate(direction);
         }
 
         // Respawn when hitting water

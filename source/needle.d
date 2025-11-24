@@ -2,7 +2,8 @@ module needle;
 
 import atelier;
 
-const int maxThreadLength = 150;
+const float minThreadLength = 150f;
+const float maxThreadLength = 250f;
 
 final class NeedleThrowController : Controller!Actor {
     private {
@@ -95,10 +96,13 @@ final class NeedleThrowBehavior : Behavior!Actor {
     }
 
     override void onStart() {
-        entity.setSpeed(5f, 0f);
-        entity.setGravity(0f);
-        entity.setFrictionBrake(0f);
+        if (!_isPlanted) {
+            entity.setSpeed(5f, 0f);
+            entity.setGravity(0f);
+        }
+
         entity.setLayer(Entity.Layer.above);
+        entity.setFrictionBrake(0f);
         entity.setCulling(false);
 
         _startPoint = entity.getPosition();
@@ -137,7 +141,7 @@ final class NeedleThrowBehavior : Behavior!Actor {
 
         // plant needle if max thread length reached
         Vec3i delta = Atelier.world.player.getPosition() - entity.getPosition();
-        if (delta.length >= maxThreadLength) {
+        if (delta.length >= minThreadLength) {
             plant();
         }
     }

@@ -20,6 +20,10 @@ final class MushroomBehavior : Behavior!Prop {
     }
 
     override void onImpact(Entity target, Vec3f normal) {
+        if (_dead) {
+            return;
+        }
+
         Sound sound = Atelier.res.get!Sound("sexplode");
         Atelier.audio.play(new SoundPlayer(sound));
 
