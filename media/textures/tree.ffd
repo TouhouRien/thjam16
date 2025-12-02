@@ -7,7 +7,7 @@ sprite "tree2" {
     clip 0 0 64 64
 }
 prop "tree2" {
-    render "idle" {
+    graphic "idle" {
         type "sprite"
         rid "tree2"
         anchor 0.5 1
@@ -17,16 +17,17 @@ prop "tree2" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 20 10 50
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }

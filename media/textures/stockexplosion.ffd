@@ -15,8 +15,7 @@ animation "stockexplosion" {
 }
 proxy "explosion_hitbox" {
     hurtbox {
-        faction "enemy"
-        type "projectile"
+        layer 6
         minRadius 0
         maxRadius 36
         height 16

@@ -7,7 +7,7 @@ sprite "mushroom" {
     clip 0 0 32 32
 }
 prop "mushroom" {
-    render "idle" {
+    graphic "idle" {
         type "sprite"
         rid "mushroom"
         anchor 1 1
@@ -15,12 +15,12 @@ prop "mushroom" {
         offset 15 6
         isRotating false
         angleOffset 0
-        effectMargin 0 8
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 8
+        auxGraphics []
     }
-    render "explode" {
+    graphic "explode" {
         type "animation"
         rid "stockexplosion"
         anchor 0.5 0.5
@@ -28,10 +28,10 @@ prop "mushroom" {
         offset 0 0
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 22 6 21
@@ -39,8 +39,7 @@ prop "mushroom" {
         bounciness 0
     }
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 5
         minRadius 0
         maxRadius 4
         height 16
@@ -51,6 +50,7 @@ prop "mushroom" {
     }
     tags []
     controller "mushroom"
+    shadow ""
     zOrderOffset 0
     material 0
 }

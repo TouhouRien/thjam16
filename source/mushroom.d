@@ -16,7 +16,7 @@ final class MushroomBehavior : Behavior!Prop {
     }
 
     override void onStart() {
-        entity.setShadow(false);
+        //entity.setShadow(false);
     }
 
     override void onImpact(Entity target, Vec3f normal) {
@@ -36,8 +36,8 @@ final class MushroomBehavior : Behavior!Prop {
         EntityGraphic graphic = entity.getGraphic();
         graphic.setScale(Vec2f.half);
         Atelier.script.callEvent("mushroomSplode", [
-            grGetNativeType("Actor")
-        ], [GrValue(entity)]);
+                grGetNativeType("Actor")
+            ], [GrValue(entity)]);
 
         setProxy("explosion_hitbox");
     }
@@ -46,7 +46,7 @@ final class MushroomBehavior : Behavior!Prop {
         _proxy = Atelier.res.get!Proxy(proxyName);
         _proxy.setName(proxyName);
         _proxy.attachTo(entity);
-        _proxy.getHurtbox().isInvincible = true;
+        //_proxy.getHurtbox().isInvincible = true;
         Atelier.world.addEntity(_proxy);
     }
 

@@ -14,7 +14,7 @@ void main(string[] args) {
         atelier.window.setIcon(Atelier_Window_Icon);
         //atelier.renderer.setScaling(Renderer.Scaling.desktop);
 
-        atelier.addArchive("media");
+        atelier.loadConfig();
         atelier.loadResources();
 
         atelier.etabli.open();

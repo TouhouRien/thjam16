@@ -13,7 +13,7 @@ animation "tatara" {
     margin 0 0
 }
 actor "tatara" {
-    render "idle" {
+    graphic "idle" {
         type "animation"
         rid "tatara"
         anchor 0.5 0.5
@@ -23,9 +23,10 @@ actor "tatara" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "animation"
         rid "enemy_death"
         anchor 0.5 0.5
@@ -35,7 +36,8 @@ actor "tatara" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 16 16 6
@@ -43,8 +45,7 @@ actor "tatara" {
     }
     repulsor
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 2
         minRadius 0
         maxRadius 8
         height 6
@@ -53,6 +54,8 @@ actor "tatara" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller "kogasa"
+    shadow ""
     zOrderOffset 0
 }

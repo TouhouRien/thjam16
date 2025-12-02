@@ -15,7 +15,7 @@ sprite "torch_right" {
     clip 32 0 16 16
 }
 prop "torch" {
-    render "off" {
+    graphic "off" {
         type "sprite"
         rid "torch_off"
         anchor 0.5 0.5
@@ -25,9 +25,10 @@ prop "torch" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "left" {
+    graphic "left" {
         type "sprite"
         rid "torch_left"
         anchor 0.5 0.5
@@ -37,9 +38,10 @@ prop "torch" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "right" {
+    graphic "right" {
         type "sprite"
         rid "torch_right"
         anchor 0.5 0.5
@@ -49,11 +51,12 @@ prop "torch" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }

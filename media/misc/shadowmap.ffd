@@ -1,0 +1,12 @@
+texture "shadowmap" {
+    file "shadowmap.png"
+    isSmooth false
+}
+tileset "shadowmap" {
+    texture "shadowmap"
+    clip 0 0 16 16
+    lines 8
+    columns 8
+    margin 0 0
+    frameTime 0
+}

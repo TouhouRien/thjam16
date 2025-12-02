@@ -1,5 +1,5 @@
 event gapBehavior(gap: Actor) {
-    gap.setShadow(false);
+    //gap.setShadow(false);
 
     loop yield {
         wait (30);

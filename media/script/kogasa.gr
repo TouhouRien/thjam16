@@ -1,7 +1,7 @@
 event kogasaBehavior(kogasa: Actor) {
     var time = 0;
     
-    kogasa.setShadow(false);
+    //kogasa.setShadow(false);
 
     loop yield {
         if (!kogasa.isEnabled()) {

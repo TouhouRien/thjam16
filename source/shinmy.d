@@ -119,7 +119,7 @@ final class PlayerBehavior : Behavior!Actor {
             // Record last valid ground grass tile
             int material = Atelier.world.scene.getMaterial(entity.getPosition());
             bool isGround = entity.getLevel() > 0;
-            bool isSolid = material == Material.Grass || material == Material.Earth;
+            bool isSolid = material == 3 || material == 4;
             if (entity.isOnGround && isGround && isSolid) {
                 _lastValidPosition = entity.getPosition();
             }
@@ -163,7 +163,7 @@ final class PlayerBehavior : Behavior!Actor {
             // player cannot go outside of thread length when planted
             // @note: manual position update to correction isn't perfect: it might be better to 'cancel' an invalid movement instead
             if (_needle) {
-                NeedleThrowController controller = cast(NeedleThrowController)_needle.getController();
+                NeedleThrowController controller = cast(NeedleThrowController) _needle.getController();
                 if (controller.isPlanted) {
                     wasPlanted = true;
 
@@ -173,14 +173,17 @@ final class PlayerBehavior : Behavior!Actor {
                     if (length > minThreadLength) {
                         float ratio = 0f;
                         if (length < maxThreadLength) {
-                            ratio = 1f - (maxThreadLength - length) / (maxThreadLength - minThreadLength);
-                        } else {
+                            ratio = 1f - (maxThreadLength - length) / (
+                                maxThreadLength - minThreadLength);
+                        }
+                        else {
                             ratio = 1f;
                         }
 
                         _needleForce = (cast(Vec3f)(offset)).normalized * ratio;
                     }
-                } else if (wasPlanted) {
+                }
+                else if (wasPlanted) {
                     wasPlanted = false;
                     _specialTimer.start(60);
                     _sourceNeedleForce = _needleForce * 3f;
@@ -190,8 +193,10 @@ final class PlayerBehavior : Behavior!Actor {
             if (_specialTimer.isRunning) {
                 _specialTimer.update();
                 if (_specialTimer.isRunning) {
-                    _needleForce = lerp(_sourceNeedleForce, Vec3f.zero, easeOutSine(_specialTimer.value01));
-                } else {
+                    _needleForce = lerp(_sourceNeedleForce, Vec3f.zero, easeOutSine(
+                            _specialTimer.value01));
+                }
+                else {
                     _needleForce = Vec3f.zero;
                 }
             }

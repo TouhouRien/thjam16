@@ -23,7 +23,7 @@ sprite "Reel_Sign" {
     clip 0 133 64 64
 }
 prop "WASD_Sign" {
-    render "" {
+    graphic "" {
         type "sprite"
         rid "WASD_sign"
         anchor 0.5 1
@@ -31,24 +31,24 @@ prop "WASD_Sign" {
         offset 0 4
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 64 2 59
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
 prop "M2_Sign" {
-    render "" {
+    graphic "" {
         type "sprite"
         rid "M2_Sign"
         anchor 0.5 1
@@ -56,24 +56,24 @@ prop "M2_Sign" {
         offset 0 4
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 64 2 59
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
 prop "Plant_Sign" {
-    render "" {
+    graphic "" {
         type "sprite"
         rid "Plant_Sign"
         anchor 0.5 1
@@ -81,24 +81,24 @@ prop "Plant_Sign" {
         offset 0 4
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 64 2 59
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
 prop "M1_Sign" {
-    render "" {
+    graphic "" {
         type "sprite"
         rid "M1_Sign"
         anchor 0.5 1
@@ -106,24 +106,24 @@ prop "M1_Sign" {
         offset 0 4
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 64 2 59
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
 prop "Reel_Sign" {
-    render "" {
+    graphic "" {
         type "sprite"
         rid "Reel_Sign"
         anchor 0.5 1
@@ -131,24 +131,24 @@ prop "Reel_Sign" {
         offset 0 4
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 64 2 59
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
 prop "gate_E" {
-    render "visuals" {
+    graphic "visuals" {
         type "sprite"
         rid "gate_E"
         anchor 0.5 0.5
@@ -158,15 +158,17 @@ prop "gate_E" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 32 3 16
         shape "box"
         bounciness 0
     }
-    hurtbox
+    tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
@@ -175,7 +177,7 @@ sprite "gate_S" {
     clip 64 32 32 32
 }
 prop "gate_N" {
-    render "visuals" {
+    graphic "visuals" {
         type "sprite"
         rid "gate_N"
         anchor 0.5 0.5
@@ -185,15 +187,17 @@ prop "gate_N" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 5 16 16
         shape "box"
         bounciness 0
     }
-    hurtbox
+    tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
@@ -202,7 +206,7 @@ sprite "bridge_piece_H" {
     clip 16 0 16 20
 }
 prop "bridge_piece_H" {
-    render "display" {
+    graphic "display" {
         type "sprite"
         rid "bridge_piece_H"
         anchor 0.5 1
@@ -212,20 +216,22 @@ prop "bridge_piece_H" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 16 16 4
         shape "box"
         bounciness 0
     }
-    hurtbox
+    tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
 prop "bridge_piece" {
-    render "base" {
+    graphic "base" {
         type "sprite"
         rid "bridge_piece"
         anchor 0.5 1
@@ -235,15 +241,17 @@ prop "bridge_piece" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 16 16 4
         shape "box"
         bounciness 0
     }
-    hurtbox
+    tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 1
 }
@@ -272,7 +280,7 @@ sprite "gate_W" {
     clip 32 32 32 32
 }
 prop "gate_W" {
-    render "visuals" {
+    graphic "visuals" {
         type "sprite"
         rid "gate_W"
         anchor 0.5 0.5
@@ -280,24 +288,24 @@ prop "gate_W" {
         offset 0 -15
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 32 3 16
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }
 prop "gate_S" {
-    render "visuals" {
+    graphic "visuals" {
         type "sprite"
         rid "gate_S"
         anchor 0.5 0.5
@@ -307,15 +315,17 @@ prop "gate_S" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 5 16 16
         shape "box"
         bounciness 0
     }
-    hurtbox
+    tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }

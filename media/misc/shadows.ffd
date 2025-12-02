@@ -1,0 +1,23 @@
+shadedtexture "shadows" {
+    file "shadows.png"
+    sourceColorA 1 1 1
+    sourceAlphaA 1
+    sourceColorB 0 0 0
+    sourceAlphaB 1
+    targetColorA 0.0392157 0.0352941 0.121569
+    targetAlphaA 1
+    targetColorB 0.0705882 0.0666667 0.129412
+    targetAlphaB 0
+    spline "cubicIn"
+}
+shadow "circle" {
+    shadedtexture "shadows"
+    clip 0 0 16 16
+    anchor 0.5 0.5
+    maxAltitude 16
+    groundAlpha 0.6
+    highAlpha 0.2
+    groundScale 1
+    highScale 0.5
+    isTurning false
+}

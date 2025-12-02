@@ -45,7 +45,7 @@ animation "yamame_bow" {
     margin 0 0
 }
 actor "yamame" {
-    render "yesbow" {
+    graphic "yesbow" {
         type "multidiranimation"
         rid "yamame_yesbow"
         anchor 0.5 1
@@ -55,9 +55,10 @@ actor "yamame" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "nobow" {
+    graphic "nobow" {
         type "multidiranimation"
         rid "yamame_nobow"
         anchor 0.5 1
@@ -67,9 +68,10 @@ actor "yamame" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "animation"
         rid "enemy_death"
         anchor 0.5 0.5
@@ -79,7 +81,8 @@ actor "yamame" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 12 12 12
@@ -91,8 +94,7 @@ actor "yamame" {
         height 12
     }
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 2
         minRadius 0
         maxRadius 4
         height 10
@@ -101,11 +103,13 @@ actor "yamame" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller "yamame"
+    shadow ""
     zOrderOffset 0
 }
 actor "yamame_bow" {
-    render "idle" {
+    graphic "idle" {
         type "animation"
         rid "yamame_bow"
         anchor 0.5 0.5
@@ -115,9 +119,10 @@ actor "yamame_bow" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "invisible" {
+    graphic "invisible" {
         type "sprite"
         rid "invisible"
         anchor 0.5 0.5
@@ -127,9 +132,10 @@ actor "yamame_bow" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "animation"
         rid "enemy_death"
         anchor 0.5 0.5
@@ -139,7 +145,8 @@ actor "yamame_bow" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 12 12 2
@@ -147,8 +154,7 @@ actor "yamame_bow" {
     }
     repulsor
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 2
         minRadius 0
         maxRadius 6
         height 2
@@ -157,6 +163,8 @@ actor "yamame_bow" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
     controller "yamameBow"
+    shadow ""
     zOrderOffset 0
 }

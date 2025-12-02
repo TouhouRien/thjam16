@@ -15,7 +15,7 @@ texture "button" {
     isSmooth false
 }
 prop "button" {
-    render "inactif" {
+    graphic "inactif" {
         type "sprite"
         rid "button_off"
         anchor 0.5 0.5
@@ -25,9 +25,10 @@ prop "button" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "actif" {
+    graphic "actif" {
         type "sprite"
         rid "button_on"
         anchor 0.5 0.5
@@ -37,16 +38,17 @@ prop "button" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    hurtbox
     tags []
     controller "button"
+    shadow ""
     zOrderOffset -1
     material 0
 }
 prop "toggle" {
-    render "inactif" {
+    graphic "inactif" {
         type "sprite"
         rid "button_off"
         anchor 0.5 0.5
@@ -56,9 +58,10 @@ prop "toggle" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "actif" {
+    graphic "actif" {
         type "sprite"
         rid "button_toggled"
         anchor 0.5 0.5
@@ -68,16 +71,17 @@ prop "toggle" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    hurtbox
     tags []
     controller "toggle"
+    shadow ""
     zOrderOffset -1
     material 0
 }
 prop "checkpoint" {
-    render "inactif" {
+    graphic "inactif" {
         type "sprite"
         rid "button_off"
         anchor 0.5 0.5
@@ -87,9 +91,10 @@ prop "checkpoint" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "actif" {
+    graphic "actif" {
         type "sprite"
         rid "button_toggled"
         anchor 0.5 0.5
@@ -99,11 +104,12 @@ prop "checkpoint" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    hurtbox
     tags []
     controller "checkpoint"
+    shadow ""
     zOrderOffset -1
     material 0
 }

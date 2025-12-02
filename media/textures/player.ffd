@@ -73,7 +73,7 @@ sprite "player_dead" {
     clip 288 224 32 32
 }
 actor "shinmy" {
-    render "idle" {
+    graphic "idle" {
         type "multidiranimation"
         rid "player_idle"
         anchor 0.5 1
@@ -83,9 +83,10 @@ actor "shinmy" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "walk" {
+    graphic "walk" {
         type "multidiranimation"
         rid "player"
         anchor 0.5 1
@@ -95,9 +96,10 @@ actor "shinmy" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "fall" {
+    graphic "fall" {
         type "animation"
         rid "player_fall"
         anchor 0.5 0.5
@@ -107,9 +109,10 @@ actor "shinmy" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "swing" {
+    graphic "swing" {
         type "multidiranimation"
         rid "player_swing"
         anchor 0.5 1
@@ -119,9 +122,10 @@ actor "shinmy" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "plant" {
+    graphic "plant" {
         type "multidiranimation"
         rid "player_plant"
         anchor 0.5 1
@@ -131,9 +135,10 @@ actor "shinmy" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "die" {
+    graphic "die" {
         type "sprite"
         rid "player_dead"
         anchor 0.5 0.5
@@ -143,7 +148,8 @@ actor "shinmy" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 16 16 16
@@ -155,8 +161,7 @@ actor "shinmy" {
         height 16
     }
     hurtbox {
-        faction "allied"
-        type "target"
+        layer 0
         minRadius 0
         maxRadius 4
         height 16
@@ -167,10 +172,11 @@ actor "shinmy" {
     }
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
 }
 proxy "player_swing" {
-    render "" {
+    graphic "" {
         type "sprite"
         rid "heart_14"
         anchor 0.5 0.5
@@ -180,11 +186,11 @@ proxy "player_swing" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hurtbox {
-        faction "allied"
-        type "both"
+        layer 1
         minRadius 10
         maxRadius 58
         height 8

@@ -57,7 +57,7 @@ sprite "kunai" {
     clip 56 128 8 16
 }
 shot "bullet" {
-    render "red" {
+    graphic "red" {
         type "animation"
         rid "bullet"
         anchor 0.5 0.5
@@ -67,9 +67,10 @@ shot "bullet" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "cyan" {
+    graphic "cyan" {
         type "animation"
         rid "bullet_cyan"
         anchor 0.5 0.5
@@ -79,9 +80,10 @@ shot "bullet" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "lime" {
+    graphic "lime" {
         type "animation"
         rid "bullet_lime"
         anchor 0.5 0.5
@@ -91,9 +93,10 @@ shot "bullet" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "purple" {
+    graphic "purple" {
         type "animation"
         rid "bullet_purple"
         anchor 0.5 0.5
@@ -103,14 +106,14 @@ shot "bullet" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 8 8 2
     }
     hurtbox {
-        faction "enemy"
-        type "projectile"
+        layer 3
         minRadius 0
         maxRadius 2
         height 1
@@ -119,11 +122,15 @@ shot "bullet" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
+    controller ""
+    shadow ""
+    zOrderOffset 0
     bounces 0
     material 0
 }
 shot "star" {
-    render "idle" {
+    graphic "idle" {
         type "animation"
         rid "star"
         anchor 0.5 0.5
@@ -133,14 +140,14 @@ shot "star" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 8 8 2
     }
     hurtbox {
-        faction "enemy"
-        type "projectile"
+        layer 3
         minRadius 0
         maxRadius 2
         height 1
@@ -149,11 +156,15 @@ shot "star" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
+    controller ""
+    shadow ""
+    zOrderOffset 0
     bounces 0
     material 0
 }
 shot "kunai" {
-    render "idle" {
+    graphic "idle" {
         type "sprite"
         rid "kunai"
         anchor 0.5 0.5
@@ -163,14 +174,14 @@ shot "kunai" {
         angleOffset 270
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 8 8 2
     }
     hurtbox {
-        faction "enemy"
-        type "projectile"
+        layer 3
         minRadius 0
         maxRadius 2
         height 1
@@ -179,6 +190,10 @@ shot "kunai" {
         offsetDist 0
         offsetAngle 0
     }
+    tags []
+    controller ""
+    shadow ""
+    zOrderOffset 0
     bounces 0
     material 0
 }

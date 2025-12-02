@@ -1,7 +1,7 @@
 event yamameBowBehavior(bow: Actor) {
     // turn off gravity
     bow.setGravity(0f);
-    bow.setShadow(false);
+    //bow.setShadow(false);
     
     var yamame = @World.find("yamame")?;
     var attached = false;

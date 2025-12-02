@@ -37,7 +37,7 @@ final class EnemyBehavior : Behavior!Actor {
     }
 
     override void onStart() {
-        entity.setShadow(true);
+        //entity.setShadow(true);
         _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [
                 grGetNativeType("Actor")
             ], [GrValue(entity)]);
@@ -69,7 +69,7 @@ final class EnemyBehavior : Behavior!Actor {
             if (_life <= 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_death");
                 Atelier.audio.play(new SoundPlayer(sound));
-                entity.setShadow(false);
+                //entity.setShadow(false);
                 entity.setSpeed(0f, 0f);
 
                 if (_task) {
@@ -117,7 +117,7 @@ final class EnemyBehavior : Behavior!Actor {
         _proxy = Atelier.res.get!Proxy(proxyName);
         _proxy.setName(proxyName);
         _proxy.attachTo(entity);
-        _proxy.getHurtbox().isInvincible = true;
+        //_proxy.getHurtbox().isInvincible = true;
         Atelier.world.addEntity(_proxy);
     }
 }

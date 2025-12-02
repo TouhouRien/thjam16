@@ -108,10 +108,25 @@ final class NeedleThrowBehavior : Behavior!Actor {
         _startPoint = entity.getPosition();
 
         _renderer = new EntityThreadRenderer(Atelier.world.player, entity);
-        entity.addGraphic("thread", _renderer);
-        entity.setAuxGraphic(0, "thread");
+        entity.addAuxGraphic("thread", _renderer);
+        foreach (key, graphic; entity.getGraphics()) {
+            graphic.addAuxGraphic("thread");
+        }
+        entity.setGraphic("throw", true);
 
         _timer.start(10);
+
+        // spawn one node every 10 frames until we get 10 nodes
+        while (_nodeCount < 10) {
+            //_timer.start(1);
+
+            Actor node = Atelier.res.get!Actor("thread.node");
+            node.setPosition(entity.getPosition());
+            node.angle = node.angle;
+            _renderer.addNode(node);
+
+            _nodeCount++;
+        }
     }
 
     override void update() {
@@ -126,18 +141,6 @@ final class NeedleThrowBehavior : Behavior!Actor {
         }
 
         _timer.update();
-
-        // spawn one node every 10 frames until we get 10 nodes
-        if (!_timer.isRunning() && _nodeCount < 10) {
-            _timer.start(10);
-
-            Actor node = Atelier.res.get!Actor("thread.node");
-            node.setPosition(entity.getPosition());
-            node.angle = node.angle;
-            _renderer.addNode(node);
-
-            _nodeCount++;
-        }
 
         // plant needle if max thread length reached
         Vec3i delta = Atelier.world.player.getPosition() - entity.getPosition();
@@ -333,33 +336,71 @@ final class EntityThreadRenderer : EntityGraphic {
             _nodes.length--;
     }
 
-    override void update() {
-        if (_nodes.length == 1) {
-            Vec3f accel = Vec3f.zero;
+    Vec3f _getNodeAccel(Vec3i node, Vec3i tensorA, Vec3i tensorB) {
+        Vec3f accel = Vec3f.zero;
+        Vec3i targetPos = (tensorA + tensorB) / 2;
 
-            Vec3i targetPos = (_player.getPosition() + _needle.getPosition()) / 2;
-            accel += (cast(Vec3f)(targetPos - _nodes[0].getPosition())) * .7f;
-            _nodes[0].move(accel);
+        float dist = (tensorA - tensorB).length;
+        float minDist = minThreadLength / 12f;
+        float maxDist = maxThreadLength / 12f;
+        float t = rlerp(minDist, maxDist, clamp(dist, minDist, maxDist));
+        float tension = lerp(0f, 1.1f, easeInOutSine(t));
+
+        accel += (cast(Vec3f)(targetPos - node)) * tension;
+
+        return accel;
+    }
+
+    Color _getThreadColor(Vec2f start, Vec2f end) {
+        float dist = start.distance(end);
+        float minDist = minThreadLength / 12f;
+        float maxDist = maxThreadLength / 12f;
+        float t = rlerp(minDist, maxDist, clamp(dist, minDist, maxDist));
+        return Color.red.lerp(Color.white, easeInOutSine(t));
+    }
+
+    override void update() {
+        Vec3f[] localAccels, globalAccels;
+        if (_nodes.length == 1) {
+            localAccels ~= _getNodeAccel(_nodes[0].getPosition(), _player.getPosition(), _needle.getPosition());
         }
         else {
             foreach (int i; 0 .. cast(int) _nodes.length) {
                 Vec3f accel = Vec3f.zero;
 
                 if (i == 0) {
-                    Vec3i targetPos = (_player.getPosition() + _nodes[1].getPosition()) / 2;
-                    accel += (cast(Vec3f)(targetPos - _nodes[0].getPosition())) * .7f;
+                    accel += _getNodeAccel(_nodes[0].getPosition(), _player.getPosition(), _nodes[1].getPosition());
                 }
                 else if (i + 1 == _nodes.length) {
-                    Vec3i targetPos = (_nodes[$ - 2].getPosition() + _needle.getPosition()) / 2;
-                    accel += (cast(Vec3f)(targetPos - _nodes[$ - 1].getPosition())) * .7f;
+                    accel += _getNodeAccel(_nodes[$ - 1].getPosition(), _nodes[$ - 2].getPosition(), _needle
+                            .getPosition());
                 }
                 else {
-                    Vec3i targetPos = (_nodes[i - 1].getPosition() + _nodes[i + 1].getPosition()) / 2;
-                    accel += (cast(Vec3f)(targetPos - _nodes[i].getPosition())) * .7f;
+                    accel += _getNodeAccel(_nodes[i].getPosition(), _nodes[i - 1].getPosition(), _nodes[i + 1]
+                            .getPosition());
                 }
 
-                _nodes[i].move(accel);
+                localAccels ~= accel;
             }
+        }
+        globalAccels.length = localAccels.length;
+
+        //_nodes[i].move(accel);
+        for (int i; i < _nodes.length; ++i) {
+            globalAccels[i] = localAccels[i];
+            if (i > 0) {
+                globalAccels[i] += localAccels[i - 1] * 0.5f;
+                if (i > 1) {
+                    globalAccels[i] += localAccels[i - 2] * 0.25f;
+                }
+            }
+            if ((i + 1) < _nodes.length) {
+                globalAccels[i] += localAccels[i + 1] * 0.5f;
+                if ((i + 2) < _nodes.length) {
+                    globalAccels[i] += localAccels[i + 2] * 0.25f;
+                }
+            }
+            _nodes[i].move(globalAccels[i]);
         }
     }
 
@@ -370,18 +411,18 @@ final class EntityThreadRenderer : EntityGraphic {
         if (!_nodes.length) {
             Vec2f endPos = offset + _needle.cameraPosition();
 
-            Atelier.renderer.drawLine(startPos, endPos, _colors[0], 1f);
+            Atelier.renderer.drawLine(startPos, endPos, _getThreadColor(startPos, endPos), 1f);
         }
         else {
             int i;
             foreach (node; _nodes) {
                 Vec2f endPos = offset + node.cameraPosition();
-                Atelier.renderer.drawLine(startPos, endPos, _colors[i % cast(int) _colors.length], 1f);
+                Atelier.renderer.drawLine(startPos, endPos, _getThreadColor(startPos, endPos), 1f);
                 startPos = endPos;
                 i++;
             }
-            Atelier.renderer.drawLine(startPos, offset + _needle.cameraPosition(), _colors[i % cast(
-                        int) _colors.length], 1f);
+            Atelier.renderer.drawLine(startPos, offset + _needle.cameraPosition(), _getThreadColor(startPos, offset + _needle
+                    .cameraPosition()), 1f);
         }
     }
 

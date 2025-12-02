@@ -4,8 +4,9 @@ texture "needle" {
 }
 actor "thread.node" {
     repulsor
-    hurtbox
+    tags []
     controller ""
+    shadow ""
     zOrderOffset 0
 }
 sprite "needle.shot" {
@@ -21,7 +22,7 @@ sprite "needle.plant" {
     clip 51 2 11 14
 }
 actor "needle" {
-    render "throw" {
+    graphic "throw" {
         type "sprite"
         rid "needle.shot"
         anchor 0.5 0.5
@@ -29,12 +30,11 @@ actor "needle" {
         offset 0 0
         isRotating true
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
     }
-    render "planted" {
+    graphic "planted" {
         type "sprite"
         rid "needle.plant"
         anchor 0.5 0.5
@@ -42,10 +42,10 @@ actor "needle" {
         offset 0 0
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 8 8 2
@@ -53,8 +53,7 @@ actor "needle" {
     }
     repulsor
     hurtbox {
-        faction "allied"
-        type "both"
+        layer 1
         minRadius 0
         maxRadius 32
         height 6
@@ -65,5 +64,6 @@ actor "needle" {
     }
     tags ["needle"]
     controller "needleThrow"
+    shadow ""
     zOrderOffset 0
 }

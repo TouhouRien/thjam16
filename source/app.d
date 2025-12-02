@@ -72,7 +72,7 @@ void cliDefault(Cli.Result cli) {
 	Atelier.renderer.setPixelSharpness(2);
 	//Atelier.window.setDisplay();
 
-	atelier.loadArchives();
+	atelier.loadConfig();
 	atelier.loadResources();
 	atelier.window.setIcon(Atelier_Window_Icon);
 

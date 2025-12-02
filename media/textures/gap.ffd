@@ -23,7 +23,7 @@ animation "gap_in" {
     margin 0 0
 }
 actor "gap" {
-    render "appear" {
+    graphic "appear" {
         type "animation"
         rid "gap_in"
         anchor 0.5 0.5
@@ -33,9 +33,10 @@ actor "gap" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "disappear" {
+    graphic "disappear" {
         type "animation"
         rid "gap_out"
         anchor 0.5 0.5
@@ -45,9 +46,10 @@ actor "gap" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "sprite"
         rid "invisible"
         anchor 0.5 0.5
@@ -57,11 +59,12 @@ actor "gap" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     repulsor
-    hurtbox
     tags []
     controller "gap"
+    shadow ""
     zOrderOffset 0
 }

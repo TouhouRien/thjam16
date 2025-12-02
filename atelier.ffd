@@ -5,3 +5,229 @@ media "misc" true
 media "scenes" true
 media "textures" true
 media "etabli" true
+physics {
+    hurtboxLayer 0 {
+        name "player"
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 60
+    }
+    hurtboxLayer 1 {
+        name "player_shot"
+        collisionMask 36
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 2 {
+        name "enemy"
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 10
+    }
+    hurtboxLayer 3 {
+        name "enemy_shot"
+        collisionMask 1
+        repeatMask 0
+        removeMask 1
+        iframes 0
+    }
+    hurtboxLayer 4 {
+        name "enemy_core"
+        collisionMask 1
+        repeatMask 1
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 5 {
+        name "mushroom"
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 6 {
+        name "explosion"
+        collisionMask 5
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 7 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 8 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 9 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 10 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 11 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 12 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 13 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 14 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 15 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 16 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 17 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 18 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 19 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 20 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 21 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 22 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 23 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 24 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 25 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 26 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 27 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 28 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 29 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 30 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+    hurtboxLayer 31 {
+        name ""
+        collisionMask 0
+        repeatMask 0
+        removeMask 0
+        iframes 0
+    }
+}

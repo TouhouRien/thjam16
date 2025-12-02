@@ -7,7 +7,7 @@ sprite "reel" {
     clip 0 0 16 32
 }
 prop "reel" {
-    render "reel" {
+    graphic "reel" {
         type "sprite"
         rid "reel"
         anchor 0.5 1
@@ -15,19 +15,19 @@ prop "reel" {
         offset 0 6
         isRotating false
         angleOffset 0
-        effectMargin 0 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 16 16 16
         shape "box"
         bounciness 0
     }
-    hurtbox
     tags ["reel"]
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }

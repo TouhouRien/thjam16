@@ -1,7 +1,7 @@
 event yamameBehavior(yamame: Actor) {
     var time = 0;
     
-    yamame.setShadow(false);
+    //yamame.setShadow(false);
 
     loop yield {
         if (!yamame.isEnabled()) {

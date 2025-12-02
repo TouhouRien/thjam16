@@ -4,8 +4,7 @@ texture "hats" {
 }
 proxy "enemy_hitbox" {
     hurtbox {
-        faction "enemy"
-        type "projectile"
+        layer 4
         minRadius 0
         maxRadius 6
         height 2
@@ -56,7 +55,7 @@ animation "reimu" {
     margin 0 0
 }
 actor "tenshi" {
-    render "idle" {
+    graphic "idle" {
         type "animation"
         rid "tenshi"
         anchor 0.5 0.5
@@ -66,9 +65,10 @@ actor "tenshi" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "animation"
         rid "enemy_death"
         anchor 0.5 0.5
@@ -78,7 +78,8 @@ actor "tenshi" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 18 12 8
@@ -90,8 +91,7 @@ actor "tenshi" {
         height 2
     }
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 2
         minRadius 0
         maxRadius 9
         height 8
@@ -102,10 +102,11 @@ actor "tenshi" {
     }
     tags []
     controller "tenshi"
+    shadow ""
     zOrderOffset 0
 }
 actor "yukari" {
-    render "idle" {
+    graphic "idle" {
         type "animation"
         rid "yukari"
         anchor 0.5 0.5
@@ -115,9 +116,10 @@ actor "yukari" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "animation"
         rid "enemy_death"
         anchor 0.5 0.5
@@ -127,7 +129,8 @@ actor "yukari" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 18 12 8
@@ -139,8 +142,7 @@ actor "yukari" {
         height 2
     }
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 2
         minRadius 0
         maxRadius 9
         height 8
@@ -151,10 +153,11 @@ actor "yukari" {
     }
     tags []
     controller "yukari"
+    shadow ""
     zOrderOffset 0
 }
 actor "marisa" {
-    render "idle" {
+    graphic "idle" {
         type "animation"
         rid "marisa"
         anchor 0.5 0.5
@@ -164,9 +167,10 @@ actor "marisa" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "animation"
         rid "enemy_death"
         anchor 0.5 0.5
@@ -176,7 +180,8 @@ actor "marisa" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 18 12 8
@@ -188,8 +193,7 @@ actor "marisa" {
         height 2
     }
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 2
         minRadius 0
         maxRadius 9
         height 8
@@ -200,10 +204,11 @@ actor "marisa" {
     }
     tags []
     controller "marisa"
+    shadow ""
     zOrderOffset 0
 }
 actor "reimu" {
-    render "idle" {
+    graphic "idle" {
         type "animation"
         rid "reimu"
         anchor 0.5 1
@@ -213,9 +218,10 @@ actor "reimu" {
         angleOffset 0
         blend "alpha"
         isDefault true
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
-    render "death" {
+    graphic "death" {
         type "animation"
         rid "enemy_death"
         anchor 0.5 0.5
@@ -225,7 +231,8 @@ actor "reimu" {
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 18 12 8
@@ -237,8 +244,7 @@ actor "reimu" {
         height 2
     }
     hurtbox {
-        faction "enemy"
-        type "target"
+        layer 2
         minRadius 0
         maxRadius 9
         height 8
@@ -249,5 +255,6 @@ actor "reimu" {
     }
     tags []
     controller "reimu"
+    shadow ""
     zOrderOffset 0
 }
