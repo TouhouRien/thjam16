@@ -10,12 +10,6 @@ void main(string[] args) {
 
     try {
         Atelier atelier = new Atelier(1920, 1080, "Établi", &setupResourceLoaders, &setupLibLoaders);
-        atelier.renderer.scalingTime = 0;
-        atelier.window.setIcon(Atelier_Window_Icon);
-        //atelier.renderer.setScaling(Renderer.Scaling.desktop);
-
-        atelier.loadConfig();
-        atelier.loadResources();
 
         atelier.etabli.open();
         atelier.run();

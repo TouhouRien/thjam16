@@ -45,20 +45,11 @@
             }
         },
         {
-            "name": "thjam16_export",
-            "targetType": "executable",
+            "name": "export",
             "targetName": "legend_of_tenshi",
-            "targetPath": "export",
-            "subConfigurations": {
-                "atelier": "atelier"
-            }
-        },
-        {
-            "name": "thjam16_export_windows",
             "targetType": "executable",
-            "targetName": "legend_of_tenshi",
             "targetPath": "export",
-            "lflags": [
+            "lflags-windows": [
                 "-subsystem:windows",
                 "-entry:mainCRTStartup"
             ],
