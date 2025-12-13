@@ -133,26 +133,37 @@ sprite "tree3" {
     clip 256 0 62 50
 }
 prop "tree3" {
-    render "tree" {
+    graphic "tree3" {
         type "sprite"
         rid "tree3"
-        anchor 0.5 1
-        pivot 0.5 1
-        offset -2 8
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
         isRotating false
         angleOffset 0
         blend "alpha"
         isDefault false
-        isBehind []
+        effectMargin 0 0
+        auxGraphics []
     }
     hitbox {
         size 16 10 24
         shape "box"
         bounciness 0
     }
-    hurtbox
+    hurtbox {
+        layer 0
+        minRadius 0
+        maxRadius 0
+        height 0
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
     tags []
     controller ""
+    shadow ""
     zOrderOffset 0
     material 0
 }

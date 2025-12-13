@@ -36,9 +36,9 @@ scene "level0_0" {
         layer "scene"
         position 293 170 1
         controller ""
-        graphic "tree"
+        graphic "tree3"
         angle 180
-        rid "tree"
+        rid "tree3"
     }
     entity "prop" {
         name ""
@@ -1599,7 +1599,7 @@ scene "level0_5" {
         layer "scene"
         position 312 145 16
         controller ""
-        graphic "tree"
+        graphic "tree3"
         angle 180
         rid "tree3"
     }
