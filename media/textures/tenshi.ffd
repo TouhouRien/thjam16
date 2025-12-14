@@ -187,9 +187,9 @@ actor "tenshi" {
     graphic "idle_hat" {
         type "multidiranimation"
         rid "tenshi_hat"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
         isRotating false
         angleOffset 0
         blend "alpha"
@@ -200,9 +200,9 @@ actor "tenshi" {
     graphic "intro1" {
         type "animation"
         rid "tenshi_intro1"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 24
         isRotating false
         angleOffset 0
         blend "alpha"
@@ -213,9 +213,9 @@ actor "tenshi" {
     graphic "intro2" {
         type "animation"
         rid "tenshi_intro2"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 24
         isRotating false
         angleOffset 0
         blend "alpha"
@@ -229,6 +229,58 @@ actor "tenshi" {
         anchor 0.5 0.5
         pivot 0.5 0.5
         offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "charge" {
+        type "multidiranimation"
+        rid "tenshi_charge"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 24
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "ready" {
+        type "multidiranimation"
+        rid "tenshi_ready"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 24
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "arc" {
+        type "multidiranimation"
+        rid "tenshi_arc"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 24
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "spin" {
+        type "multidiranimation"
+        rid "tenshi_spin"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 24
         isRotating false
         angleOffset 0
         blend "alpha"
