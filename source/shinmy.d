@@ -92,7 +92,7 @@ final class PlayerBehavior : Behavior!Actor {
         _animator.update();
 
         Vec2f delta = (Atelier.world.getMousePosition() - entity.cameraPosition());
-        entity.angle = delta.angle().radToDeg() + 90f;
+        entity.angle = delta.angle().radToDeg();
 
         Image cursor = Atelier.renderer.getCursor();
         if (cursor) {
@@ -256,7 +256,7 @@ final class PlayerBehavior : Behavior!Actor {
             _animator.swing();
 
             Proxy proxy = Atelier.res.get!Proxy("player_swing");
-            proxy.angle = entity.angle + 90f;
+            proxy.angle = entity.angle + 180f;
             proxy.attachTo(entity);
             proxy.setController("swing");
             Atelier.world.addEntity(proxy);

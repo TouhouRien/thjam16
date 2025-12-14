@@ -29,9 +29,9 @@ physics {
     }
     hurtboxLayer 3 {
         name "enemy_shot"
-        collisionMask 1
+        collisionMask 3
         repeatMask 0
-        removeMask 1
+        removeMask 3
         iframes 0
     }
     hurtboxLayer 4 {
