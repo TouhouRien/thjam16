@@ -1,0 +1,258 @@
+texture "tenshi" {
+    file "tenshi.png"
+    isSmooth false
+}
+animation "tenshi_intro1" {
+    texture "tenshi"
+    clip 128 512 64 64
+    frameTime 12
+    frames [0 1 2]
+    repeat false
+    lines 1
+    columns 3
+    margin 0 0
+}
+animation "tenshi_intro2" {
+    texture "tenshi"
+    clip 320 512 64 64
+    frameTime 6
+    frames [0 1 2 3 4 5]
+    repeat false
+    lines 1
+    columns 6
+    margin 0 0
+}
+animation "tenshi_fall" {
+    texture "tenshi"
+    clip 0 448 32 32
+    frameTime 8
+    frames [0 1 2 3 4 5]
+    repeat false
+    lines 6
+    columns 1
+    margin 0 0
+}
+multidiranimation "tenshi_charge" {
+    texture "tenshi"
+    clip 192 0 64 64
+    frameTime 0
+    frames [0]
+    repeat false
+    lines 1
+    columns 1
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 0 64
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+multidiranimation "tenshi_ready" {
+    texture "tenshi"
+    clip 256 0 64 64
+    frameTime 14
+    frames [0 1 2]
+    repeat false
+    lines 1
+    columns 3
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 0 64
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+multidiranimation "tenshi_arc" {
+    texture "tenshi"
+    clip 448 0 64 64
+    frameTime 4
+    frames [0 1 2 3 4 5 6 7 8]
+    repeat false
+    lines 1
+    columns 9
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 0 64
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+multidiranimation "tenshi_spin" {
+    texture "tenshi"
+    clip 128 256 64 64
+    frameTime 4
+    frames [0 1 2 3 4 5 6 7 8 9 10 11 12 13]
+    repeat false
+    lines 1
+    columns 14
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 0 64
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+animation "tenshi_arc_down" {
+    texture "tenshi"
+    clip 448 0 64 64
+    frameTime 4
+    frames [0 1 2 3 4 5 6 7 8]
+    repeat false
+    lines 1
+    columns 9
+    margin 0 0
+}
+animation "tenshi_arc_up" {
+    texture "tenshi"
+    clip 448 64 64 64
+    frameTime 4
+    frames [0 1 2 3 4 5 6 7 8]
+    repeat false
+    lines 1
+    columns 9
+    margin 0 0
+}
+animation "tenshi_arc_left" {
+    texture "tenshi"
+    clip 448 128 64 64
+    frameTime 4
+    frames [0 1 2 3 4 5 6 7 8]
+    repeat false
+    lines 1
+    columns 9
+    margin 0 0
+}
+animation "tenshi_arc_right" {
+    texture "tenshi"
+    clip 448 196 64 64
+    frameTime 4
+    frames [0 1 2 3 4 5 6 7 8]
+    repeat false
+    lines 1
+    columns 9
+    margin 0 0
+}
+multidiranimation "tenshi_hat" {
+    texture "tenshi"
+    clip 0 0 32 32
+    frameTime 8
+    frames [0 1 2 3]
+    repeat true
+    lines 4
+    columns 1
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 32 0
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+multidiranimation "tenshi_nohat" {
+    texture "tenshi"
+    clip 0 160 32 32
+    frameTime 8
+    frames [0 1 2 3]
+    repeat true
+    lines 4
+    columns 1
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 32 0
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+multidiranimation "tenshi_genouille" {
+    texture "tenshi"
+    clip 128 576 64 64
+    frameTime 0
+    frames [0]
+    repeat false
+    lines 1
+    columns 1
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 64 0
+    dirIndexes [0 2 1 3]
+    dirFlipXs []
+}
+actor "tenshi" {
+    graphic "idle_nohat" {
+        type "multidiranimation"
+        rid "tenshi_nohat"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "idle_hat" {
+        type "multidiranimation"
+        rid "tenshi_hat"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "intro1" {
+        type "animation"
+        rid "tenshi_intro1"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "intro2" {
+        type "animation"
+        rid "tenshi_intro2"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "fall" {
+        type "animation"
+        rid "tenshi_fall"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    hitbox {
+        size 16 16 16
+        bounciness 0
+    }
+    repulsor
+    hurtbox {
+        layer 2
+        minRadius 0
+        maxRadius 4
+        height 16
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+    tags []
+    controller ""
+    shadow ""
+    zOrderOffset 0
+}
