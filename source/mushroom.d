@@ -46,7 +46,6 @@ final class MushroomBehavior : Behavior!Prop {
         _proxy = Atelier.res.get!Proxy(proxyName);
         _proxy.setName(proxyName);
         _proxy.attachTo(entity);
-        //_proxy.getHurtbox().isInvincible = true;
         Atelier.world.addEntity(_proxy);
     }
 

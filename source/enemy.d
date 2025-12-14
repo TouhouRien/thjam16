@@ -46,7 +46,14 @@ final class EnemyBehavior : Behavior!Actor {
 
     override void onImpact(Entity target, Vec3f normal) {
         if (entity.isEnabled()) {
-            _life--;
+            int dmg = 1;
+            if (target.getName == "explosion_hitbox") {
+                dmg = 4;
+            }
+
+            _life -= dmg;
+            _life = max(0, _life);
+
             if (_life > 0) {
                 Sound sound = Atelier.res.get!Sound("enemy_hit");
                 Atelier.audio.play(new SoundPlayer(sound, Atelier.rng.rand(0.8f, 1.1f)));
