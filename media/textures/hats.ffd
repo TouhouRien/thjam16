@@ -24,6 +24,20 @@ animation "tenshi" {
     columns 4
     margin 0 0
 }
+multidiranimation "yoshika" {
+    texture "hats"
+    clip 0 160 32 32
+    frameTime 8
+    frames [0]
+    repeat true
+    lines 1
+    columns 4
+    margin 0 0
+    dirStartAngle 90
+    dirOffset 0 0
+    dirIndexes [0 1 2 3 4 3 2 1]
+    dirFlipXs []
+}
 animation "yukari" {
     texture "hats"
     clip 0 32 32 32
@@ -47,6 +61,16 @@ animation "marisa" {
 animation "reimu" {
     texture "hats"
     clip 0 96 32 32
+    frameTime 8
+    frames [0 1 2 3]
+    repeat true
+    lines 1
+    columns 4
+    margin 0 0
+}
+animation "utsuho" {
+    texture "hats"
+    clip 0 128 32 32
     frameTime 8
     frames [0 1 2 3]
     repeat true
@@ -211,6 +235,57 @@ actor "reimu" {
     graphic "idle" {
         type "animation"
         rid "reimu"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 10
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "death" {
+        type "animation"
+        rid "enemy_death"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    hitbox {
+        size 18 12 8
+        bounciness 1
+    }
+    repulsor {
+        type "weak"
+        radius 6
+        height 2
+    }
+    hurtbox {
+        layer 2
+        minRadius 0
+        maxRadius 9
+        height 8
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+    tags []
+    controller "reimu"
+    shadow ""
+    zOrderOffset 0
+}
+actor "utsuho" {
+    graphic "idle" {
+        type "animation"
+        rid "utsuho"
         anchor 0.5 1
         pivot 0.5 1
         offset 0 10
