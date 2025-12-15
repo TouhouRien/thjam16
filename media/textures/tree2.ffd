@@ -1,0 +1,33 @@
+texture "tree4" {
+    file "tree.png"
+    isSmooth false
+}
+sprite "tree4" {
+    texture "tree4"
+    clip 64 0 64 64
+}
+prop "tree4" {
+    graphic "idle" {
+        type "sprite"
+        rid "tree4"
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 8
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    hitbox {
+        size 20 10 50
+        shape "box"
+        bounciness 0
+    }
+    tags []
+    controller ""
+    shadow ""
+    zOrderOffset 0
+    material 0
+}
