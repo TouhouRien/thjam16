@@ -1,9 +1,9 @@
-event suwakoBehavior(suwako: Actor) {
-    //suwako.setShadow(false);
+event yoshikaBehavior(yoshika: Actor) {
+    //yoshika.setShadow(false);
     var time = 0;
 
     loop yield {
-        if (!suwako.isEnabled()) {
+        if (!yoshika.isEnabled()) {
             continue;
         }
 
@@ -11,7 +11,7 @@ event suwakoBehavior(suwako: Actor) {
         var player = @World.getPlayer?;
         
         var px, py, pz = player.getPosition;
-        var sx, sy, sz = suwako.getPosition;
+        var sx, sy, sz = yoshika.getPosition;
         
         var dist = @Vec2f(px - sx, py - sy);
         var angle = dist.angle.deg;
@@ -19,14 +19,14 @@ event suwakoBehavior(suwako: Actor) {
         if (dist.lengthSquared < 80*80 && time < 60 && player.isOnGround) {
             var dir = dist.normalized;
             
-            suwako.setAngle(angle);
+            yoshika.setAngle(angle);
             acc += dir * 0.75f;
         }
 
         if (time == 60) {
             @World.playSound("enemy_shot");
             var shot = @Shot("bullet");
-            shot.setPosition(suwako.getPosition);
+            shot.setPosition(yoshika.getPosition);
             shot.setAngle(angle);
             shot.setSpeed(4f, 0f);
             @World.addEntity(shot);
@@ -36,7 +36,7 @@ event suwakoBehavior(suwako: Actor) {
             time = 0;
         }
         
-        suwako.accelerate(acc.x, acc.y, 0f);
+        yoshika.accelerate(acc.x, acc.y, 0f);
         time++;
     }
 }
