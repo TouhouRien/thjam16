@@ -78,7 +78,7 @@ animation "utsuho" {
     columns 4
     margin 0 0
 }
-actor "tenshi" {
+actor "tenshi_hat" {
     graphic "idle" {
         type "animation"
         rid "tenshi"

@@ -1020,6 +1020,16 @@ scene "levelx1" {
         rid "bridge_piece"
     }
     entity "prop" {
+        name ""
+        tags []
+        layer "scene"
+        position 3416 514 16
+        controller ""
+        graphic ""
+        angle 180
+        rid "reel"
+    }
+    entity "prop" {
         name "level0_1_bridge2_1"
         tags ["level0_1_bridge2_1"]
         layer "scene"
@@ -1048,16 +1058,6 @@ scene "levelx1" {
         graphic ""
         angle 180
         rid "suwako"
-    }
-    entity "prop" {
-        name ""
-        tags []
-        layer "scene"
-        position 3847 557 16
-        controller ""
-        graphic ""
-        angle 180
-        rid "reel"
     }
     entity "actor" {
         name ""

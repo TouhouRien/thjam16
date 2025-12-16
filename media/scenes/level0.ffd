@@ -1560,9 +1560,9 @@ scene "level0_5" {
         layer "scene"
         position 310 70 32
         controller ""
-        graphic "idle"
+        graphic ""
         angle 180
-        rid "tenshi"
+        rid "tenshi_hat"
     }
     entity "prop" {
         name ""

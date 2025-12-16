@@ -16,7 +16,7 @@ prop "tree4" {
         isRotating false
         angleOffset 0
         blend "alpha"
-        isDefault false
+        isDefault true
         effectMargin 0 0
         auxGraphics []
     }
