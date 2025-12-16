@@ -1,0 +1,42 @@
+event suwakoBehavior(suwako: Actor) {
+    //suwako.setShadow(false);
+    var time = 0;
+
+    loop yield {
+        if (!suwako.isEnabled()) {
+            continue;
+        }
+
+        var acc = @Vec2f.zero;
+        var player = @World.getPlayer?;
+        
+        var px, py, pz = player.getPosition;
+        var sx, sy, sz = suwako.getPosition;
+        
+        var dist = @Vec2f(px - sx, py - sy);
+        var angle = dist.angle.deg;
+        
+        if (dist.lengthSquared < 80*80 && time < 60 && player.isOnGround) {
+            var dir = dist.normalized;
+            
+            suwako.setAngle(angle);
+            acc += dir * 0.75f;
+        }
+
+        if (time == 60) {
+            @World.playSound("enemy_shot");
+            var shot = @Shot("bullet");
+            shot.setPosition(suwako.getPosition);
+            shot.setAngle(angle);
+            shot.setSpeed(4f, 0f);
+            @World.addEntity(shot);
+        }
+
+        if (time == 90) {
+            time = 0;
+        }
+        
+        suwako.accelerate(acc.x, acc.y, 0f);
+        time++;
+    }
+}
