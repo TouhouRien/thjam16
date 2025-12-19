@@ -1,0 +1,6 @@
+music "tenshi" {
+    file "Touhou Secret Boss v3.ogg"
+    volume 0.46
+    intro 0
+    outro 0
+}
