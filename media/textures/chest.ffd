@@ -1,0 +1,45 @@
+texture "chest" {
+    file "chest.png"
+    isSmooth false
+}
+sprite "chest_closed" {
+    texture "chest"
+    clip 0 0 32 32
+}
+sprite "chest_open" {
+    texture "chest"
+    clip 32 0 32 32
+}
+actor "chest" {
+    graphic "closed" {
+        type "sprite"
+        rid "chest_closed"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        effectMargin 0 0
+        auxGraphics []
+    }
+    graphic "open" {
+        type "sprite"
+        rid "chest_open"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    repulsor
+    tags []
+    controller "chest"
+    shadow ""
+    zOrderOffset 0
+}

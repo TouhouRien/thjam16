@@ -1,6 +1,4 @@
 event yukariBehavior(yukari: Actor) {
-    //yukari.setShadow(false);
-    
     loop yield {
         wait(60);
         if (!yukari.isEnabled()) {

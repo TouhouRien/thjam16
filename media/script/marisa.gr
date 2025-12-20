@@ -1,5 +1,5 @@
 event marisaBehavior(marisa: Actor) {
-    //marisa.setShadow(false);
+    //marisa.setEnabled(false);
 
     loop yield {
         wait(60);

@@ -1,5 +1,6 @@
 event gapBehavior(gap: Actor) {
-    //gap.setShadow(false);
+    gap.setHovering(true);
+    gap.setGravity(0f);
 
     loop yield {
         wait (30);

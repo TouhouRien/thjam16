@@ -1,0 +1,75 @@
+import "bridges"
+import "spawn"
+
+event scene_levelEX0 {
+    despawn_by_tag("suswako");
+}
+
+event scene_levelx1 {
+    gate_init("gate2_mode");
+
+    despawn_by_tag("reel1");
+    despawn_by_tag("toggle2");
+    despawn_by_tag("toggle3");
+    despawn_by_tag("levelx1_ambusher1");
+    despawn_by_tag("levelx1_ambusher2");
+    despawn_by_tag("levelx1_ambusher3");
+    despawn_by_tag("levelx1_ambusher4");
+}
+
+task spawn_reels_after_ambush1() {
+    while(@World.findEntitiesByTag("levelx1_ambusher1").size) {
+        yield;
+    }
+    
+    spawn_by_tag("reel1");
+}
+
+event button_activate_levelx1_ambush1(e : Entity) {
+    spawn_by_tag("levelx1_ambusher1");
+    spawn_reels_after_ambush1();
+}
+
+var toggle2Activations : int = 0;
+
+event button_activate_toggle2(e : Entity) {
+    toggle2Activations++;
+
+    if (toggle2Activations == 4) {
+        gate_active("gate2_mode");
+    }
+}
+
+event button_activate_levelx1_ambush2(e : Entity) {
+    spawn_by_tag("levelx1_ambusher2");
+    spawn_by_tag("toggle2");
+}
+
+event button_deactivate_levelx1_ambush2(e : Entity) {
+    despawn_by_tag("levelx1_ambusher2");
+    despawn_by_tag("toggle2");
+}
+
+var toggle3Activations : int = 0;
+
+event button_activate_levelx1_ambush3(e : Entity) {
+    spawn_by_tag("levelx1_ambusher3");
+    spawn_by_tag("toggle3");
+}
+
+event button_deactivate_levelx1_ambush3(e : Entity) {
+    despawn_by_tag("levelx1_ambusher3");
+    despawn_by_tag("toggle3");
+}
+
+event button_activate_toggle3(e : Entity) {
+    toggle3Activations++;
+
+    if (toggle3Activations == 4) {
+        gate_active("gate3_mode");
+    }
+}
+
+event levelx1_ambush4(e : Trigger) {
+    spawn_by_tag("levelx1_ambusher4");
+}

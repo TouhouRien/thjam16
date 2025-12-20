@@ -1,0 +1,11 @@
+export func despawn_by_tag(tag : string) {
+    for(elem, @World.findEntitiesByTag(tag).each) {
+        elem.setEnabled(false);
+    }
+}
+
+export func spawn_by_tag(tag : string) {
+    for(elem, @World.findEntitiesByTag(tag).each) {
+        elem.setEnabled(true);
+    }
+}
