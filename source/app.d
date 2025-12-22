@@ -109,8 +109,8 @@ void cliDefault(Cli.Result cli) {
 	));
 
 	Atelier.world.addController("control", { return new PlayerController(); });
-	Atelier.env.setPlayerController("control");
-	Atelier.env.setPlayerActor("shinmy");
+	Atelier.state.setPlayerController("control");
+	Atelier.state.setPlayerActor("shinmy");
 
 	Atelier.world.addController("needleThrow", {
 		return new NeedleThrowController();
@@ -147,6 +147,6 @@ void cliDefault(Cli.Result cli) {
 }
 
 void cliReloadScene(Cli.Result) {
-	string scene = Atelier.env.getScene();
+	string scene = Atelier.state.getScene();
 	Atelier.world.load(scene);
 }

@@ -499,7 +499,7 @@ struct PlayerAnimator {
     }
 
     private void reloadScene() {
-        string scene = Atelier.env.getScene();
+        string scene = Atelier.state.getScene();
         Atelier.world.transitionScene(scene, "", 0);
 
         PlayerComponent player = _actor.getComponent!PlayerComponent();

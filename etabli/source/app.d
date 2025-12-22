@@ -9,7 +9,7 @@ void main(string[] args) {
     Atelier.openLogger(false);
 
     try {
-        Atelier atelier = new Atelier(1280, 720, "Établi", &setupResourceLoaders, &setupLibLoaders);
+        Atelier atelier = new Atelier(1920, 1080, "Établi", &setupResourceLoaders, &setupLibLoaders);
 
         atelier.etabli.open();
         atelier.run();
