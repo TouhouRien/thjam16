@@ -1,11 +1,13 @@
 import "bridges"
 import "spawn"
 
-event scene_levelEX0 {
-    despawn_by_tag("suswako");
-}
+var toggle2Activations : int = 0;
+var toggle3Activations : int = 0;
 
 event scene_levelx1 {
+    toggle2Activations = 0;
+    toggle3Activations = 0;
+
     gate_init("gate2_mode");
 
     despawn_by_tag("reel1");
@@ -15,6 +17,7 @@ event scene_levelx1 {
     despawn_by_tag("levelx1_ambusher2");
     despawn_by_tag("levelx1_ambusher3");
     despawn_by_tag("levelx1_ambusher4");
+    despawn_by_tag("levelx1_ambusher5");
 }
 
 task spawn_reels_after_ambush1() {
@@ -29,8 +32,6 @@ event button_activate_levelx1_ambush1(e : Entity) {
     spawn_by_tag("levelx1_ambusher1");
     spawn_reels_after_ambush1();
 }
-
-var toggle2Activations : int = 0;
 
 event button_activate_toggle2(e : Entity) {
     toggle2Activations++;
@@ -49,8 +50,6 @@ event button_deactivate_levelx1_ambush2(e : Entity) {
     despawn_by_tag("levelx1_ambusher2");
     despawn_by_tag("toggle2");
 }
-
-var toggle3Activations : int = 0;
 
 event button_activate_levelx1_ambush3(e : Entity) {
     spawn_by_tag("levelx1_ambusher3");
@@ -72,4 +71,8 @@ event button_activate_toggle3(e : Entity) {
 
 event levelx1_ambush4(e : Trigger) {
     spawn_by_tag("levelx1_ambusher4");
+}
+
+event levelx1_ambush5(e : Trigger) {
+    spawn_by_tag("levelx1_ambusher5");
 }

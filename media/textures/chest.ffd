@@ -14,9 +14,9 @@ actor "chest" {
     graphic "closed" {
         type "sprite"
         rid "chest_closed"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 12
         isRotating false
         angleOffset 0
         blend "alpha"
@@ -27,9 +27,9 @@ actor "chest" {
     graphic "open" {
         type "sprite"
         rid "chest_open"
-        anchor 0.5 0.5
-        pivot 0.5 0.5
-        offset 0 0
+        anchor 0.5 1
+        pivot 0.5 1
+        offset 0 12
         isRotating false
         angleOffset 0
         blend "alpha"
@@ -37,8 +37,22 @@ actor "chest" {
         effectMargin 0 0
         auxGraphics []
     }
+    hitbox {
+        size 18 10 8
+        bounciness 0
+    }
     repulsor
-    tags []
+    hurtbox {
+        layer 2
+        minRadius 0
+        maxRadius 6
+        height 6
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+    tags ["chest"]
     controller "chest"
     shadow ""
     zOrderOffset 0

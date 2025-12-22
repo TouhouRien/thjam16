@@ -32,7 +32,7 @@ final class Menu : UIElement {
         startGameBtn.addEventListener("click", {
             Atelier.ui.clearUI();
             Atelier.audio.play(new SoundPlayer(Atelier.res.get!Sound("menu_start")));
-            Atelier.world.load("levelx1");
+            Atelier.world.load("level0_1"); // levelx1
             Actor player = Atelier.world.player;
             PlayerComponent playerComponent = player.getComponent!PlayerComponent();
             playerComponent.setup();

@@ -33,13 +33,22 @@ final class ButtonBehavior : Behavior!Prop {
             }
         }
 
+        bool isChestOnButton = false;
+
+        Entity[] chests = Atelier.world.findByTag("chest");
+        foreach (Entity chest; chests) {
+            Vec3i chestPos = chest.getPosition();
+            Vec3i distToChest = chestPos - entityPos;
+            isChestOnButton = distToChest.lengthSquared < radiusSquared;
+        }
+
         Vec3i playerPos = Atelier.world.player.getPosition();
         Vec3i distToPlayer = playerPos - entityPos;
 
         bool isPlayerOnButton = distToPlayer.lengthSquared < radiusSquared;
 
         // if distance less than 16 pixels
-        if (isPlayerOnButton || isNeedleOnButton) {
+        if (isPlayerOnButton || isNeedleOnButton || isChestOnButton) {
             activate();
         }
         else {

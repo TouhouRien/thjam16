@@ -2,6 +2,7 @@ import atelier;
 
 import thj;
 import button;
+import chest;
 import enemy;
 import shinmy;
 import needle;
@@ -130,6 +131,7 @@ void cliDefault(Cli.Result cli) {
 	});
 	Atelier.world.addController("tenshi", { return new EnemyController("tenshi"); });
 	Atelier.world.addController("mushroom", { return new MushroomController(); });
+	Atelier.world.addController("chest", { return new ChestController(); });
 
 	// playTrack
 	// stopTrack

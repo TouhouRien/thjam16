@@ -6,10 +6,62 @@ sprite "mushroom" {
     texture "mushroom"
     clip 0 0 32 32
 }
+sprite "mushroom2" {
+    texture "mushroom"
+    clip 32 0 32 32
+}
 prop "mushroom" {
     graphic "idle" {
         type "sprite"
         rid "mushroom"
+        anchor 1 1
+        pivot 1 1
+        offset 15 6
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault true
+        effectMargin 0 8
+        auxGraphics []
+    }
+    graphic "explode" {
+        type "animation"
+        rid "stockexplosion"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    hitbox {
+        size 22 6 21
+        shape "box"
+        bounciness 0
+    }
+    hurtbox {
+        layer 5
+        minRadius 0
+        maxRadius 4
+        height 16
+        angle 0
+        angleDelta 0
+        offsetDist 0
+        offsetAngle 0
+    }
+    tags []
+    controller "mushroom"
+    shadow ""
+    zOrderOffset 0
+    material 0
+}
+prop "mushroom2" {
+    graphic "idle" {
+        type "sprite"
+        rid "mushroom2"
         anchor 1 1
         pivot 1 1
         offset 15 6
