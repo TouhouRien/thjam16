@@ -566,15 +566,25 @@ scene "level0_1" {
         layer "scene"
         position 208 798 16
         controller ""
-        graphic "idle"
+        graphic ""
         angle 180
-        rid "mushroom"
+        rid "mushroom2"
     }
     entity "actor" {
         name ""
         tags []
         layer "scene"
         position 130 832 16
+        controller ""
+        graphic ""
+        angle 180
+        rid "chest"
+    }
+    entity "actor" {
+        name ""
+        tags ["caelid"]
+        layer "scene"
+        position 278 834 16
         controller ""
         graphic ""
         angle 180

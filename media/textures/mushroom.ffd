@@ -100,7 +100,7 @@ prop "mushroom2" {
         offsetDist 0
         offsetAngle 0
     }
-    tags []
+    tags ["oneshot"]
     controller "mushroom"
     shadow ""
     zOrderOffset 0

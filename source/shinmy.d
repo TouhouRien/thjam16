@@ -6,9 +6,11 @@ import needle;
 import hearts;
 import timer;
 
+int HEARTS = 4;
+
 final class PlayerComponent : EntityComponent {
     private {
-        int _life, _hearts;
+        int _life;
         Timer _iframes;
     }
 
@@ -18,7 +20,7 @@ final class PlayerComponent : EntityComponent {
         }
 
         int hearts() const {
-            return _hearts;
+            return HEARTS;
         }
 
         bool isDead() const {
@@ -27,8 +29,8 @@ final class PlayerComponent : EntityComponent {
     }
 
     void setHearts(int hearts_) {
-        _hearts = max(1, hearts_);
-        _life = _hearts * 4;
+        HEARTS = max(1, hearts_);
+        _life = HEARTS * 4;
     }
 
     bool damage(int damage = 1) {
@@ -45,8 +47,12 @@ final class PlayerComponent : EntityComponent {
         return true;
     }
 
+    void healthUp() {
+        setHearts(HEARTS + 1);
+    }
+
     override void setup() {
-        setHearts(4);
+        setHearts(HEARTS);
     }
 
     override void update() {
@@ -236,6 +242,10 @@ final class PlayerBehavior : Behavior!Actor {
         int dmg = 1;
         if (target.getName == "explosion_hitbox") {
             dmg = 4;
+        }
+
+        if (target.hasTag("oneshot")) {
+            dmg = HEARTS * 4;
         }
 
         if (damage(dmg)) {

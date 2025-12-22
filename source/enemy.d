@@ -40,7 +40,9 @@ final class EnemyBehavior : Behavior!Actor {
         _task = Atelier.script.callEvent(_enemyId ~ "Behavior", [
                 grGetNativeType("Actor")
             ], [GrValue(entity)]);
-        setProxy("enemy_hitbox");
+        if (!entity.hasTag("gap")) {
+            setProxy("enemy_hitbox");
+        }
     }
 
     override void onEnable() {

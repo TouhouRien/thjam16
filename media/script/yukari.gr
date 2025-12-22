@@ -19,6 +19,7 @@ func spawnGap(yukari: Actor) {
     
     if (dist.lengthSquared < 320) {
         var gap = @Actor("gap");
+        gap.addTag("gap");
 
         var dx = px - dist.x / 2;
         var dy = py - dist.y / 2;

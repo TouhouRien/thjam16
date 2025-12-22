@@ -46,6 +46,11 @@ final class MushroomBehavior : Behavior!Prop {
         _proxy = Atelier.res.get!Proxy(proxyName);
         _proxy.setName(proxyName);
         _proxy.attachTo(entity);
+
+        if (entity.hasTag("oneshot")) {
+            _proxy.addTag("oneshot");
+        }
+
         Atelier.world.addEntity(_proxy);
     }
 

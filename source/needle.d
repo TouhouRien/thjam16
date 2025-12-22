@@ -16,6 +16,10 @@ final class NeedleThrowController : Controller!Actor {
         bool isPlanted() {
             return _needleThrowBehavior && _needleThrowBehavior.isPlanted();
         }
+
+        Entity target() {
+            return _needleThrowBehavior.target;
+        }
     }
 
     override void onStart() {
@@ -31,7 +35,7 @@ final class NeedleThrowController : Controller!Actor {
         else if (event == "recall" && isPlanted) {
             _needleThrowBehavior.unplant();
 
-            if (_needleThrowBehavior.hasReel()) {
+            if (_needleThrowBehavior.targetsHeavy()) {
                 _needleGrabBehavior = new NeedleGrabBehavior(_needleThrowBehavior);
                 setBehavior(_needleGrabBehavior);
                 _needleThrowBehavior = null;
@@ -70,7 +74,7 @@ final class NeedleThrowBehavior : Behavior!Actor {
         EntityThreadRenderer _renderer;
         bool _isPlanted;
         Entity _target;
-        bool _hasReel;
+        bool _targetsHeavy;
     }
 
     @property {
@@ -78,8 +82,12 @@ final class NeedleThrowBehavior : Behavior!Actor {
             return _isPlanted;
         }
 
-        bool hasReel() {
-            return _hasReel;
+        bool targetsHeavy() {
+            return _targetsHeavy;
+        }
+
+        Entity target() {
+            return _target;
         }
     }
 
@@ -154,9 +162,11 @@ final class NeedleThrowBehavior : Behavior!Actor {
             return;
 
         _target = target;
+
         if (_target) {
-            _hasReel = _target.hasTag("reel");
+            _targetsHeavy = _target.hasTag("reel");
         }
+
         plant();
     }
 
@@ -165,6 +175,11 @@ final class NeedleThrowBehavior : Behavior!Actor {
             return;
 
         _target = target;
+        
+        if (_target.hasTag("chest") && !_target.hasTag("open")) {
+            _targetsHeavy = true;
+        }
+
         plant();
     }
 
@@ -231,7 +246,8 @@ final class NeedleHookBehavior : Behavior!Actor {
         entity.setVelocity(dir * 3f);
 
         if (_target && _target.type == Entity.Type.actor) {
-            _target.setPosition(entity.getPosition());
+            Vec3f move = cast(Vec3f)(entity.getPosition - _target.getPosition);
+            _target.move(move.normalized * 3f);
         }
 
         if (Atelier.world.player.getPosition().distanceSquared(entity.getPosition()) < (25 * 25)) {
