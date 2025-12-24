@@ -1,12 +1,14 @@
 import "bridges"
 import "spawn"
 
-var toggle2Activations : int = 0;
-var toggle3Activations : int = 0;
+var toggle2Activations : int;
+var toggle3Activations : int;
+var puzzle3Done : bool;
 
 event scene_levelx1 {
     toggle2Activations = 0;
     toggle3Activations = 0;
+    puzzle3Done = false;
 
     gate_init("gate2_mode");
 
@@ -18,6 +20,12 @@ event scene_levelx1 {
     despawn_by_tag("levelx1_ambusher3");
     despawn_by_tag("levelx1_ambusher4");
     despawn_by_tag("levelx1_ambusher5");
+    despawn_by_tag("reimu_pack");
+    despawn_by_tag("respawn_ambusher3");
+
+    bridge_despawn("bridge5");
+    bridge_despawn("bridge4_1");
+    bridge_despawn("bridge4_2");
 }
 
 task spawn_reels_after_ambush1() {
@@ -57,8 +65,18 @@ event button_activate_levelx1_ambush3(e : Entity) {
 }
 
 event button_deactivate_levelx1_ambush3(e : Entity) {
+    //if (!puzzle3Done) {
+        despawn_by_tag("levelx1_ambusher3");
+        despawn_by_tag("toggle3");
+    //}
+}
+
+event despawn_ambusher3(e : Trigger) {
     despawn_by_tag("levelx1_ambusher3");
-    despawn_by_tag("toggle3");
+}
+
+event respawn_ambusher3(e : Trigger) {
+    spawn_by_tag("levelx1_ambusher3");
 }
 
 event button_activate_toggle3(e : Entity) {
@@ -66,13 +84,42 @@ event button_activate_toggle3(e : Entity) {
 
     if (toggle3Activations == 4) {
         gate_active("gate3_mode");
+        puzzle3Done = true;
     }
 }
 
 event levelx1_ambush4(e : Trigger) {
     spawn_by_tag("levelx1_ambusher4");
+    spawn_bridge1_after_ambush4();
+    spawn_bridge2_after_ambush4();
+}
+
+task spawn_bridge1_after_ambush4() {
+    while(@World.findEntitiesByTag("levelx1_ambusher4").size) {
+        yield;
+    }
+
+    bridge_westwise("bridge4_1", 12);
+}
+
+task spawn_bridge2_after_ambush4() {
+    while(@World.findEntitiesByTag("levelx1_ambusher4").size != 0 ||
+          @World.findEntitiesByTag("levelx1_ambusher3").size != 0) {
+        yield;
+    }
+
+    bridge_eastwise("bridge4_2", 12);
 }
 
 event levelx1_ambush5(e : Trigger) {
     spawn_by_tag("levelx1_ambusher5");
+    spawn_bridge_after_ambush5();
+}
+
+task spawn_bridge_after_ambush5() {
+    while(@World.findEntitiesByTag("levelx1_ambusher5").size) {
+        yield;
+    }
+
+    bridge_southwise("bridge5", 12);
 }

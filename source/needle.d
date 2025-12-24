@@ -247,7 +247,7 @@ final class NeedleHookBehavior : Behavior!Actor {
 
         if (_target && _target.type == Entity.Type.actor) {
             Vec3f move = cast(Vec3f)(entity.getPosition - _target.getPosition);
-            _target.move(move.normalized * 3f);
+            _target.move(dir * 3f);
         }
 
         if (Atelier.world.player.getPosition().distanceSquared(entity.getPosition()) < (25 * 25)) {
