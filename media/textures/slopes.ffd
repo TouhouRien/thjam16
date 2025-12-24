@@ -1,0 +1,33 @@
+texture "slope" {
+    file "slopes.png"
+    isSmooth false
+}
+sprite "slope" {
+    texture "slope"
+    clip 80 16 32 32
+}
+prop "slope" {
+    graphic "slope" {
+        type "sprite"
+        rid "slope"
+        anchor 0.5 0.5
+        pivot 0.5 0.5
+        offset 0 0
+        isRotating false
+        angleOffset 0
+        blend "alpha"
+        isDefault false
+        effectMargin 0 0
+        auxGraphics []
+    }
+    hitbox {
+        size 32 16 16
+        shape "slopeUp"
+        bounciness 0
+    }
+    tags ["slope"]
+    controller ""
+    shadow ""
+    zOrderOffset 0
+    material 5
+}
